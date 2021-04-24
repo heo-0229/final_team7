@@ -7,13 +7,13 @@ import {actionCreators} from '../redux/modules/user';
 import {history} from '../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Main = () => {
+const Login = () => {
 
     return (
         <React.Fragment>
-            메인 페이지 입니다 :)
+            로그인 페이지 입니다 :)
         </React.Fragment>
         );
 }
 
-export default Main;
+export default Login;

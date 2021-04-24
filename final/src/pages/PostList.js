@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import {Grid, Text, Button, Input} from '../elements/index';
-import {actionCreators} from '../redux/modules/user';
 
 import {history} from '../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
+import Post from '../components/Post';
 
-const Main = () => {
+
+
+const PostList = () => {
 
     return (
-        <React.Fragment>
-            메인 페이지 입니다 :)
-        </React.Fragment>
-        );
+    <React.Fragment>
+        게시글 리스트 페이지 입니다 :)
+        <Post/>
+    </React.Fragment>
+    );
 }
 
-export default Main;
+export default PostList;
