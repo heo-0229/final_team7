@@ -19,8 +19,8 @@ const middlewares = [thunk.withExtraArgument({ history: history })];
 const env = process.env.NODE_ENV;
 
 if (env === "development") {
-  const { logger } = require("redux-logger"); 
-  middlewares.push(logger);
+  // const { logger } = require("redux-logger"); 
+  // middlewares.push(logger);
 }
 
 const composeEnhancers =
