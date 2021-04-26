@@ -1,21 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
-import {Grid, Text, Button, Input} from '../elements/index';
-
-import {history} from '../redux/configStore';
-import { useDispatch, useSelector } from 'react-redux';
-import Post from '../components/Post';
-
-
+import React from "react";
+import styled from "styled-components";
+import { Grid, Text, Button, Input } from "../elements/index";
+import { history } from "../redux/configStore";
+import { useDispatch, useSelector } from "react-redux";
+import SideNav from "../components/SideNav";
+import Post from "../components/Post";
+import SearchBar from "../components/SearchBar";
+import LogBtn from "../components/LogBtn";
 
 const PostList = () => {
-
-    return (
+  return (
     <React.Fragment>
-        게시글 리스트 페이지 입니다 :)
-        <Post/>
+      <SideNav />
+      <LogBtn />
+      <SearchBar />
+      <Box></Box>
+      <Post></Post>
     </React.Fragment>
-    );
-}
+  );
+};
 
 export default PostList;
+
+const OutBox = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: lightgray;
+`;
+
+const Box = styled.div`
+  height: 200px;
+`;

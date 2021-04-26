@@ -5,24 +5,24 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 
-import Signup from '../pages/Signup';
-import Login from '../pages/Login';
-import PostList from '../pages/PostList';
-import Main from '../pages/Main';
-import NotFound from  "../pages/NotFound"
+import Signup from "../pages/Signup";
+import Login from "../pages/Login";
+import PostList from "../pages/PostList";
+import Main from "../pages/Main";
+import NotFound from "../pages/NotFound";
 
 function App() {
   return (
     <React.Fragment>
-      <Responsive>
+      {/* <Responsive> */}
       <ConnectedRouter history={history}>
-          <Route path="/" exact component={Main} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/postlist" component={PostList} />
-            <Route exact component={NotFound}/>
-          </ConnectedRouter>
-      </Responsive>          
+        <Route path="/" exact component={Main} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/login" component={Login} />
+        <Route path="/postlist" component={PostList} />
+        {/* <Route exact component={NotFound} /> */}
+      </ConnectedRouter>
+      {/* </Responsive> */}
     </React.Fragment>
   );
 }
