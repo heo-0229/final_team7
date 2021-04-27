@@ -11,14 +11,14 @@ export const emailRegCheck = (email) => {
 }
 
 //패스워드 체크 정규식
-export const pwdRegCheck = (password) => {
+export const pwdRegCheck = (pwd) => {
   const _reg = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/;
-  return  _reg.test(password) && password.search(/\s/) === -1 ? true:false;
+  return  _reg.test(pwd) && pwd.search(/\s/) === -1 ? true:false;
 }
 
 //패스워드 반복 체크 정규식
-export const pwdRegContinuousCheck = (password) => {
+export const pwdRegContinuousCheck = (pwd) => {
   const _reg = /(\w)\1\1/;
-  return _reg.test(password)
+  return _reg.test(pwd)
 }
 
