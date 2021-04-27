@@ -34,13 +34,8 @@ const env = process.env.NODE_ENV;
 // 이거하면 ACTION(ex : SET_POST)에 따라서 일어나는 일을 보여준다
 // 개발 상태에서만 보이고, 배포하면 보이지 않는다.
 if (env === "development") {
-<<<<<<< HEAD
-  // const { logger } = require("redux-logger"); 
+  // const { logger } = require("redux-logger");
   // middlewares.push(logger);
-=======
-  const { logger } = require("redux-logger");
-  middlewares.push(logger);
->>>>>>> upstream/master
 }
 
 // redux devTools 설정
@@ -59,4 +54,5 @@ let store = (initialStore) => createStore(rootReducer, enhancer);
 
 // 스토어를 다른 곳에서 쓸 수 있도록 export 해준다.
 // index.js에서 임포트 된다.
+
 export default store();
