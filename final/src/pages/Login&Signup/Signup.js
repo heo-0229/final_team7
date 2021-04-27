@@ -21,15 +21,17 @@ const Signup = (props) => {
   const [nickname, setNickname] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [pwd, setPwd] = React.useState("");
-  const [pwdCheck, setPwdCheck] = React.useState("");
+  const [rePwd, setRePwd] = React.useState("");
 
   // 닉네임, 이메일 중복체크
   const [nicknameDup, setNicknameDup] = React.useState(false);
   const [emailDup, setEmailDup] = React.useState(false);
 
+
   // 조건 충족 여부에 따라  info를 다르게
   // querySelector를 이용하면 ''안에 해당되는 태그가 여러개 일 경우 그 첫번째 것만 선택한다.
   // 따라서 선택하고자 하는 것이 명확하다면 ''안에 몇번째 child 인지까지 정확하게 입력하거나 className 사용하기
+
 
   // 닉네임 정규식 검사(info 컬러 바꿔주기)
   const changeNickname = (e) => {
@@ -38,7 +40,6 @@ const Signup = (props) => {
       "ul.checkNickname li:nth-child(1)"
     );
 
-    // 이메일 정규식 검사: /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){6,}$/
     if (!nicknameRegCheck(e.target.value)) {
       nicknameInfo.classList.add("error");
       nicknameInfo.classList.remove("ok");
@@ -48,8 +49,23 @@ const Signup = (props) => {
     }
   };
 
+   // 이메일 형식
+   const changeEmail = (e) => {
+    setEmail(e.target.value);
+    const emailInfo = document.querySelector("ul.checkEmail li:nth-child(1)");
+    if (!emailRegCheck(e.target.value)) {
+      emailInfo.classList.add("error");
+      emailInfo.classList.remove("ok");
+    } else {
+      emailInfo.classList.add("ok");
+      emailInfo.classList.remove("error");
+    }
+    
+  };
+  
+
   // 비밀번호 정규식 검사(info 컬러 바꿔주기)
-  const changePwd = (e) => {
+  const changePwdReg = (e) => {
     setPwd(e.target.value);
     const pwdInfo_len = document.querySelector("ul.checkPwd li:nth-child(1)");
     const pwdInfo_match = document.querySelector("ul.checkPwd li:nth-child(2)");
@@ -73,7 +89,7 @@ const Signup = (props) => {
       pwdInfo_match.classList.add("ok");
       pwdInfo_match.classList.remove("error");
     }
-
+    // 비밀번호 연속 체크
     if (pwdRegContinuousCheck(e.target.value)) {
       pwdInfo_continuous.classList.add("error");
       pwdInfo_continuous.classList.remove("ok");
@@ -84,16 +100,16 @@ const Signup = (props) => {
   };
 
   // 비밀번호 확인 정규식 검사(info 컬러 바꿔주기)
-  const changePwdRegCheck = (e) => {
-    setPwdCheck(e.target.value);
-    const RePwdInfo = document.querySelector("ul.ReCheckPwd li:nth-child(1)");
+  const changeRePwd = (e) => {
+    setRePwd(e.target.value);
+    const rePwdInfo = document.querySelector("ul.reCheckPwd li:nth-child(1)");
 
     if (pwd === e.target.value) {
-      RePwdInfo.classList.add("ok");
-      RePwdInfo.classList.remove("error");
+      rePwdInfo.classList.add("ok");
+      rePwdInfo.classList.remove("error");
     } else {
-      RePwdInfo.classList.add("error");
-      RePwdInfo.classList.remove("ok");
+      rePwdInfo.classList.add("error");
+      rePwdInfo.classList.remove("ok");
     }
   };
 
@@ -150,12 +166,12 @@ const Signup = (props) => {
   // }
 
   // 회원가입 버튼
-  const signup = () => {
+  const onSignup = () => {
     if (
       !nicknameRegCheck(nickname) ||
       !pwdRegCheck(pwd) ||
       pwdRegContinuousCheck(pwd) ||
-      pwd !== pwdCheck
+      pwd !== rePwd
     ) {
       alert("아이디,비밀번호 확인을 해주세요.");
       return false;
@@ -185,7 +201,8 @@ const Signup = (props) => {
       alert("이메일 형식을 지켜주세요!");
       return false;
     }
-    // dispatch(userActions.signupAPI(nickname, email, pwd, pwdCheck));
+    console.log(nickname, email, pwd, rePwd);
+    // dispatch(userActions.signupAPI(nickname, email, pwd, rePwd));
   };
 
   return (
@@ -220,8 +237,8 @@ const Signup = (props) => {
           </DupCheckBtn>
         </div>
         <InfoUl className="checkNickname">
-          <li>· 6자 이상의 영문 혹은 영문과 숫자를 조합</li>
-          <li>· 아이디 중복확인</li>
+          <li>6자 이상의 영문 혹은 영문과 숫자를 조합</li>
+          <li>아이디 중복확인</li>
         </InfoUl>
 
         <div>
@@ -229,8 +246,11 @@ const Signup = (props) => {
             placeholder="이메일 입력"
             type="type"
             width="76%"
+            onClick={() => {
+              document.querySelector(".checkEmail").style.display = "block";
+            }}
             onChange={(e) => {
-              setEmail(e.target.value);
+              changeEmail(e);
             }}
           />
           <DupCheckBtn
@@ -245,6 +265,9 @@ const Signup = (props) => {
             중복확인
           </DupCheckBtn>
         </div>
+        <InfoUl className="checkEmail">
+          <li>이메일 형식을 지켜주세요.(예시: hh99@sflash.com)</li>
+        </InfoUl>
 
         <InputStyle
           placeholder="비밀번호 입력"
@@ -254,7 +277,7 @@ const Signup = (props) => {
             document.querySelector(".checkPwd").style.display = "block";
           }}
           onChange={(e) => {
-            changePwd(e);
+            changePwdReg(e);
           }}
         />
         <InfoUl className="checkPwd">
@@ -271,7 +294,7 @@ const Signup = (props) => {
             document.querySelector(".reCheckPwd").style.display = "block";
           }}
           onChange={(e) => {
-            changePwdRegCheck(e);
+            changeRePwd(e);
           }}
         />
         <InfoUl className="reCheckPwd">
@@ -281,7 +304,7 @@ const Signup = (props) => {
         <SolidBtn
           background-color="grey"
           style={{ display: "block" }}
-          onClick={signup}
+          onClick={onSignup}
         >
           회원가입하기
         </SolidBtn>
@@ -307,10 +330,10 @@ const Container = styled.div`
 
 const Title = styled.div`
   margin-bottom: 30px;
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 600;
   text-align: center;
-  color: grey;
+  color: #343a40;
 `;
 
 const InputStyle = styled.input`
@@ -385,31 +408,10 @@ const DupCheckBtn = styled.button`
 `;
 
 const TextBtn = styled.text`
-  font-size: 1vw;
+  font-size: 0.8vw;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
-  }
-`;
-
-const SignTable = styled.table`
-  margin-top: 15px;
-  padding-bottom: 49px;
-  width: 100%;
-  & tr {
-    text-align: left;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  & td {
-    position: relative;
-    padding-bottom: 16px;
-  }
-  & td:nth-child(1) {
-    box-sizing: border-box;
-    padding: 15px 0px 0px 18px;
-    width: 152px;
-    vertical-align: top;
   }
 `;
 

@@ -7,15 +7,10 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import TextField from "@material-ui/core/TextField";
-import { SettingsPowerRounded } from "@material-ui/icons";
-import { render } from "@testing-library/react";
-
 const FindEmailPwd = () => {
-  const [FindEmailMode, setFindEmailMode] = useState(true);
-
   const dispatch = useDispatch();
 
+  const [FindEmailMode, setFindEmailMode] = useState(true);
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
 
@@ -23,32 +18,63 @@ const FindEmailPwd = () => {
     return () => {};
   }, []);
 
+  const onFindEmail = () => {
+
+    // 닉네임이 존재하면 (is_nickname ? true)
+    // useSelector로 email 가져오기
+    // if (is_nickname) {
+    //   alert(
+    //     "등록된 이메일은 ${email} 입니다."
+    //   );
+    //   return false;
+    // }
+  };
+
+  const onVertification = () => {
+    // 이메일이 존재하면?? 이메일 값을 받아서
+    // if (is_email) {
+    //   alert(
+    //     "입력하신 이메일({email})로 인증번호가 전송되었습니다."
+    //   );
+    //   return false;
+    // }
+  };
+
+  const onFindPwd = () => {
+    //  인증번호가 일치하면 비밀번호 변경 페이지로 
+    history.push('editpwd')
+  };
+
   if (FindEmailMode) {
     return (
       <React.Fragment>
         <Container>
           <Title>이메일/비밀번호 찾기</Title>
           <Tab>
-            <TapClicked>이메일 찾기 </TapClicked>
+            <ClickedTab>이메일 찾기 </ClickedTab>
             <text>|</text>
-            <TapUnclicked
+            <UnclickedTab
               onClick={() => {
                 setFindEmailMode(false);
               }}
             >
               비밀번호 찾기
-            </TapUnclicked>
+            </UnclickedTab>
           </Tab>
 
-          <LoginInput
+          <InputStyle
             placeholder="닉네임을 입력"
             type="type"
-            width="50%"
+            width="97%"
             onChange={(e) => {
               setNickname(e.target.value);
             }}
           />
-          <SolidBtn background-color="grey" style={{ display: "block" }}>
+          <SolidBtn
+            background-color="grey"
+            style={{ display: "block" }}
+            onClick={onFindEmail}
+          >
             이메일 찾기
           </SolidBtn>
           <TextBtn onClick={() => history.push("/login")}>
@@ -63,37 +89,39 @@ const FindEmailPwd = () => {
         <Container>
           <Title>이메일/비밀번호 찾기</Title>
           <Tab>
-            <TapUnclicked
+            <UnclickedTab
               onClick={() => {
                 setFindEmailMode(true);
               }}
             >
               이메일 찾기
-            </TapUnclicked>
-            <text>|</text>
-            <TapClicked>비밀번호 찾기</TapClicked>
+            </UnclickedTab>
+            <text style={{color:"grey"}}>|</text>
+            <ClickedTab>비밀번호 찾기</ClickedTab>
           </Tab>
           <div>
-            <LoginInput
+            <InputStyle
               placeholder="이메일 입력"
               type="type"
-              width="37%"
+              width="70%"
               onChange={(e) => {
                 setNickname(e.target.value);
               }}
             />
-            <VertificationBtn>인증번호전송</VertificationBtn>
+            <VertificationBtn
+            onClick = {onVertification}>인증번호전송</VertificationBtn>
           </div>
 
-          <LoginInput
+          <InputStyle
             placeholder="인증번호를 입력"
             type="type"
-            width="50%"
+            width="97%"
             onChange={(e) => {
               setNickname(e.target.value);
             }}
           />
-          <SolidBtn background-color="grey" style={{ display: "block" }}>
+          <SolidBtn background-color="grey" style={{ display: "block" }}
+          onClick={onFindPwd}>
             비밀번호 찾기
           </SolidBtn>
           <Grid padding="10px">
@@ -108,32 +136,60 @@ const FindEmailPwd = () => {
 };
 
 const Container = styled.div`
-  width: 50%;
+  width: 25%;
   height: 70%;
-  margin: 20% auto;
+  margin: 10% auto;
   padding: 80px 50px;
   border: none;
   text-align: center;
-  align-items: center;
   flex-direction: column;
 `;
 
 const Title = styled.div`
   margin-bottom: 30px;
-  font-size: 2vw;
-  font-weight: 700;
+  font-size: 1.5vw;
+  font-weight: 600;
   text-align: center;
-  color: grey;
+  color: #343a40;
 `;
 
 const Tab = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 35%;
-  margin: 20px auto;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0px 5px 0px;
 `;
 
-const LoginInput = styled.input`
+const UnclickedTab = styled.button`
+  width: 50%;
+  aspect-ratio: 5/1;
+  font-size: 1vw;
+  background-color: #ffffff;
+  border: none;
+  :focus {
+    outline: none;
+  }
+  color: lightgrey;
+
+  &:hover {
+    background-color: #eee;
+    color: grey;
+    cursor: pointer;
+  }
+`;
+
+const ClickedTab = styled.button`
+  width: 50%;
+  aspect-ratio: 5/1;
+  font-size: 1vw;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #343a40;
+  border: none;
+`;
+
+const InputStyle = styled.input`
   border: none;
   ${(props) => (props.width ? `width:${props.width};` : "")}
   height: 40px;
@@ -151,13 +207,13 @@ const LoginInput = styled.input`
 
 const SolidBtn = styled.button`
   border: none;
-  width: 51%;
+  width: 100%;
   min-height: 50px;
   max-height: 70px;
   border-radius: 5px;
   box-sizing: border-box;
-  margin: 8px auto;
-  font-size: 1vw;
+  margin: 8px 0px 8px 0px;
+  font-size: 0.8vw;
   font-weight: 500;
   ${(props) => (props.color ? `color:${props.color};` : "")}
   ${(props) => (props.bg ? `background-color:${props.bg};` : "")}
@@ -172,7 +228,7 @@ const SolidBtn = styled.button`
 `;
 
 const VertificationBtn = styled.button`
-  width: 12%;
+  width: 25%;
   height: 40px;
   border: 1px solid grey;
   box-sizing: border-box;
@@ -196,23 +252,8 @@ const VertificationBtn = styled.button`
   right: 0%;
 `;
 
-const TapUnclicked = styled.text`
-  font-size: 1vw;
-  color: lightgrey;
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-
-const TapClicked = styled.text`
-  font-size: 1vw;
-  color: grey;
-  font-weight: 600;
-`;
-
 const TextBtn = styled.text`
-  font-size: 1vw;
+  font-size: 0.8vw;
   margin: 20px;
   &:hover {
     text-decoration: underline;

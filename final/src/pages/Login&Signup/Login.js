@@ -7,9 +7,6 @@ import { actionCreators as userActions} from "../../redux/modules/user";
 import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import TextField from '@material-ui/core/TextField';
-import { SettingsPowerRounded } from "@material-ui/icons";
-
 const Login = () => {
     const dispatch = useDispatch();
 
@@ -17,7 +14,7 @@ const Login = () => {
     const [pwd, setPwd] = React.useState('');
 
     // 일반 로그인
-    const login = () => {
+    const onLogin = () => {
         if( email === "" || pwd === "" ){
             window.alert("아이디 혹은 비밀번호를 입력하지 않으셨습니다.")
             return;
@@ -45,7 +42,7 @@ const Login = () => {
         }}
         />
 
-        <BorderBtn bg="grey" onClick={login} >로그인하기</BorderBtn>
+        <BorderBtn bg="grey" onClick={onLogin} >로그인하기</BorderBtn>
         <Grid padding="10px">
         <TextBtn onClick={()=> history.push('/findemailpwd')}>이메일/비밀번호 찾기</TextBtn>
         </Grid>
@@ -73,10 +70,10 @@ const Container = styled.div`
 
 const Title = styled.div`
   margin-bottom: 30px;
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 600;
   text-align: center;
-  color: grey;
+  color: #343a40;
 `;
 
 const InputStyle = styled.input`    
@@ -137,7 +134,7 @@ const BorderBtn = styled.button`
 `;
 
 const TextBtn = styled.text`
-font-size: 1vw;
+font-size: 0.8vw;
   &:hover{
     text-decoration: underline;
     cursor: pointer;
