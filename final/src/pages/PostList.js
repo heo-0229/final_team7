@@ -63,7 +63,7 @@ const Container = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   top: 75%;
-
+  overflow: visible;
   width: 1266px;
   /* width: 1266px; */
   height: 100%;

@@ -183,20 +183,30 @@ const ModalDetail = (props) => {
 };
 
 const Component = styled.div`
-  position: fixed;
-  top: 0;
+  all: unset;
+  position: unset;
+  position: fixed !important;
   opacity: 0.4;
-  height: 100%;
-  width: 1980px;
+  height: 100vh;
+  width: 100vw;
   margin-left: -200px;
   background-color: black;
   z-index: 999;
+  margin-left: calc(-50vw + 50%);
+  margin-top: calc(-90vh + 40%);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 `;
+
 const ModalComponent = styled.div`
-  position: fixed;
+  all: unset;
+  position: fixed !important;
   width: 580px;
   height: 780px;
-  top: 50%;
+  overflow: hidden;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
