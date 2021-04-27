@@ -75,7 +75,7 @@ const FindEmailPwd = () => {
           </Tab>
           <div>
             <LoginInput
-              placeholder="email"
+              placeholder="이메일 입력"
               type="type"
               width="37%"
               onChange={(e) => {

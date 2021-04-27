@@ -14,21 +14,21 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [pwd, setPwd] = React.useState('');
 
     // 일반 로그인
     const login = () => {
-        if( email === "" || password === "" ){
+        if( email === "" || pwd === "" ){
             window.alert("아이디 혹은 비밀번호를 입력하지 않으셨습니다.")
             return;
           }
-        // dispatch(userActions.loginAPI(email, password));
+        // dispatch(userActions.loginAPI(email, pwd));
     }
 
 
   return (
     <React.Fragment>
-      <LoginContainer>
+      <Container>
         <Title>Login</Title>
         <InputStyle
         placeholder = "이메일 입력"
@@ -41,7 +41,7 @@ const Login = () => {
         placeholder = "비밀번호 입력"
         type="password"
         onChange={(e) => {
-            setPassword(e.target.value)
+            setPwd(e.target.value)
         }}
         />
 
@@ -56,16 +56,16 @@ const Login = () => {
         <SolidBtn bg="#fee500" >카카오 로그인</SolidBtn>
         <SolidBtn bg="#f45a5c" color="#ffffff">Google 로그인</SolidBtn>
         
-      </LoginContainer>
+      </Container>
     </React.Fragment>
   );
 };
 
-const LoginContainer = styled.div`
-  width: 50%;
+const Container = styled.div`
+  width: 25%;
   height: 70%;
-  margin: 20% auto;
-  padding: 100px 50px;
+  margin: 10% auto;
+  padding: 80px 50px;
   border: none;
   text-align: center;
   flex-direction: column;
@@ -81,10 +81,10 @@ const Title = styled.div`
 
 const InputStyle = styled.input`    
   border: none;
-  width: 50%;
+  width: 100%;
   height: 30px;
   border-bottom: 1px grey solid;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 4px; 
   font-size: 1vw;
   font-weight: 500;
@@ -95,7 +95,7 @@ const InputStyle = styled.input`
 
 const SolidBtn = styled.button`
   border: none;
-  width: 51%;
+  width: 102%;
   min-height:50px;
   max-height:70px;
   border-radius:5px;
@@ -114,7 +114,7 @@ const SolidBtn = styled.button`
 `;
 
 const BorderBtn = styled.button`
-  width: 51%;
+  width: 100%;
   min-height:50px;
   max-height:70px;
   border: 1px solid grey;
