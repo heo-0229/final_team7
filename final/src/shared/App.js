@@ -11,11 +11,7 @@ import { getCookie } from "./Cookie";
 import Signup from "../pages/Login&Signup/Signup";
 import Login from "../pages/Login&Signup/Login";
 import FindEmailPwd from "../pages/Login&Signup/FindEmailPwd";
-<<<<<<< HEAD
 import EditPwd from "../pages/Login&Signup/EditPwd";
-=======
-import ChangePwd from "../pages/Login&Signup/ChangePwd";
->>>>>>> upstream/master
 import PostList from "../pages/PostList";
 import Main from "../pages/Main";
 import Story from "../pages/Story";
@@ -43,7 +39,6 @@ function App() {
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
         <Route path="/findemailpwd" exact component={FindEmailPwd} />
-<<<<<<< HEAD
         <Route path="/editpwd" exact component={EditPwd} />
         <Route path="/postlist" exact component={PostList} />
         {/* story와 editprofile은 후에 /:id 붙여야함 */}
@@ -52,12 +47,6 @@ function App() {
         {/* <Route exact component={NotFound}/> */}
       </ConnectedRouter>
       {/* </Responsive> */}
-=======
-        <Route path="/changepwd" exact component={ChangePwd} />
-        <Route path="/postlist" component={PostList} />
-        {/* <Route exact component={NotFound}/> */}
-      </ConnectedRouter>
->>>>>>> upstream/master
     </React.Fragment>
   );
 }
