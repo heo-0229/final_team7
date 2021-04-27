@@ -92,9 +92,11 @@ const Main = () => {
 
   return (
     <React.Fragment>
+      <SearchBar>
+        <input type="text" placeholder="지역으로 검색" onChange={debounce} />
+      </SearchBar>
       <MapBox>
         <div>
-          <input type="text" placeholder="지역으로 검색" onChange={debounce} />
           {/* <button
                     onClick={() => {
                       setSearch(search);
@@ -109,9 +111,13 @@ const Main = () => {
   );
 };
 
-const MainContainer = styled.div`
-
-`;
+const SearchBar = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+`; 
 
 const MapBox = styled.div`
   position: absolute;
@@ -120,10 +126,5 @@ const MapBox = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
 `;
-
-const SearchBox = styled.div`
-
-`; 
-
 
 export default Main;
