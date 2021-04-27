@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import * as IoIcons from "react-icons/io";
+import * as CgIcons from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../Css/Navbar.css";
@@ -24,6 +26,16 @@ function Navbar() {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
         </div>
+        <SideMini>
+          <SideIcon>
+            <CgIcons.CgProfile size="22px" />
+            <IoIcons.IoIosPaper size="22px" />
+            <FaIcons.FaCartPlus size="22px" />
+            <IoIcons.IoMdPeople size="22px" />
+            <FaIcons.FaEnvelopeOpenText size="22px" />
+            <IoIcons.IoMdHelpCircle size="22px" />
+          </SideIcon>
+        </SideMini>
         {/* sidebar값에 따라 클래스 네임을 바꿔준다 */}
         {/* nav-menu.active는 사이드바가 들어간 상태를 의미 */}
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -67,4 +79,25 @@ const LOGO = styled.div`
   width: 110px;
   margin-bottom: 35px;
   font-size: 30px;
+`;
+
+const SideMini = styled.div`
+  align-items: center;
+  width: 70px;
+  height: 100vh;
+  position: fixed;
+  background-color: white;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SideIcon = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  margin-top: 270px;
 `;

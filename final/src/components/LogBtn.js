@@ -47,7 +47,7 @@ export default function LogBtn() {
 }
 
 const LogBox = styled.button`
-  position: absolute;
+  position: fixed;
   top: 25px;
   right: 25px;
   padding: 10px 20px;
