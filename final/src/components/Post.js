@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { actionCreators } from "../redux/modules/user";
 // import * as FaIcons from "react-icons/fa"
 import * as FaIcons from "react-icons/fi";
+
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";

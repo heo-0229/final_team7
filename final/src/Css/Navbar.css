@@ -1,10 +1,14 @@
 .navbarBtn {
-  height: 80px;
+  height: 70px;
   display: flex;
   justify-content: start;
   align-items: center;
   position: fixed;
+  margin-left: -14px;
+  z-index: 100;
   top: 0;
+  width: 76px;
+  background-color: white;
 }
 
 .menu-bars {
