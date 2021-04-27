@@ -59,8 +59,7 @@ const Post2 = (props) => {
     background-size: cover;
     background-image: url("${props.imgUrl}");
     background-repeat: no-repeat;
-    /* box-shadow: 0px 0px 1px 1px lightgray; */
-    //이미지 수정요망
+
     /* &:hover {
       animation: ${hoverBox} 1s;
     } */
@@ -83,7 +82,12 @@ const Post2 = (props) => {
           </div>
         </PostBox>
       </Card>
-      {/* {is_modal ? <ModalDetail close={closeDetailModal} /> : null} */}
+      {is_modal ? (
+        <Modal
+          close={closeDetailModal}
+          {...props} //여기서 모달에 모든 정보를 넘겨주는 구나!
+        />
+      ) : null}
     </React.Fragment> //여기서 댓글 정보랑 모든걸 넘겨주려나?
   );
 };
@@ -101,6 +105,7 @@ const hoverBox = keyframes`
 `;
 
 const Card = styled.div`
+  z-index: 200;
   width: 100%;
   height: 100%;
 `;

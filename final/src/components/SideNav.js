@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <>
       {/* 안에 있는 요소들 색통일 */}
-      <IconContext.Provider value={{ color: "#000" }}>
+      <IconContext.Provider value={{ color: "#000" }}> 
         <div className="navbarBtn">
           {/* 햄버거 버튼 클릭시 sidebar 값을 !sidebar로 바꿔줌*/}
           <Link to="#" className="menu-bars">
@@ -53,7 +53,8 @@ function Navbar() {
               LOGO
             </LOGO>
             카테고리
-            <Category></Category>
+            {/* <Category></Category> */}
+            <Category/>
             {SidebarData.map((item, index) => {
               //사이드바의 데이터 들을 map으로 돌려준다
               return (
@@ -79,6 +80,7 @@ const LOGO = styled.div`
   width: 110px;
   margin-bottom: 35px;
   font-size: 30px;
+  cursor: pointer;
 `;
 
 const SideMini = styled.div`
