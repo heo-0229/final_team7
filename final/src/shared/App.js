@@ -24,12 +24,12 @@ function App() {
   const is_cookie = token ? true : false; // 그리고 is_cookie로 토큰 유무판단
   const user_info = useSelector((state) => state.user.user);
 
-  React.useEffect(() => {
-    if (is_cookie) {
-      console.log("로그인 체크");
-      dispatch(userActions.loginCheckAPI(token));
-    } //렌더링 마다 로그인체크
-  }, []);
+  // React.useEffect(() => {
+  //   if (is_cookie) {
+  //     console.log("로그인 체크");
+  //     dispatch(userActions.loginCheckAPI(token));
+  //   } //렌더링 마다 로그인체크
+  // }, []);
 
   return (
     <React.Fragment>
