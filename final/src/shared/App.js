@@ -17,16 +17,15 @@ function App() {
   return (
     <React.Fragment>
       {/* <Responsive> */}
-        <ConnectedRouter history={history}>
-          <Route path="/" exact component={Main} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/findemailpwd" exact component={FindEmailPwd} />
-          <Route path="/changepwd" exact component={ChangePwd} />
-          <Route path="/postlist" component={PostList} />
-          {/* <Route exact component={NotFound}/> */}
-        </ConnectedRouter>
-      {/* </Responsive> */}
+      <ConnectedRouter history={history}>
+        <Route path="/" exact component={Main} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/findemailpwd" exact component={FindEmailPwd} />
+        <Route path="/changepwd" exact component={ChangePwd} />
+        <Route path="/postlist" component={PostList} />
+        {/* <Route exact component={NotFound}/> */}
+      </ConnectedRouter>
     </React.Fragment>
   );
 }

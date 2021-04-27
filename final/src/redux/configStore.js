@@ -54,4 +54,5 @@ let store = (initialStore) => createStore(rootReducer, enhancer);
 
 // 스토어를 다른 곳에서 쓸 수 있도록 export 해준다.
 // index.js에서 임포트 된다.
+
 export default store();
