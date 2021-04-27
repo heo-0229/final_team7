@@ -17,6 +17,7 @@ import Main from "../pages/Main";
 import Story from "../pages/Story";
 import EditProfile from "../pages/EditProfile";
 import NotFound from "../pages/NotFound";
+import SideNav from "../components/SideNav";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,9 @@ function App() {
   return (
     <React.Fragment>
       {/* <Responsive> */}
+
       <ConnectedRouter history={history}>
+        <SideNav></SideNav>
         <Route path="/" exact component={Main} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
