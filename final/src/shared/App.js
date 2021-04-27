@@ -9,7 +9,6 @@ import Signup from "../pages/Login&Signup/Signup";
 import Login from "../pages/Login&Signup/Login";
 import FindEmailPwd from "../pages/Login&Signup/FindEmailPwd";
 import ChangePwd from "../pages/Login&Signup/ChangePwd";
-
 import PostList from "../pages/PostList";
 import Main from "../pages/Main";
 import NotFound from "../pages/NotFound";

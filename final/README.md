@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# 🔖 항해99 실전프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SFlash(Spot + Flash) | 나만의 사진 명소 저장하기 서비스
+*(개발 완료 이후 배포가 되면 홈페이지 여기다 적기)
 
-## Available Scripts
+## 소개 유튜브 영상
+*(개발 완료 이후 유튜브 링크 여기다 적기)
 
-In the project directory, you can run:
+## 개발 기간
++ 2021년 4월 23일(금) ~ 2021년 5월 27일(목)
 
-### `yarn start`
+### 개발 구성원들
++ Frontend - React
+  + 허민규
+    + 메인페이지 제작
+  + 김다영
+    + 회원가입/로그인 페이지 제작
+    + 회원가입/로그인용 리덕스 모듈 코드 작성
+  + 김형민
+    + 개인상세페이지 제작
++ Backend - Spring boot
+  + 장현준
+  + 김승욱
+  + 이세정
+  + Source (해당 주소에서 확인이 가능합니다)
+    + 백엔드팀 깃허브 url 입력
++ Design - Adobe Xd, Figma
+  + 임아현
+    + 와이어프레임 그리기, 로고 제작, 색상 선택, 마커 제작
+  + 송은정
+    + 와이어프레임 그리기, 로고 제작, 색상 선택,
+  
+## 개발목표
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 지도 API : 카카오 지도 API 사용
+https://apis.map.kakao.com/web/sample/
+<br>
+위 사이트에서 제공하는 카카오 지도 API를 이용해 사진과 장소를 연결시키는 서비스를 개발했다. 

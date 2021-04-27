@@ -2,13 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import _ from "lodash"; // throttle, debounce 사용
 
-import { Grid, Text, Button, Input } from "../elements/index";
-import { actionCreators } from "../redux/modules/user";
+// component, element 파일들 가져오기
+import SideNav from "../components/SideNav";
+import LogBtn from "../components/LogBtn";
+import {Grid, Text, Button, Input} from '../elements/index';
 
-import { history } from "../redux/configStore";
-import { useDispatch, useSelector } from "react-redux";
+// 리덕스를 이용하게 해주는 함수들, 모듈 파일 가져오기
+import { history } from '../redux/configStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
-const { kakao } = window; // 이거는 무슨 용도?
+// window 객체로부터 kakao mpa api를 호출하기
+// index.html로의 script에 src에 apikey 값이 들어간 링크로 받아오는 것.
+const { kakao } = window;  
 
 const Main = () => {
   const [search, setSearch] = React.useState(""); // search가 변경 될때마다 화면 렌더링
@@ -86,9 +92,11 @@ const Main = () => {
 
   return (
     <React.Fragment>
+      <SearchBar>
+        <input type="text" placeholder="지역으로 검색" onChange={debounce} />
+      </SearchBar>
       <MapBox>
         <div>
-          <input type="text" placeholder="지역으로 검색" onChange={debounce} />
           {/* <button
                     onClick={() => {
                       setSearch(search);
@@ -97,11 +105,19 @@ const Main = () => {
                     검색하기
                   </button> */}
         </div>
-        <div id="map" style={{ width: "800px", height: "700px" }}></div>
+        <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
       </MapBox>
     </React.Fragment>
   );
 };
+
+const SearchBar = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+`; 
 
 const MapBox = styled.div`
   position: absolute;
