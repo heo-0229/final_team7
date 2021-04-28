@@ -21,7 +21,7 @@ const Story = React.memo((props) => {
 
   // 탭 구현하기
   // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0); 
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -47,6 +47,26 @@ const Story = React.memo((props) => {
       </ProfileContainer>
       {/* Tab Bar */}
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
+<<<<<<< HEAD
+        <Tabs>
+          <Tab onClick={handleClick} active={active === 0} id={0}>
+            {props.user_info.nickname}님의 게시물
+          </Tab>
+
+          <Tab onClick={handleClick} active={active === 2} id={2}>
+            {props.user_info.nickname}님의 좋아요
+          </Tab>
+        </Tabs>
+
+{/* Contents */}
+          <Content active={active === 0}>
+            <Story_MyPost />
+          </Content>
+          <Content active={active === 2}>
+            <Box></Box>
+          </Content>
+
+=======
       <Tabs>
         <Tab onClick={handleClick} active={active === 0} id={0}>
           {props.user_info.nickname}님의 게시물
@@ -63,6 +83,7 @@ const Story = React.memo((props) => {
       <Content active={active === 1}>
         <Box></Box>
       </Content>
+>>>>>>> upstream/master
     </React.Fragment>
   );
 });
@@ -170,4 +191,8 @@ const Box = styled.div`
   background-color: #eee;
 `;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> upstream/master
 export default Story;
