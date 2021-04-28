@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Grid, Text, Button, Input } from "../elements/index";
-import { history } from "../redux/configStore";
+import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
-import SideNav from "../components/SideNav";
-import Post from "../components/Post";
-import SearchBar from "../components/SearchBar";
-import LogBtn from "../components/LogBtn";
-import Post2 from "../components/Post2";
-import Modal from "../components/Modal";
+import SideNav from "../../components/SideNav";
+import Post from "../../components/Post";
+import SearchBar from "../../components/SearchBar";
+import LogBtn from "../../components/LogBtn";
+import Post2 from "../../components/Post2";
+import Modal from "../../components/Modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import "../Css/Modal.css";
-import modal from "../redux/modules/modal";
-import post_list from "../components/MockData";
+import "../../Css/Modal.css";
+import modal from "../../redux/modules/modal";
+import post_list from "../../components/MockData";
 
 const PostList = () => {
   const dispatch = useDispatch();
@@ -46,7 +45,10 @@ const PostList = () => {
       <Box></Box>
       <Container>
         {post_list.map((p, idx) => {
-          return <Post2 key={p.id} {...p}></Post2>;
+          console.log(p.category);
+          if (p.category == "카페") {
+            return <Post2 key={p.id} {...p}></Post2>;
+          }
         })}
       </Container>
     </React.Fragment>
