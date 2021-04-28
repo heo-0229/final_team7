@@ -12,7 +12,7 @@ import { HiOutlineMap } from "react-icons/hi";
 
 const Story_MyPost = (props) => {
   // 버튼 탭 구현하기
-  // 처음에는 0번째 인덱스 활성화
+  // 처음에는 0번째 인덱스 활성화git
   const [active, setActive] = useState("grid");
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {

@@ -44,6 +44,7 @@ const PostList = () => {
       <SearchBar />
       <Box></Box>
       <Container>
+        {/* 필터함수 가지고 한번 거르고 거른 리스트를 map으로 // 서버에서 걸러준 데이터를 받는게 더 좋다 특정 카테고리인 것만 걸러서 테이블 따로 x */}
         {post_list.map((p, idx) => {
           console.log(p.category);
           if (p.category == "카페") {

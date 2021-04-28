@@ -1,7 +1,11 @@
 import "../App.css";
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { Route, Switch } from "react-router-dom";
+=======
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+>>>>>>> upstream/master
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,12 +31,12 @@ function App() {
   const is_cookie = token ? true : false; // 그리고 is_cookie로 토큰 유무판단
   const user_info = useSelector((state) => state.user.user);
 
-  React.useEffect(() => {
-    if (is_cookie) {
-      console.log("로그인 체크");
-      dispatch(userActions.loginCheckAPI(token));
-    } //렌더링 마다 로그인체크
-  }, []);
+  // React.useEffect(() => {
+  //   if (is_cookie) {
+  //     console.log("로그인 체크");
+  //     dispatch(userActions.loginCheckAPI(token));
+  //   } //렌더링 마다 로그인체크
+  // }, []);
 
   return (
     <React.Fragment>
@@ -41,22 +45,21 @@ function App() {
       <ConnectedRouter history={history}>
         
         <SideNav></SideNav>
-        <Route path="/" exact component={Main} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/findemailpwd" exact component={FindEmailPwd} />
-        <Route path="/editpwd" exact component={EditPwd} />
-        <Route path="/postlist" exact component={PostList} />
-        {/* story와 editprofile은 후에 /:id 붙여야함 */}
-        {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
-        <Route path="/story" exact component={Story} />
-        <Route path="/editprofile" exact component={EditProfile} />
-       
-        {/* 밑에서 부턴 카테고리별 페이지 */}
-        <Route path="/cafe" exact component={Cafe} />
-   
-        {/* <Route component={NotFound} /> */}
-  
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/findemailpwd" exact component={FindEmailPwd} />
+          <Route path="/editpwd" exact component={EditPwd} />
+          <Route path="/postlist" exact component={PostList} />
+          {/* story와 editprofile은 후에 /:id 붙여야함 */}
+          {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
+          <Route path="/story" exact component={Story} />
+          <Route path="/editprofile" exact component={EditProfile} />
+          <Route component={NotFound} />
+          {/* 밑에서 부턴 카테고리별 페이지 */}
+          <Route path="/cafe" exact component={Cafe} />
+        </Switch>
       </ConnectedRouter>
       {/* </Responsive> */}
     </React.Fragment>

@@ -17,9 +17,9 @@ const FindEmailPwd = () => {
   const [email, setEmail] = useState("");
   const [vertificationCode, setVertificationCode] = useState("");
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   return () => {};
+  // }, []);
 
   const onFindEmailAPI = (nickname) => {
     const API = 'http://seungwook.shop/user/findemail';
@@ -40,7 +40,7 @@ const FindEmailPwd = () => {
         }else{
             alert('회원정보가 옳바르지 않습니다 :(');
         }
-    })
+      });
   };
 
   const onVertification = (email) => {
@@ -116,7 +116,7 @@ const FindEmailPwd = () => {
           <SolidBtn
             background-color="grey"
             style={{ display: "block" }}
-            onClick={() =>onFindEmailAPI(nickname)}
+            onClick={() => onFindEmailAPI(nickname)}
           >
             이메일 찾기
           </SolidBtn>
@@ -139,7 +139,7 @@ const FindEmailPwd = () => {
             >
               이메일 찾기
             </UnclickedTab>
-            <text style={{color:"grey"}}>|</text>
+            <text style={{ color: "grey" }}>|</text>
             <ClickedTab>비밀번호 찾기</ClickedTab>
           </Tab>
           <div>

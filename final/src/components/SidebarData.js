@@ -16,13 +16,13 @@ export const SidebarData = [
   },
   {
     title: "지도보기",
-    path: "/reports",
+    path: "/",
     icon: <GrIcons.GrMap size="22px" />,
     cName: "nav-text",
   },
   {
     title: "커뮤니티",
-    path: "/products",
+    path: "/postlist",
     icon: <MdIcons.MdPhotoLibrary size="22px" />,
     cName: "nav-text",
   },
@@ -39,9 +39,15 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Support",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle size="22px" />,
+    title: "로그인",
+    path: "/login",
+    icon: <GrIcons.GrLogin size="22px" />,
     cName: "nav-text",
   },
+  // {
+  //   title: "로그아웃",
+  //   path: "/login",
+  //   icon: <GrIcons.GrLogout size="22px" />,
+  //   cName: "nav-text",
+  // },
 ];

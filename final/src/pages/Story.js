@@ -21,7 +21,7 @@ const Story = (props) => {
 
   // 탭 구현하기
   // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState("myposttab"); 
+  const [active, setActive] = useState(0);
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -68,7 +68,6 @@ const Story = (props) => {
           </Content>
 
     </React.Fragment>
-
   );
 };
 
