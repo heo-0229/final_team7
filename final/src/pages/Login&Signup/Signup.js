@@ -81,6 +81,7 @@ const Signup = (props) => {
       pwdInfo_len.classList.remove("error");
       pwdInfo_len.classList.add("ok");
     }
+
     // 비밀번호 정규식 검사 : /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/
     if (!pwdRegCheck(e.target.value)) {
       pwdInfo_match.classList.add("error");
@@ -89,6 +90,7 @@ const Signup = (props) => {
       pwdInfo_match.classList.add("ok");
       pwdInfo_match.classList.remove("error");
     }
+
     // 비밀번호 연속 체크
     if (pwdRegContinuousCheck(e.target.value)) {
       pwdInfo_continuous.classList.add("error");
@@ -99,6 +101,7 @@ const Signup = (props) => {
     }
   };
 
+  
   // 비밀번호 확인 정규식 검사(info 컬러 바꿔주기)
   const changeRePwd = (e) => {
     setRePwd(e.target.value);
