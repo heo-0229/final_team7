@@ -1,7 +1,11 @@
 import "../App.css";
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
+import { Route, Switch } from "react-router-dom";
+=======
 import { Route, Switch, BrowserRouter } from "react-router-dom";
+>>>>>>> upstream/master
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,6 +43,7 @@ function App() {
       {/* <Responsive> */}
 
       <ConnectedRouter history={history}>
+        
         <SideNav></SideNav>
         <Switch>
           <Route path="/" exact component={Main} />

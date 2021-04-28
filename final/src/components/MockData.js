@@ -86,7 +86,7 @@ const post_list = [
     category: "야경",
   },
   {
-    id: 9,
+    id: 10,
     imgUrl: [
       "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     ],
@@ -95,7 +95,7 @@ const post_list = [
     category: "야경",
   },
   {
-    id: 9,
+    id: 11,
     imgUrl: [
       "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     ],
