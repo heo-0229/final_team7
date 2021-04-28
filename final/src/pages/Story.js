@@ -51,7 +51,6 @@ const Story = React.memo((props) => {
         </Grid>
       </ProfileContainer>
 
-<<<<<<< HEAD
       {/* Tab Bar */}
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
         <Tabs>
@@ -71,27 +70,6 @@ const Story = React.memo((props) => {
           <Content active={active === 1}>
             <Box></Box>
           </Content>
-=======
-      {/* <Tab className="tab">
-        <li onClick ={()=> clickHandler(0)}>{props.user_info.nickname}님의 장소</li>
-        <li onClick ={()=> clickHandler(0)}>저장한 장소</li>
-      </Tab> */}
-
-      <Tab>
-        <ClickedTab>{props.user_info.nickname}님의 장소</ClickedTab>
-        <UnclickedTab
-        >
-          {props.user_info.nickname}님이 좋아요한 장소
-        </UnclickedTab>
-      </Tab>
-
-      <Container>
-        {/* <Post></Post> */}
-        {post_list.map((p, idx) => {
-          return <Post2 key={p.id} {...p}></Post2>;
-        })}
-      </Container>
->>>>>>> upstream/master
 
     </React.Fragment>
   );
