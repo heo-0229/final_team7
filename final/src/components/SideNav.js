@@ -3,6 +3,9 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as CgIcons from "react-icons/cg";
+import * as BiIcons from "react-icons/bi";
+import * as GrIcons from "react-icons/gr";
+import * as MdIcons from "react-icons/md";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../Css/Navbar.css";
@@ -12,6 +15,7 @@ import { history } from "../redux/configStore";
 import styled from "styled-components";
 
 function Navbar() {
+  //GrMap
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -19,7 +23,7 @@ function Navbar() {
   return (
     <>
       {/* 안에 있는 요소들 색통일 */}
-      <IconContext.Provider value={{ color: "#000" }}> 
+      <IconContext.Provider value={{ color: "#000" }}>
         <div className="navbarBtn">
           {/* 햄버거 버튼 클릭시 sidebar 값을 !sidebar로 바꿔줌*/}
           <Link to="#" className="menu-bars">
@@ -29,8 +33,8 @@ function Navbar() {
         <SideMini>
           <SideIcon>
             <CgIcons.CgProfile size="22px" />
-            <IoIcons.IoIosPaper size="22px" />
-            <FaIcons.FaCartPlus size="22px" />
+            <GrIcons.GrMap size="22px" />
+            <MdIcons.MdPhotoLibrary size="22px" />
             <IoIcons.IoMdPeople size="22px" />
             <FaIcons.FaEnvelopeOpenText size="22px" />
             <IoIcons.IoMdHelpCircle size="22px" />
@@ -52,9 +56,14 @@ function Navbar() {
             >
               LOGO
             </LOGO>
-            카테고리
-            {/* <Category></Category> */}
-            <Category/>
+            <CategoryInfo>
+              <CategoryIcon>
+                {" "}
+                <BiIcons.BiBookBookmark size="23px" />
+              </CategoryIcon>
+              카테고리
+            </CategoryInfo>
+            {/* <Category></Category> */} <Category />
             {SidebarData.map((item, index) => {
               //사이드바의 데이터 들을 map으로 돌려준다
               return (
@@ -102,4 +111,13 @@ const SideIcon = styled.div`
   justify-content: space-between;
   height: 500px;
   margin-top: 270px;
+`;
+
+const CategoryInfo = styled.div`
+  display: flex;
+  margin-bottom: 25px;
+`;
+
+const CategoryIcon = styled.div`
+  margin-right: 12px;
 `;

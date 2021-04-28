@@ -1,39 +1,60 @@
-import React from "react";
-import styled from "styled-components";
-import _ from "lodash"; // throttle, debounce 사용
-
-// component, element 파일들 가져오기
-import SideNav from "../components/SideNav";
-import LogBtn from "../components/LogBtn";
-import {Grid, Text, Button, Input} from '../elements/index';
+import React, { useState, useEffect, useRef } from "react";
 
 // 리덕스를 이용하게 해주는 함수들, 모듈 파일 가져오기
 import { history } from '../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
+// import { actionCreators as markerActions } from '../redux/modules/marker';
+
+import styled from "styled-components";
+import _ from "lodash"; // throttle, debounce 사용
+
+// component, element 파일들 가져오기
+import LogBtn from "../components/LogBtn";
+import {Grid, Text, Button, Input} from '../elements/index';
+import ModalInMain from "../components/ModalInMain";;
 
 // window 객체로부터 kakao mpa api를 호출하기
-// index.html로의 script에 src에 apikey 값이 들어간 링크로 받아오는 것.
+// 이것이 되게 하기 위해서는 index.html(index.js 아님!!!)의 script 태그안의 src에다가
+// 카카오개발자 사이트에서 지정해준 apikey 값이 들어간 링크를 넣어줘야 한다.
 const { kakao } = window;  
 
-const Main = () => {
-  const [search, setSearch] = React.useState(""); // search가 변경 될때마다 화면 렌더링
+const Main = (props) => {
+  const dispatch = useDispatch();
+  // const is_login = useSelector((state) => state.user.is_login);
+
+  // 사진이 나오는 모달창 제어
+  const [ is_modal, setModal ] = useState(false);  // 마커 클릭하면 나오는 작은 모달
+  const [ is_wideModal, setWideModal ] = useState(false); // 작은 모달에서 댓글 달기를 누르면 나오는 확장된 모달
+  
+  // 위도, 경도, 마커, 주소
+  const [ latitude, setLatitude] = useState();
+  const [ longitude, setLongitude ] = useState();
+  const [ address, setAddress ] = useState();
+  const [ markerId, setMarkerId ] = useState();
+
+  // search가 변경 될때마다 화면 렌더링
+  const [search, setSearch] = useState(""); 
   //조건 걸어주기 // 나를 기준으로 몇 km 이내
 
+  // 이래야 화면 렌더링이 계속안된다
   const debounce = _.debounce((e) => {
-    // 이래야 화면 렌더링이 계속안된다
     setSearch(e.target.value);
   }, 300); //키보드 떼면 입력한게 1초 뒤에 나타난다.
 
-  React.useEffect(() => {
-    // 지도 띄우기
-    var container = document.getElementById("map");
-    var options = {
-      center: new kakao.maps.LatLng(37.526667, 127.028011), //지도 중심(시작) 좌표
+  // 페이지가 렌더링 되면 지도 띄우기
+  useEffect(() => {
+    const container = document.getElementById("map");  // 지도를 표시할 div
+    const options = {
+      center: new kakao.maps.LatLng(37.526667, 127.028011), //지도 중심(시작) 좌표. 압구정쪽인듯
       level: 3, //지도 확대 레벨
     };
 
-    var map = new kakao.maps.Map(container, options); // 지도생성
+    const map = new kakao.maps.Map(container, options); // 지도생성
+
+    // 마커 이미지
+    // const myMarker = "http://........./../....png"
+
     var markerPosition = new kakao.maps.LatLng(
       37.465264512305174,
       127.10676860117488
@@ -88,43 +109,55 @@ const Main = () => {
         infowindow.open(map, marker);
       });
     }
+
+    // dispatch(markerActions.getMarkerAPI());
   }, [search]);
 
   return (
     <React.Fragment>
-      <SearchBar>
-        <input type="text" placeholder="지역으로 검색" onChange={debounce} />
-      </SearchBar>
+      {/* <LogBtn/> */}
+      <SearchBox>
+        <SearchInput 
+          type="text" 
+          placeholder="지역으로 검색" 
+          onChange={debounce}
+        />
+      </SearchBox>
       <MapBox>
-        <div>
-          {/* <button
-                    onClick={() => {
-                      setSearch(search);
-                    }}
-                  >
-                    검색하기
-                  </button> */}
-        </div>
         <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
       </MapBox>
     </React.Fragment>
   );
 };
 
-const SearchBar = styled.div`
+const SearchBox = styled.div`
   position: absolute;
-  top: 30px;
+  top: 50px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
 `; 
 
+const SearchInput = styled.input`
+  height: 40px;
+  width: 500px; 
+  border-radius: 5px; 
+  padding-left: 15px; 
+  font-size: 15px;
+  border: none;
+  &:focus {
+    outline:none;
+  }
+`;
+
 const MapBox = styled.div`
-  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: center; */
 `;
 
 export default Main;

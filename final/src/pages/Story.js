@@ -51,6 +51,7 @@ const Story = React.memo((props) => {
         </Grid>
       </ProfileContainer>
 
+<<<<<<< HEAD
       {/* Tab Bar */}
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
         <Tabs>
@@ -70,6 +71,27 @@ const Story = React.memo((props) => {
           <Content active={active === 1}>
             <Box></Box>
           </Content>
+=======
+      {/* <Tab className="tab">
+        <li onClick ={()=> clickHandler(0)}>{props.user_info.nickname}님의 장소</li>
+        <li onClick ={()=> clickHandler(0)}>저장한 장소</li>
+      </Tab> */}
+
+      <Tab>
+        <ClickedTab>{props.user_info.nickname}님의 장소</ClickedTab>
+        <UnclickedTab
+        >
+          {props.user_info.nickname}님이 좋아요한 장소
+        </UnclickedTab>
+      </Tab>
+
+      <Container>
+        {/* <Post></Post> */}
+        {post_list.map((p, idx) => {
+          return <Post2 key={p.id} {...p}></Post2>;
+        })}
+      </Container>
+>>>>>>> upstream/master
 
     </React.Fragment>
   );
@@ -169,6 +191,7 @@ const PostList = styled.div`
   flex-wrap: wrap;
 `;
 
+<<<<<<< HEAD
 const Box = styled.div`
   text-align: center;
   margin: 2% auto;
@@ -178,5 +201,23 @@ const Box = styled.div`
   background-color: #eee;
 `;
 
+=======
+// const Container = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
+//   grid-auto-rows: 405px;
+//   grid-gap: 24px;
+//   text-align: center;
+//   margin: auto;
+//   width: 1266px;
+//   height: 100%;
+//   padding: 50px 200px;
+//   flex-wrap: wrap;
+// `;
+
+// const ImageContainer = styled.div`
+//   display: block;
+// `;
+>>>>>>> upstream/master
 
 export default Story;

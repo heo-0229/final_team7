@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import axios from "axios";
-import { history } from "../configureStore";
+import { history } from "../configStore";
 import "moment";
 import moment from "moment";
 import { config } from "../../shared/config";
@@ -12,26 +12,32 @@ const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 const LOADING = "LOADING";
 
-
 const setPost = createAction(SET_POST, (post_list) => ({ post_list })); //paging은 나중에 넣기
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (like) => ({
-  //   post_id, 서버 파라미터 값으로 대체
-  like, // like: true or false 값과 like_cnt
-  likeCnt,
+  //             //   post_id, 서버 파라미터 값으로 대체
+  // like, // like: true or false 값과 like_cnt
+  //   likeCnt,
 }));
 const deletePost = createAction(DELETE_POST, (id) => ({ id }));
 const loading = createAction(LOADING, (post) => ({ post }));
-const editLike = createAction(EDIT_LIKE, (post, post_id) => ({
-  post,
-  post_id,
-}));
+// const editLike = createAction(EDIT_LIKE, (post, post_id) => ({
+//   post,
+//   post_id,
+// }));
 
 const initialState = {
   list: [], //post_list
   paging: { start: null, next: null, size: 3 },
   is_loading: false,
   like: false,
+  //카테고리 별로 상태값을 나타내서 PostList페이지에서 쓸 예정
+  is_cafe: "false",
+  is_day: false,
+  is_night: false,
+  is_landscape: false,
+  is_road: false,
+  is_mood: false,
 };
 
 const initialPost = {

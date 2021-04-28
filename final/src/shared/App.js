@@ -17,6 +17,8 @@ import Main from "../pages/Main";
 import Story from "../pages/Story";
 import EditProfile from "../pages/EditProfile";
 import NotFound from "../pages/NotFound";
+import SideNav from "../components/SideNav";
+import ScrollToTop from "./ScrollToTop"; //페이지 넘길때 스크롤 맨위로 초기화(무한 스크롤 때문에 필요함)
 
 function App() {
   const dispatch = useDispatch();
@@ -24,17 +26,19 @@ function App() {
   const is_cookie = token ? true : false; // 그리고 is_cookie로 토큰 유무판단
   const user_info = useSelector((state) => state.user.user);
 
-  React.useEffect(() => {
-    if (is_cookie) {
-      console.log("로그인 체크");
-      dispatch(userActions.loginCheckAPI(token));
-    } //렌더링 마다 로그인체크
-  }, []);
+  // React.useEffect(() => {
+  //   if (is_cookie) {
+  //     console.log("로그인 체크");
+  //     dispatch(userActions.loginCheckAPI(token));
+  //   } //렌더링 마다 로그인체크
+  // }, []);
 
   return (
     <React.Fragment>
       {/* <Responsive> */}
+
       <ConnectedRouter history={history}>
+        <SideNav></SideNav>
         <Route path="/" exact component={Main} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
@@ -42,6 +46,7 @@ function App() {
         <Route path="/editpwd" exact component={EditPwd} />
         <Route path="/postlist" exact component={PostList} />
         {/* story와 editprofile은 후에 /:id 붙여야함 */}
+        {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
         <Route path="/story" exact component={Story} />
         <Route path="/editprofile" exact component={EditProfile} />
         {/* <Route exact component={NotFound}/> */}

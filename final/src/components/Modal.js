@@ -140,7 +140,7 @@ const ModalDetail = (props) => {
               {/* 작성자 에게만 보이게 설정  */}
               <ModalEdit>수정 / 삭제</ModalEdit>
             </InfoBoxInner>
-            <PostTilte>Title</PostTilte>
+            <PostTilte>방구석 좀 나가보자~</PostTilte>
             <PostContents>여기가 무릉도원~</PostContents>
             <PostTime>방금전</PostTime>
           </InfoBox>
@@ -183,17 +183,12 @@ const ModalDetail = (props) => {
 };
 
 const Component = styled.div`
-  all: unset;
-  position: unset;
-  position: fixed !important;
+  position: fixed;
   opacity: 0.4;
   height: 100vh;
   width: 100vw;
-  margin-left: -200px;
   background-color: black;
   z-index: 999;
-  margin-left: calc(-50vw + 50%);
-  margin-top: calc(-90vh + 40%);
   top: 0;
   left: 0;
   bottom: 0;
@@ -206,7 +201,7 @@ const ModalComponent = styled.div`
   width: 580px;
   height: 780px;
   overflow: hidden;
-  top: 30%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
@@ -397,12 +392,7 @@ const UploadBtn = styled.div`
   opacity: 1;
   font-weight: 600;
   margin: 5px 5px 0px 0px;
-  /* position: absolute; */
-  /* right: 16px; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
-
-  /* pointer-events: none; */
+  padding-bottom: 5px;
 `;
 const CmtDeleteBtn = styled.button`
   height: 12px;
