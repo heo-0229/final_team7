@@ -12,8 +12,7 @@ import _ from "lodash"; // throttle, debounce 사용
 // component, element 파일들 가져오기
 import LogBtn from "../components/LogBtn";
 import {Grid, Text, Button, Input} from '../elements/index';
-import ModalInMain from "../components/ModalInMain";
-import { markerdata } from "../components/MarkerData";
+import ModalInMain from "../components/ModalInMain";;
 
 // window 객체로부터 kakao mpa api를 호출하기
 // 이것이 되게 하기 위해서는 index.html(index.js 아님!!!)의 script 태그안의 src에다가
@@ -53,42 +52,33 @@ const Maps = (props) => {
     };
 
     const map = new kakao.maps.Map(container, options); // 지도생성 및 객체 리턴
-    // ----------------------------------------------------------------------------------- 
+    // ----------------------------------------------------------------------------------- //
     // 여기까지는 지도를 가져오기 위한 필수 부분
     // 아래부터 우리가 원하는걸 구현하는 코드를 작성한다.
-    // ----------------------------------------------------------------------------------- 
+    // ----------------------------------------------------------------------------------- //
 
     // useEffect 밖으로 map정보를 가져오기 위해서 useState로 함수를 만든다.
     setMap(map)
 
     // 마커 이미지
-    // 디자이너분들이 만들어주실 종류별 마커 이미지들이 저장된 url을 변수에 할당
+    // 디자이너분들이 만들어주실 종류별 마커 이미지들이 저장된 url
     // const myMarker = "http://........./../....png"
 
-    // 마커가 표시될 위치.
-    let markerPosition = new kakao.maps.LatLng(
+    var markerPosition = new kakao.maps.LatLng(
       37.465264512305174,
       127.10676860117488
     );
-
-    // 마커를 생성하기.
-    let marker = new kakao.maps.Marker({
+    var marker = new kakao.maps.Marker({
       position: markerPosition,
     });
-
-    // 마커를 지도 위에 표시하기.
     marker.setMap(map);
-    // -----------------------------------------------------------------------------------
-    // 마커는 여기까지
-    // -----------------------------------------------------------------------------------
 
-    // ---------------------------------------------------------------
-    // 여기서부터 검색 기능 넣기
-    // 키워드로 검색하기
-    const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    // 카테고리 별 검색 기능/////////////////////
+
+    var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
     // 장소 검색 객체를 생성합니다
-    const ps = new kakao.maps.services.Places();
+    var ps = new kakao.maps.services.Places();
 
     // 키워드로 장소를 검색합니다
     ps.keywordSearch(`${search}`, placesSearchCB); // 여길 바꿔주면 검색이 된다
@@ -98,10 +88,10 @@ const Maps = (props) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
-        const bounds = new kakao.maps.LatLngBounds();
+        var bounds = new kakao.maps.LatLngBounds();
 
-        for (let i = 0; i < data.length; i++) {
-          displayMarker(data[i]); // 아래쪽에 있는 지도에 마커를 표시하는 함수
+        for (var i = 0; i < data.length; i++) {
+          displayMarker(data[i]);
           bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
         }
 
@@ -110,7 +100,6 @@ const Maps = (props) => {
       }
     }
 
-    // 지도에 마커를 표시하는 함수
     function displayMarker(place) {
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
@@ -122,22 +111,13 @@ const Maps = (props) => {
       kakao.maps.event.addListener(marker, "click", function () {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         infowindow.setContent(
-          '<div style="padding:5px;font-size:12px;">' + place.place_name + "</div>"
+          '<div style="padding:5px;font-size:12px;">' +
+            place.place_name +
+            "</div>"
         );
         infowindow.open(map, marker);
       });
     }
-
-    // 마커를 가져온다. 처음엔 mockdata로 나중엔 서버에서 가져온다.
-    markerdata.forEach((el) => {
-      // 마커 생성
-      new kakao.maps.Marker({
-        map: map,   // 마커가 표시 될 지도
-        position: new kakao.maps.LatLng(el.lat, el.lng),
-        // 마커에 hover 하면 나타날 title
-        title: el.title,
-      });
-    });
 
     // dispatch(markerActions.getMarkerAPI());
   }, [search]);

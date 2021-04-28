@@ -21,7 +21,7 @@ const ModalInMain = (props) => {
         <PicBox src={props.image_url}>
           {/* Head-Middle-Bottomd으로 구획을 나눔 */}
           <Head>
-            <SpotName>{props.spot_address}</SpotName>
+            <SpotName>{props.spot_name}</SpotName>
           </Head>
           <Center/>
           <BottomIconBox>
@@ -37,7 +37,7 @@ const ModalInMain = (props) => {
 
 ModalInMain.defatultProps = {
   image_url: "https://i.pinimg.com/originals/3b/b2/5c/3bb25c56d66d633b2e6a47250b0eacbb.jpg",
-  spot_address: "제주도 유채밭",
+  spot_name: "제주도 유채밭",
 }
 
 const ModalContainer = styled.div`

@@ -1,7 +1,7 @@
 import "../App.css";
 import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,19 +40,21 @@ function App() {
 
       <ConnectedRouter history={history}>
         <SideNav></SideNav>
-        <Route path="/" exact component={Main} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/findemailpwd" exact component={FindEmailPwd} />
-        <Route path="/editpwd" exact component={EditPwd} />
-        <Route path="/postlist" exact component={PostList} />
-        {/* story와 editprofile은 후에 /:id 붙여야함 */}
-        {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
-        <Route path="/story" exact component={Story} />
-        <Route path="/editprofile" exact component={EditProfile} />
-        {/* <Route exact component={NotFound} /> */}
-        {/* 밑에서 부턴 카테고리별 페이지 */}
-        <Route path="/cafe" exact component={Cafe} />
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/findemailpwd" exact component={FindEmailPwd} />
+            <Route path="/editpwd" exact component={EditPwd} />
+            <Route path="/postlist" exact component={PostList} />
+            {/* story와 editprofile은 후에 /:id 붙여야함 */}
+            {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
+            <Route path="/story" exact component={Story} />
+            <Route path="/editprofile" exact component={EditProfile} />
+            <Route exact component={NotFound} />
+            {/* 밑에서 부턴 카테고리별 페이지 */}
+            <Route path="/cafe" exact component={Cafe} />
+          </Switch>
       </ConnectedRouter>
       {/* </Responsive> */}
     </React.Fragment>

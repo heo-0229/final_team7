@@ -67,7 +67,7 @@ const Story = (props) => {
             <Box></Box>
           </Content>
 
-      <Tabs>
+      {/* <Tabs>
         <Tab onClick={handleClick} active={active === 0} id={0}>
           {props.user_info.nickname}님의 게시물
         </Tab>
@@ -75,14 +75,14 @@ const Story = (props) => {
         <Tab onClick={handleClick} active={active === 2} id={2}>
           {props.user_info.nickname}님의 좋아요
         </Tab>
-      </Tabs>
+      </Tabs> */}
       {/* Contents */}
-      <Content active={active === 0}>
+      {/* <Content active={active === 0}>
         <Story_MyPost />
       </Content>
       <Content active={active === 2}>
         <Box></Box>
-      </Content>
+      </Content> */}
     </React.Fragment>
 
   );
