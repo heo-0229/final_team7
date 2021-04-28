@@ -40,6 +40,7 @@ const PostList = () => {
           })}
         </Container>
       </InfiniteScroll> */}
+
       <SideNav />
       {/* <LogBtn /> */}
       <SearchBar />

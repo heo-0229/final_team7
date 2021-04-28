@@ -26,18 +26,30 @@ function Navbar() {
       <IconContext.Provider value={{ color: "#000" }}>
         <div className="navbarBtn">
           {/* 햄버거 버튼 클릭시 sidebar 값을 !sidebar로 바꿔줌*/}
-          <Link to="#" className="menu-bars">
+          <Link className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
         </div>
         <SideMini>
           <SideIcon>
-            <CgIcons.CgProfile size="22px" />
-            <GrIcons.GrMap size="22px" />
-            <MdIcons.MdPhotoLibrary size="22px" />
-            <IoIcons.IoMdPeople size="22px" />
-            <FaIcons.FaEnvelopeOpenText size="22px" />
-            <IoIcons.IoMdHelpCircle size="22px" />
+            <Link to="/story">
+              <CgIcons.CgProfile size="22px" />
+            </Link>
+            <Link to="/">
+              <GrIcons.GrMap size="22px" />
+            </Link>
+            <Link to="/postlist">
+              <MdIcons.MdPhotoLibrary size="22px" />
+            </Link>
+            <Link>
+              <IoIcons.IoMdPeople size="22px" />
+            </Link>
+            <Link>
+              <FaIcons.FaEnvelopeOpenText size="22px" />
+            </Link>
+            <Link to="/login">
+              <GrIcons.GrLogin size="22px" />
+            </Link>
           </SideIcon>
         </SideMini>
         {/* sidebar값에 따라 클래스 네임을 바꿔준다 */}
@@ -45,13 +57,15 @@ function Navbar() {
         <nav className={sidebar ? "nav-menu" : "nav-menu active"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
+              <Link className="menu-bars">
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
             <LOGO
-              onClick={() => {
+              onClick={(e) => {
                 history.push("/");
+                e.preventDefault();
+                e.stopPropagation();
               }}
             >
               LOGO
@@ -64,17 +78,32 @@ function Navbar() {
               카테고리
             </CategoryInfo>
             {/* <Category></Category> */} <Category />
-            {SidebarData.map((item, index) => {
-              //사이드바의 데이터 들을 map으로 돌려준다
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
+            <Bubble
+              onclick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              {SidebarData.map((item, index) => {
+                //사이드바의 데이터 들을 map으로 돌려준다
+                return (
+                  <li
+                    key={index}
+                    className={item.cName}
+                    onclick={(e) => {
+                      history.push("item.path");
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </Bubble>
           </ul>
         </nav>
       </IconContext.Provider>
@@ -120,4 +149,8 @@ const CategoryInfo = styled.div`
 
 const CategoryIcon = styled.div`
   margin-right: 12px;
+`;
+
+const Bubble = styled.div`
+  z-index: 400;
 `;

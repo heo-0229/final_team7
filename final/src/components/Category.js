@@ -21,7 +21,7 @@ const Category = () => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
-            history.push("/postlist");
+            // history.push("/postlist");
           }}
         >
           전체보기
@@ -30,23 +30,23 @@ const Category = () => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
-            history.push("/cafe");
+            // history.push("/cafe");
           }}
         >
           카페
         </Btn>
-        <Btn>야경</Btn>
         <Btn>카페</Btn>
-        <Btn>자연경관</Btn>
-        <Btn>치킨</Btn>
-        <Btn>주경</Btn>
-        <Btn>주경</Btn>
-        <Btn>주경</Btn>
-        <Btn>주경</Btn>
         <Btn>야경</Btn>
-        <Btn>카페</Btn>
-        <Btn>자연경관</Btn>
-        <Btn>치킨</Btn>
+        <Btn>바다</Btn>
+        <Btn>산</Btn>
+        <Btn>도심</Btn>
+        <Btn>전시</Btn>
+        <Btn>공원</Btn>
+        <Btn>꽃</Btn>
+        <Btn>나홀로</Btn>
+        <Btn>연인</Btn>
+        <Btn>친구</Btn>
+        <Btn>반려동물</Btn>
       </CategoryBox>
     </React.Fragment>
   );

@@ -13,7 +13,7 @@ const ModalDetail = (props) => {
   console.log("모달 id", props.id);
 
   const dispatch = useDispatch();
-  React.useEffect(() => {}, []);
+  // React.useEffect(() => {}, []);
 
   //캐러셀 모듈 코드
   var settings = {
