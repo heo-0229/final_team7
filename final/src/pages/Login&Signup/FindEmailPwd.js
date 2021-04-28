@@ -7,6 +7,8 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
+import axios from "axios";
+
 const FindEmailPwd = () => {
   const dispatch = useDispatch();
 
@@ -18,16 +20,29 @@ const FindEmailPwd = () => {
     return () => {};
   }, []);
 
-  const onFindEmail = () => {
+  const onFindEmailAPI = (nickname) => {
 
-    // 닉네임이 존재하면 (is_nickname ? true)
-    // useSelector로 email 가져오기
-    // if (is_nickname) {
-    //   alert(
-    //     "등록된 이메일은 ${email} 입니다."
-    //   );
-    //   return false;
-    // }
+    console.log(nickname);
+    const API = 'http://seungwook.shop/user/findemail';
+    axios.post(API,{
+        nickname:nickname,
+    },
+    {
+        headers: {
+        'Content-Type': 'application/json',
+        },
+    })
+    .then((res) => {
+        console.log('이메일 찾기', res.data)
+        const is_email = res.data.email;
+        console.log(is_email);
+    
+        if(is_email){
+            alert("등록된 이메일은 " + is_email + " 입니다");
+        }else{
+            alert('회원정보가 없습니다 :(');
+        }
+    })
   };
 
   const onVertification = () => {
@@ -38,6 +53,7 @@ const FindEmailPwd = () => {
     //   );
     //   return false;
     // }
+   
   };
 
   const onFindPwd = () => {
@@ -73,7 +89,7 @@ const FindEmailPwd = () => {
           <SolidBtn
             background-color="grey"
             style={{ display: "block" }}
-            onClick={onFindEmail}
+            onClick={() =>onFindEmailAPI(nickname)}
           >
             이메일 찾기
           </SolidBtn>

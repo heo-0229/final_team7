@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Grid, Text, Button, Input } from "../elements/index";
+import { Grid, Text } from "../elements/index";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -9,15 +9,14 @@ import Post2 from "../components/Post2";
 import post_list from "../components/MockData";
 import Story_MyPost from "../components/Story_MyPost";
 
-const Story = React.memo((props) => {
+const Story = (props) => {
   const dispatch = useDispatch();
 
   // const me = localStorage.getItem('nickname');
   // const is_me = user_info.nickname === me ;
-// dispatch(userActions.getUserInfoAPI(nickname));
-    React.useEffect(() => {
-      console.log(props);
-
+  // dispatch(userActions.getUserInfoAPI(nickname));
+  React.useEffect(() => {
+    console.log(props);
   }, []);
 
   // 탭 구현하기
@@ -32,48 +31,45 @@ const Story = React.memo((props) => {
   };
 
   console.log(props.user_info);
+
   return (
     <React.Fragment>
-      {/* 프로필 정보 */}
+      프로필 정보
       <ProfileContainer>
-      
         <ProfileImg src={props.user_info.profile} />
-        
+
         <Grid padding="20px 0px 0px 0px">
           <Text margin="0px" size="1.6vw">
             {props.user_info.nickname}
           </Text>
-          
+
           <Text size="0.8vw">{props.user_info.introduction}</Text>
-          <TextBtn >
-              프로필 편집
-            </TextBtn>
+          <TextBtn>프로필 편집</TextBtn>
         </Grid>
       </ProfileContainer>
 
       {/* Tab Bar */}
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
-        <Tabs>
-          <Tab onClick={handleClick} active={active === 0} id={0}>
-            {props.user_info.nickname}님의 게시물
-          </Tab>
+      <Tabs>
+        <Tab onClick={handleClick} active={active === 0} id={0}>
+          {props.user_info.nickname}님의 게시물
+        </Tab>
 
-          <Tab onClick={handleClick} active={active === 21} id={2}>
-            {props.user_info.nickname}님의 좋아요
-          </Tab>
-        </Tabs>
-
-{/* Contents */}
-          <Content active={active === 0}>
-            <Story_MyPost />
-          </Content>
-          <Content active={active === 1}>
-            <Box></Box>
-          </Content>
-
+        <Tab onClick={handleClick} active={active === 2} id={2}>
+          {props.user_info.nickname}님의 좋아요
+        </Tab>
+      </Tabs>
+      {/* Contents */}
+      <Content active={active === 0}>
+        <Story_MyPost />
+      </Content>
+      <Content active={active === 1}>
+        <Box></Box>
+      </Content>
     </React.Fragment>
+
   );
-});
+};
 
 Story.defaultProps = {
   user_info: {
@@ -85,10 +81,10 @@ Story.defaultProps = {
 };
 
 const ProfileContainer = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align:center;
+  text-align: center;
   width: 1266px;
   height: 20%;
   margin: 3% auto;
@@ -107,7 +103,7 @@ const ProfileImg = styled.img`
 `;
 
 const TextBtn = styled.button`
-  padding:12px 20px;
+  padding: 12px 20px;
   border: 1px solid grey;
   box-sizing: border-box;
   border-radius: 5px;
@@ -132,8 +128,8 @@ const TextBtn = styled.button`
 const Tabs = styled.div`
   overflow: hidden;
   background: #fff;
-  margin:0 auto;
-  width :1260px;
+  margin: 0 auto;
+  width: 1260px;
 `;
 
 const Tab = styled.button`
@@ -169,7 +165,6 @@ const PostList = styled.div`
   flex-wrap: wrap;
 `;
 
-<<<<<<< HEAD
 const Box = styled.div`
   text-align: center;
   margin: 2% auto;
@@ -178,24 +173,5 @@ const Box = styled.div`
   flex-wrap: wrap;
   background-color: #eee;
 `;
-
-=======
-// const Container = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
-//   grid-auto-rows: 405px;
-//   grid-gap: 24px;
-//   text-align: center;
-//   margin: auto;
-//   width: 1266px;
-//   height: 100%;
-//   padding: 50px 200px;
-//   flex-wrap: wrap;
-// `;
-
-// const ImageContainer = styled.div`
-//   display: block;
-// `;
->>>>>>> upstream/master
 
 export default Story;
