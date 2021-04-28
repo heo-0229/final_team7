@@ -85,6 +85,24 @@ const post_list = [
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "야경",
   },
+  {
+    id: 9,
+    imgUrl: [
+      "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    ],
+    title: "둥둥..",
+    address: "제주시 한림읍 옹포 8길 1-3",
+    category: "야경",
+  },
+  {
+    id: 9,
+    imgUrl: [
+      "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    ],
+    title: "둥둥..",
+    address: "제주시 한림읍 옹포 8길 1-3",
+    category: "야경",
+  },
 ];
 
 export default post_list;
