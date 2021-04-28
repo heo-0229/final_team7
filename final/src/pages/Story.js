@@ -5,8 +5,8 @@ import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import Post2 from "../components/Post2";
-import post_list from "../components/MockData";
+// import Post2 from "../components/Post2";
+// import post_list from "../components/MockData";
 import Story_MyPost from "../components/Story_MyPost";
 
 const Story = (props) => {
@@ -21,7 +21,7 @@ const Story = (props) => {
 
   // 탭 구현하기
   // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState(0); 
+  const [active, setActive] = useState("myposttab"); 
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -50,39 +50,22 @@ const Story = (props) => {
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
 
         <Tabs>
-          <Tab onClick={handleClick} active={active === 0} id={0}>
+          <Tab onClick={handleClick} active={active === "myposttab"} id={"myposttab"}>
             {props.user_info.nickname}님의 게시물
           </Tab>
 
-          <Tab onClick={handleClick} active={active === 2} id={2}>
+          <Tab onClick={handleClick} active={active === "liketab"} id={"liketab"}>
             {props.user_info.nickname}님의 좋아요
           </Tab>
         </Tabs>
 
-{/* Contents */}
-          <Content active={active === 0}>
+        {/* Contents */}
+          <Content active={active === "myposttab"}>
             <Story_MyPost />
           </Content>
-          <Content active={active === 2}>
+          <Content active={active === "liketab"}>
             <Box></Box>
           </Content>
-
-      <Tabs>
-        <Tab onClick={handleClick} active={active === 0} id={0}>
-          {props.user_info.nickname}님의 게시물
-        </Tab>
-
-        <Tab onClick={handleClick} active={active === 2} id={2}>
-          {props.user_info.nickname}님의 좋아요
-        </Tab>
-      </Tabs>
-      {/* Contents */}
-      <Content active={active === 0}>
-        <Story_MyPost />
-      </Content>
-      <Content active={active === 1}>
-        <Box></Box>
-      </Content>
 
     </React.Fragment>
 

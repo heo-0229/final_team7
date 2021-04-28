@@ -13,7 +13,7 @@ import { HiOutlineMap } from "react-icons/hi";
 const Story_MyPost = (props) => {
   // 버튼 탭 구현하기
   // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState("grid");
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -25,27 +25,65 @@ const Story_MyPost = (props) => {
   return (
     <React.Fragment>
       <Icons>
-        <Icon onClick={handleClick} active={active === 0} id={0}>
+        <Icon onClick={handleClick} active={active === "grid"} id={"grid"}>
           <FiImage size="40" />
         </Icon>
-        <Icon onClick={handleClick} active={active === 2} id={2}>
+        <Icon onClick={handleClick} active={active === "map"} id={"map"}>
           <HiOutlineMap size="43" />
         </Icon>
       </Icons>
 
-      <Content active={active === 0}>
+      <Content active={active === "grid"}>
         <PostList>
           {post_list.map((p, idx) => {
             return <Post2 key={p.id} {...p}></Post2>;
           })}
         </PostList>
       </Content>
-      <Content active={active === 2}>
+      <Content active={active === "map"}>
         <Box></Box>
       </Content>
     </React.Fragment>
   );
 };
+
+// const Story_MyPost = (props) => {
+//   // 버튼 탭 구현하기
+//   // 처음에는 0번째 인덱스 활성화
+//   const [PostListMode, setPostListMode] = useState(true);
+//   // 클릭한 인덱스 활성화
+
+//   return (
+//     <React.Fragment>
+//       <Icons>
+//         <Icon
+//           onClick={() => {
+//             setPostListMode(true);
+//           }}
+//         >
+//           <FiImage size="40" />
+//         </Icon>
+//         <Icon
+//           onClick={() => {
+//             setPostListMode(false);
+//           }}
+//         >
+//           <HiOutlineMap size="43" />
+//         </Icon>
+//       </Icons>
+//       {PostListMode ? (
+//         <PostList>
+//           {post_list.map((p, idx) => {
+//             return <Post2 key={p.id} {...p}></Post2>;
+//           })}
+//         </PostList>
+//       ) : (
+//         <Box></Box>
+//       )}
+//     </React.Fragment>
+//   );
+// };
+
 const Icons = styled.div`
   position: fixed;
   right: 13%;

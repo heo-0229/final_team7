@@ -1,7 +1,7 @@
 import "../App.css";
 import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,6 +39,7 @@ function App() {
       {/* <Responsive> */}
 
       <ConnectedRouter history={history}>
+        
         <SideNav></SideNav>
         <Route path="/" exact component={Main} />
         <Route path="/signup" exact component={Signup} />
@@ -50,9 +51,12 @@ function App() {
         {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
         <Route path="/story" exact component={Story} />
         <Route path="/editprofile" exact component={EditProfile} />
-        {/* <Route exact component={NotFound} /> */}
+       
         {/* 밑에서 부턴 카테고리별 페이지 */}
         <Route path="/cafe" exact component={Cafe} />
+   
+        {/* <Route component={NotFound} /> */}
+  
       </ConnectedRouter>
       {/* </Responsive> */}
     </React.Fragment>

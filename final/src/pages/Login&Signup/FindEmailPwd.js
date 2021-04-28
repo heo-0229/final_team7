@@ -15,14 +15,13 @@ const FindEmailPwd = () => {
   const [FindEmailMode, setFindEmailMode] = useState(true);
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
+  const [vertificationCode, setVertificationCode] = useState("");
 
   useEffect(() => {
     return () => {};
   }, []);
 
   const onFindEmailAPI = (nickname) => {
-
-    console.log(nickname);
     const API = 'http://seungwook.shop/user/findemail';
     axios.post(API,{
         nickname:nickname,
@@ -33,32 +32,60 @@ const FindEmailPwd = () => {
         },
     })
     .then((res) => {
-        console.log('이메일 찾기', res.data)
+        // console.log('이메일 찾기', res.data)
         const is_email = res.data.email;
-        console.log(is_email);
     
         if(is_email){
             alert("등록된 이메일은 " + is_email + " 입니다");
         }else{
-            alert('회원정보가 없습니다 :(');
+            alert('회원정보가 옳바르지 않습니다 :(');
         }
     })
   };
 
-  const onVertification = () => {
-    // 이메일이 존재하면?? 이메일 값을 받아서
-    // if (is_email) {
-    //   alert(
-    //     "입력하신 이메일({email})로 인증번호가 전송되었습니다."
-    //   );
-    //   return false;
-    // }
-   
+  const onVertification = (email) => {
+    console.log(email);
+    const API = '';
+    axios.post(API,{
+        email: email,
+    },
+    {
+        headers: {
+        'Content-Type': 'application/json',
+        },
+    })
+    .then((res) => {
+        console.log('인증번호 전송', res.data)
+        // if(){
+        //     alert("입력하신 이메일로 인증번호가 전송되었습니다.");
+        // }else{
+        //     alert('회원정보가 옳바르지 않습니다 :(');
+        // }
+    })
   };
 
-  const onFindPwd = () => {
+  const onFindPwd = (vertificationCode) => {
     //  인증번호가 일치하면 비밀번호 변경 페이지로 
-    history.push('editpwd')
+    console.log(vertificationCode);
+    const API = '';
+    axios.post(API,{
+        vertificationCode: vertificationCode,
+    },
+    {
+        headers: {
+        'Content-Type': 'application/json',
+        },
+    })
+    .then((res) => {
+        console.log('비밀번호 찾기', res.data)
+      // if(){
+        //     history.push('editpwd')
+        // 백으로 이메일 값도 같이 넘겨주기!!!!
+        // }else{
+        //     alert('인증번호가 일치하지 않습니다! :(');
+        // }
+    
+    })
   };
 
   if (FindEmailMode) {
@@ -125,7 +152,7 @@ const FindEmailPwd = () => {
               }}
             />
             <VertificationBtn
-            onClick = {onVertification}>인증번호전송</VertificationBtn>
+            onClick = {() =>onVertification(email)}>인증번호전송</VertificationBtn>
           </div>
 
           <InputStyle
@@ -133,11 +160,11 @@ const FindEmailPwd = () => {
             type="type"
             width="97%"
             onChange={(e) => {
-              setNickname(e.target.value);
+              setVertificationCode(e.target.value);
             }}
           />
           <SolidBtn background-color="grey" style={{ display: "block" }}
-          onClick={onFindPwd}>
+          onClick = {() => onFindPwd(vertificationCode)}>
             비밀번호 찾기
           </SolidBtn>
           <Grid padding="10px">

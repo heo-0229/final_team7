@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./shared/App";
-import Story from "./pages/Story";
 import { ThemeProvider } from "styled-components";
 import theme from "./shared/theme";
 import { Provider } from "react-redux";
