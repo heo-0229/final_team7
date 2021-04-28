@@ -11,10 +11,10 @@ import Map from "../components/Map";
 const Main = (props) => {
   const dispatch = useDispatch();
 
-  // 페
-  useEffect(() => {
-    dispatch(postActions.getMyPostAPI())
-  }, []);
+  // 페이지 렌더링이 되면서 모달창에 들어갈 데이터들을 받아온다.
+  // useEffect(() => {
+  //   dispatch(postActions.getMyPostAPI())
+  // }, []);
 
   return (
     <React.Fragment>

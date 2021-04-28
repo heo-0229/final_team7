@@ -22,7 +22,7 @@ const Story = React.memo((props) => {
 
   // 탭 구현하기
   // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0); 
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -58,7 +58,7 @@ const Story = React.memo((props) => {
             {props.user_info.nickname}님의 게시물
           </Tab>
 
-          <Tab onClick={handleClick} active={active === 21} id={2}>
+          <Tab onClick={handleClick} active={active === 2} id={2}>
             {props.user_info.nickname}님의 좋아요
           </Tab>
         </Tabs>
@@ -67,7 +67,7 @@ const Story = React.memo((props) => {
           <Content active={active === 0}>
             <Story_MyPost />
           </Content>
-          <Content active={active === 1}>
+          <Content active={active === 2}>
             <Box></Box>
           </Content>
 
@@ -169,7 +169,6 @@ const PostList = styled.div`
   flex-wrap: wrap;
 `;
 
-<<<<<<< HEAD
 const Box = styled.div`
   text-align: center;
   margin: 2% auto;
@@ -179,23 +178,5 @@ const Box = styled.div`
   background-color: #eee;
 `;
 
-=======
-// const Container = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
-//   grid-auto-rows: 405px;
-//   grid-gap: 24px;
-//   text-align: center;
-//   margin: auto;
-//   width: 1266px;
-//   height: 100%;
-//   padding: 50px 200px;
-//   flex-wrap: wrap;
-// `;
-
-// const ImageContainer = styled.div`
-//   display: block;
-// `;
->>>>>>> upstream/master
 
 export default Story;
