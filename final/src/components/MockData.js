@@ -9,7 +9,7 @@ const post_list = [
     ],
     title: "바람좋구먼~",
     address: "충청남도 논산시 연무읍",
-    category: "주경",
+    category: "카페",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const post_list = [
     ],
     title: "황홀~",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "야경",
+    category: "카페",
   },
   {
     id: 3,

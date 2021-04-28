@@ -10,7 +10,7 @@ export const SidebarData = [
   //MdPhotoLibrary
   {
     title: "마이페이지",
-    path: "/",
+    path: "/story",
     icon: <CgIcons.CgProfile size="22px" />,
     cName: "nav-text",
   },
