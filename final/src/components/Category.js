@@ -3,8 +3,14 @@ import styled from "styled-components";
 import { Grid, Text, Button, Input } from "../elements/index";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as categoryActions } from "../redux/modules/category";
 
 const Category = () => {
+  const dispatch = useDispatch();
+
+  const is_cafe = useSelector((state) => state.category.is_cafe);
+  console.log(is_cafe);
+
   return (
     // 해당 카테고리 클릭시 넘어온 포스트 중에서 카테고리가 일치한 것만 return 해줘야한다!
     // 한가지 방법은 카테고리마다 페이지를 만들어서 클릭시 다른 페이지 렌더링
@@ -15,11 +21,19 @@ const Category = () => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
-
-            window.alert("준비중 입니다");
+            history.push("/postlist");
           }}
         >
-          주경
+          전체보기
+        </Btn>
+        <Btn
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
+            history.push("/cafe");
+          }}
+        >
+          카페
         </Btn>
         <Btn>야경</Btn>
         <Btn>카페</Btn>
@@ -48,8 +62,8 @@ justify-content: space-between; */
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   padding: 8px 0px;
-  /* height: 100px; */
-  /* overflow-y: scroll;
+  /* height: 100px;
+  overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 8px;
   }

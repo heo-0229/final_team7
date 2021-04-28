@@ -42,7 +42,7 @@ function Navbar() {
         </SideMini>
         {/* sidebar값에 따라 클래스 네임을 바꿔준다 */}
         {/* nav-menu.active는 사이드바가 들어간 상태를 의미 */}
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+        <nav className={sidebar ? "nav-menu" : "nav-menu active"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
