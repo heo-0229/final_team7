@@ -45,6 +45,7 @@ function App() {
         <Route path="/editpwd" exact component={EditPwd} />
         <Route path="/postlist" exact component={PostList} />
         {/* story와 editprofile은 후에 /:id 붙여야함 */}
+        {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
         <Route path="/story" exact component={Story} />
         <Route path="/editprofile" exact component={EditProfile} />
         {/* <Route exact component={NotFound}/> */}

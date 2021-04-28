@@ -57,6 +57,7 @@ const Story = (props) => {
           return <Post2 key={p.id} {...p}></Post2>;
         })}
       </Container>
+
     </React.Fragment>
   );
 };
@@ -153,5 +154,22 @@ const Container = styled.div`
   padding: 50px 200px;
   flex-wrap: wrap;
 `;
+
+// const Container = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
+//   grid-auto-rows: 405px;
+//   grid-gap: 24px;
+//   text-align: center;
+//   margin: auto;
+//   width: 1266px;
+//   height: 100%;
+//   padding: 50px 200px;
+//   flex-wrap: wrap;
+// `;
+
+// const ImageContainer = styled.div`
+//   display: block;
+// `;
 
 export default Story;
