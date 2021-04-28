@@ -18,6 +18,7 @@ import Story from "../pages/Story";
 import EditProfile from "../pages/EditProfile";
 import NotFound from "../pages/NotFound";
 import SideNav from "../components/SideNav";
+import ScrollToTop from "./ScrollToTop"; //페이지 넘길때 스크롤 맨위로 초기화(무한 스크롤 때문에 필요함)
 
 function App() {
   const dispatch = useDispatch();

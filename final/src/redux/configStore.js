@@ -6,7 +6,7 @@ import { connectRouter } from "connected-react-router";
 
 // 리덕스 모듈 파일들 import 해오기
 import User from "./modules/user";
-// import Post from "./modules/post";
+import Post from "./modules/post";
 // import Image from "./modules/image";
 // import Like from "./modules/like";
 
@@ -16,7 +16,7 @@ export const history = createBrowserHistory();
 // 리덕스 모듈 파일들의 리듀서들을 한데 모아서 통합된 리듀서를 만든다.
 const rootReducer = combineReducers({
   user: User,
-  // post: Post,
+  post: Post,
   // image: Image,
   // like: Like,
   router: connectRouter(history),
@@ -34,7 +34,7 @@ const env = process.env.NODE_ENV;
 // 이거하면 ACTION(ex : SET_POST)에 따라서 일어나는 일을 보여준다
 // 개발 상태에서만 보이고, 배포하면 보이지 않는다.
 if (env === "development") {
-  // const { logger } = require("redux-logger"); 
+  // const { logger } = require("redux-logger");
   // middlewares.push(logger);
 }
 

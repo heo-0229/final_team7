@@ -3,8 +3,11 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as CgIcons from "react-icons/cg";
+import * as GrIcons from "react-icons/gr";
+import * as MdIcons from "react-icons/md";
 
 export const SidebarData = [
+  //MdPhotoLibrary
   {
     title: "마이페이지",
     path: "/",
@@ -14,13 +17,13 @@ export const SidebarData = [
   {
     title: "지도보기",
     path: "/reports",
-    icon: <IoIcons.IoIosPaper size="22px" />,
+    icon: <GrIcons.GrMap size="22px" />,
     cName: "nav-text",
   },
   {
     title: "커뮤니티",
     path: "/products",
-    icon: <FaIcons.FaCartPlus size="22px" />,
+    icon: <MdIcons.MdPhotoLibrary size="22px" />,
     cName: "nav-text",
   },
   {

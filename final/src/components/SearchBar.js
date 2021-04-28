@@ -58,4 +58,5 @@ const TextBox = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
   top: 15%;
+  z-index: 200;
 `;

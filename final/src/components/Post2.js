@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import "../Css/Post.css";
-import Modal2 from "./Modal2";
+
 
 //로그인 후에 이용가능 합니다
 const Post2 = (props) => {
