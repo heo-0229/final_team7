@@ -30,11 +30,11 @@ const signupAPI = (nickname, email, pwd, rePwd) => {
     // console.log(nickname, email, pwd, rePwd);
 
     axios
-      .post("", {
+      .post("http://seungwook.shop/user/signup", {
         nickname: nickname,
         email: email,
         password: pwd,
-        passwordCehck: rePwd,
+        pwdchk: rePwd,
       })
       .then((res) => {
         console.log("signupAPI(res)", res);
@@ -59,13 +59,13 @@ const loginAPI = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     console.log("로그인 값", email, pwd);
     axios
-      .post("", {
-        username: email,
+      .post("http://seungwook.shop/user/login", {
+        email: email,
         password: pwd,
       })
       .then((res) => {
         console.log("loginAPI(res)", res);
-        // localStorage.setItem('nickname', _);
+        localStorage.setItem('nickname', res.data.nickname);
         setCookie("token", res.data.token);
         dispatch(setUser(res.config.data));
         // axios.defaults.headers.common["token"] = `Bearer ${token}`;
@@ -91,9 +91,8 @@ const loginCheckAPI = (token) => {
         url: "",
         method: "GET",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json;",
+          "X-AUTH-TOKEN": `${token}`,
         },
       };
       axios(option)
@@ -153,6 +152,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
+        localStorage.getItem("nickname");
         draft.user = action.payload.user;
         draft.is_login = true;
       }),

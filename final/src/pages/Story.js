@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Grid, Text, Button, Input } from "../elements/index";
+import { Grid, Text } from "../elements/index";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -9,7 +9,7 @@ import Post2 from "../components/Post2";
 import post_list from "../components/MockData";
 import Story_MyPost from "../components/Story_MyPost";
 
-const Story = React.memo((props) => {
+const Story = (props) => {
   const dispatch = useDispatch();
 
   // const me = localStorage.getItem('nickname');
@@ -31,6 +31,7 @@ const Story = React.memo((props) => {
   };
 
   console.log(props.user_info);
+
   return (
     <React.Fragment>
       <ProfileContainer>
@@ -47,6 +48,25 @@ const Story = React.memo((props) => {
       </ProfileContainer>
       {/* Tab Bar */}
       {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
+
+        <Tabs>
+          <Tab onClick={handleClick} active={active === 0} id={0}>
+            {props.user_info.nickname}님의 게시물
+          </Tab>
+
+          <Tab onClick={handleClick} active={active === 2} id={2}>
+            {props.user_info.nickname}님의 좋아요
+          </Tab>
+        </Tabs>
+
+{/* Contents */}
+          <Content active={active === 0}>
+            <Story_MyPost />
+          </Content>
+          <Content active={active === 2}>
+            <Box></Box>
+          </Content>
+
       <Tabs>
         <Tab onClick={handleClick} active={active === 0} id={0}>
           {props.user_info.nickname}님의 게시물
@@ -64,8 +84,9 @@ const Story = React.memo((props) => {
         <Box></Box>
       </Content>
     </React.Fragment>
+
   );
-});
+};
 
 Story.defaultProps = {
   user_info: {
