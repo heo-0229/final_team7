@@ -19,16 +19,16 @@ const ModalInMain = (props) => {
     <React.Fragment>
       <ModalContainer>
         <PicBox src={props.image_url}>
+          {/* Head-Middle-Bottomd으로 구획을 나눔 */}
           <Head>
             <SpotName>{props.spot_address}</SpotName>
           </Head>
           <Center/>
-          <Bottom>
-            <IconsBox>
-              <LikeIcon/>
-              <CommentIcon/>
-            </IconsBox>
-          </Bottom>
+          <BottomIconBox>
+            <HeartIcon/>
+            <CommentIcon/>
+            <BinIcon/>
+          </BottomIconBox>
         </PicBox>
       </ModalContainer>
     </React.Fragment>
@@ -41,47 +41,57 @@ ModalInMain.defatultProps = {
 }
 
 const ModalContainer = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 200px;
+  height: 200px;
   border-radius: 5px;
   background-color: white;
 `;
 
 const PicBox = styled.div`
-  width: 65px;
-  height: 65px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-size: cover;
+  justify-content: space-between;
   cursor: pointer;
+  background-size: cover;
 `;
 
 const Head = styled.div`
+  height: 40px;
   display: flex;
   justify-content: flex-start;
 `;
 
 const SpotName = styled.div`
-  width: 15px;
   background-color: transparent;
   color: white;
   font-size: 12px;
+  padding-left: 5px;
 `;
 
 const Center = styled.div`
-  height: 30px
+  height: 120px
 `;
 
-const Bottom = styled.div`
+const BottomIconBox = styled.div`
+  height: 40px;
   display: flex;
   justify-content: flex-end;
 `;
 
-const IconsBox = styled.div`
-  display: flex;
-  justify-content: right;
+const HeartIcon = styled.div`
+  padding: 10px;
+`;
+
+const CommentIcon = styled.div`
+  padding: 10px;
+`;
+
+const BinIcon = styled.div`
+  padding: 10px;
 `;
 
 export default ModalInMain;

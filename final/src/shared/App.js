@@ -38,19 +38,18 @@ function App() {
       {/* <Responsive> */}
 
       <ConnectedRouter history={history}>
-        <ScrollToTop>
-          <SideNav></SideNav>
-          <Route path="/" exact component={Main} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/findemailpwd" exact component={FindEmailPwd} />
-          <Route path="/editpwd" exact component={EditPwd} />
-          <Route path="/postlist" exact component={PostList} />
-          {/* story와 editprofile은 후에 /:id 붙여야함 */}
-          <Route path="/story" exact component={Story} />
-          <Route path="/editprofile" exact component={EditProfile} />
-          {/* <Route exact component={NotFound}/> */}
-        </ScrollToTop>
+        <SideNav></SideNav>
+        <Route path="/" exact component={Main} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/findemailpwd" exact component={FindEmailPwd} />
+        <Route path="/editpwd" exact component={EditPwd} />
+        <Route path="/postlist" exact component={PostList} />
+        {/* story와 editprofile은 후에 /:id 붙여야함 */}
+        {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
+        <Route path="/story" exact component={Story} />
+        <Route path="/editprofile" exact component={EditProfile} />
+        {/* <Route exact component={NotFound}/> */}
       </ConnectedRouter>
       {/* </Responsive> */}
     </React.Fragment>
