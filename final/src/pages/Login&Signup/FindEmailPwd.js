@@ -16,33 +16,36 @@ const FindEmailPwd = () => {
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   return () => {};
+  // }, []);
 
   const onFindEmailAPI = (nickname) => {
-
     console.log(nickname);
-    const API = 'http://seungwook.shop/user/findemail';
-    axios.post(API,{
-        nickname:nickname,
-    },
-    {
-        headers: {
-        'Content-Type': 'application/json',
+    const API = "http://seungwook.shop/user/findemail";
+    axios
+      .post(
+        API,
+        {
+          nickname: nickname,
         },
-    })
-    .then((res) => {
-        console.log('이메일 찾기', res.data)
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("이메일 찾기", res.data);
         const is_email = res.data.email;
         console.log(is_email);
-    
-        if(is_email){
-            alert("등록된 이메일은 " + is_email + " 입니다");
-        }else{
-            alert('회원정보가 없습니다 :(');
+
+        if (is_email) {
+          alert("등록된 이메일은 " + is_email + " 입니다");
+        } else {
+          alert("회원정보가 없습니다 :(");
         }
-    })
+      });
   };
 
   const onVertification = () => {
@@ -53,12 +56,11 @@ const FindEmailPwd = () => {
     //   );
     //   return false;
     // }
-   
   };
 
   const onFindPwd = () => {
-    //  인증번호가 일치하면 비밀번호 변경 페이지로 
-    history.push('editpwd')
+    //  인증번호가 일치하면 비밀번호 변경 페이지로
+    history.push("editpwd");
   };
 
   if (FindEmailMode) {
@@ -89,7 +91,7 @@ const FindEmailPwd = () => {
           <SolidBtn
             background-color="grey"
             style={{ display: "block" }}
-            onClick={() =>onFindEmailAPI(nickname)}
+            onClick={() => onFindEmailAPI(nickname)}
           >
             이메일 찾기
           </SolidBtn>
@@ -112,7 +114,7 @@ const FindEmailPwd = () => {
             >
               이메일 찾기
             </UnclickedTab>
-            <text style={{color:"grey"}}>|</text>
+            <text style={{ color: "grey" }}>|</text>
             <ClickedTab>비밀번호 찾기</ClickedTab>
           </Tab>
           <div>
@@ -124,8 +126,9 @@ const FindEmailPwd = () => {
                 setNickname(e.target.value);
               }}
             />
-            <VertificationBtn
-            onClick = {onVertification}>인증번호전송</VertificationBtn>
+            <VertificationBtn onClick={onVertification}>
+              인증번호전송
+            </VertificationBtn>
           </div>
 
           <InputStyle
@@ -136,8 +139,11 @@ const FindEmailPwd = () => {
               setNickname(e.target.value);
             }}
           />
-          <SolidBtn background-color="grey" style={{ display: "block" }}
-          onClick={onFindPwd}>
+          <SolidBtn
+            background-color="grey"
+            style={{ display: "block" }}
+            onClick={onFindPwd}
+          >
             비밀번호 찾기
           </SolidBtn>
           <Grid padding="10px">

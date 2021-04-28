@@ -12,12 +12,14 @@
 }
 
 .menu-bars {
+  position: fixed;
   margin-left: 1.5rem;
   margin-right: 0px;
   font-size: 2rem;
   background: none;
 }
 
+/* 여기가 줄어드는 부분 */
 .nav-menu {
   border-radius: 0 10px 10px 0;
   background-color: #fff;
