@@ -12,7 +12,7 @@ import _ from "lodash"; // throttle, debounce 사용
 // component, element 파일들 가져오기
 import LogBtn from "../components/LogBtn";
 import {Grid, Text, Button, Input} from '../elements/index';
-import ModalInMain from "../components/ModalInMain";
+import ModalSmallPost from "../components/ModalSmallPost";
 import { markerdata } from "../components/MarkerData";
 
 // window 객체로부터 kakao mpa api를 호출하기
@@ -45,11 +45,15 @@ const Maps = (props) => {
   }, 300); //키보드 떼면 입력한게 1초 뒤에 나타난다.
 
   // 페이지가 렌더링 되면 지도 띄우기
-  useEffect(() => {
+  useEffect(() => { 
+    mapscript();
+  }, [search]);
+    
+  const mapscript = () => {
     const container = document.getElementById("map");  // 지도를 표시할 div
     const options = {
       center: new kakao.maps.LatLng(37.526667, 127.028011), //지도 중심(시작) 좌표, LatLng 클래스는 반드시 필요.
-      level: 3, //지도 확대 레벨
+      level: 8, //지도 확대 레벨
     };
 
     const map = new kakao.maps.Map(container, options); // 지도생성 및 객체 리턴
@@ -74,6 +78,7 @@ const Maps = (props) => {
     // 마커를 생성하기.
     let marker = new kakao.maps.Marker({
       position: markerPosition,
+      // position: map.getCenter, // 지도
     });
 
     // 마커를 지도 위에 표시하기.
@@ -82,8 +87,9 @@ const Maps = (props) => {
     // 마커는 여기까지
     // -----------------------------------------------------------------------------------
 
-    // ---------------------------------------------------------------
-    // 여기서부터 검색 기능 넣기
+
+    // -----------------------------------------------------------------------------------
+    // 여기서부터 검색 기능
     // 키워드로 검색하기
     const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
@@ -133,14 +139,48 @@ const Maps = (props) => {
       // 마커 생성
       new kakao.maps.Marker({
         map: map,   // 마커가 표시 될 지도
-        position: new kakao.maps.LatLng(el.lat, el.lng),
-        // 마커에 hover 하면 나타날 title
-        title: el.title,
+        position: new kakao.maps.LatLng(el.lat, el.lng), // 마커가 표시될 위치
+        title: el.title, // 마커에 hover 하면 나타날 title
       });
     });
+  }
+      // // 마커를 표시할 인포윈도우 생성
+      // const infowindow = new kakao.maps.InfoWindow({ 
+      //   content: el.title, // 인포윈도우에 표시할 내용
+      // });
 
-    // dispatch(markerActions.getMarkerAPI());
-  }, [search]);
+      // marker에 mouseover 이벤트, mouseout 이벤트를 등록한다.
+      // eventListener로는 클로저를 만들어서 등록한다.
+      // 클로저를 만들어주지 않으면 마지막 마커에만 이벤트가 등록된다.
+    //   kakao.maps.event.addListener(
+    //     marker,
+    //     "mouseover",
+    //     makeOverListener(map, marker, infowindow)
+    //   );
+
+    //   kakao.maps.event.addListener(
+    //     marker,
+    //     "mouseout",
+    //     makeOutListener(infowindow)
+    //   );
+    // });
+    
+    // // 인포윈도우를 표시하는 클로저를 만드는 함수
+    // function makeOverListener(map, marker, infowindow) {
+    //   return function () {
+    //     infowindow.open(map, marker);
+    //   };
+    // };
+    
+    // // 인포윈도우를 닫는 클로저를 만드는 함수
+    // function makeOutListener(infowindow) {
+    //   return function () {
+    //     infowindow.close();
+    //   };
+    // };
+  // }
+  //   // dispatch(markerActions.getMarkerAPI());
+
 
   return (
     <React.Fragment>
