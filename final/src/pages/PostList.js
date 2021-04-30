@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
+// 컴포넌트 파일들 임포트해오기
 import { Grid, Text, Button, Input } from "../elements/index";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +10,8 @@ import Post from "../components/Post";
 import SearchBar from "../components/SearchBar";
 import LogBtn from "../components/LogBtn";
 import Post2 from "../components/Post2";
+import Category from "../components/Category";
+import Input2 from "../elements/Input2";
 import Modal from "../components/Modal";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -15,8 +19,7 @@ import "../Css/Modal.css";
 import modal from "../redux/modules/modal";
 import post_list from "../components/MockData";
 import { actionCreators as PostActions } from "../redux/modules/post";
-import Category from "../components/Category";
-import Input2 from "../elements/Input2";
+
 const PostList = () => {
   const dispatch = useDispatch();
 
