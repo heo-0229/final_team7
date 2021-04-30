@@ -19,6 +19,28 @@ const disLike = createAction(DIS_LIKE, (like, likeCnt) => ({
   likeCnt,
 }));
 
+const addLikeAPI = () => {
+  return function (dispatch, getState) {
+    axios({
+      method: "POST",
+      url: `${config.api}/board/{boardId}/like`,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+};
+
+const disLikeAPI = () => {
+  return function (dispatch, getState) {
+    axios({
+      method: "DELETE",
+      url: `${config.api}/board/{boardId}/like`,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+};
+
 const initialState = {
   like: false,
   likeCnt: 0,

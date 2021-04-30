@@ -28,11 +28,9 @@ const Signup = (props) => {
   const [nicknameDup, setNicknameDup] = React.useState(false);
   const [emailDup, setEmailDup] = React.useState(false);
 
-
   // 조건 충족 여부에 따라  info를 다르게
   // querySelector를 이용하면 ''안에 해당되는 태그가 여러개 일 경우 그 첫번째 것만 선택한다.
   // 따라서 선택하고자 하는 것이 명확하다면 ''안에 몇번째 child 인지까지 정확하게 입력하거나 className 사용하기
-
 
   // 닉네임 정규식 검사(info 컬러 바꿔주기)
   const changeNickname = (e) => {
@@ -50,8 +48,8 @@ const Signup = (props) => {
     }
   };
 
-   // 이메일 형식
-   const changeEmail = (e) => {
+  // 이메일 형식
+  const changeEmail = (e) => {
     setEmail(e.target.value);
     const emailInfo = document.querySelector("ul.checkEmail li:nth-child(1)");
     if (!emailRegCheck(e.target.value)) {
@@ -61,9 +59,7 @@ const Signup = (props) => {
       emailInfo.classList.add("ok");
       emailInfo.classList.remove("error");
     }
-    
   };
-  
 
   // 비밀번호 정규식 검사(info 컬러 바꿔주기)
   const changePwdReg = (e) => {
@@ -102,7 +98,6 @@ const Signup = (props) => {
     }
   };
 
-  
   // 비밀번호 확인 정규식 검사(info 컬러 바꿔주기)
   const changeRePwd = (e) => {
     setRePwd(e.target.value);
@@ -119,52 +114,59 @@ const Signup = (props) => {
 
   // 닉네임 중복확인
   const nicknameDupCheckAPI = (nickname) => {
-    console.log(nickname)
-      const API = 'http://seungwook.shop/user/signup/nickchk';
-      axios.post(API,{
-          nickname:nickname,
-      },
-      {
+    console.log(nickname);
+    const API = "http://seungwook.shop/user/signup/nickchk";
+    axios
+      .post(
+        API,
+        {
+          nickname: nickname,
+        },
+        {
           headers: {
-          'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-      })
+        }
+      )
       .then((res) => {
-          console.log('넥네임중복확인!', res.data)
-          if(res.data === false){
-              alert('이미 등록된 닉네임 입니다!');
-              setNicknameDup(false);
-          }else{
-              alert('사용 가능한 닉네임 입니다 :)');
-              setNicknameDup(true);
-          }
-      })
-  }
+        console.log("넥네임중복확인!", res.data);
+        if (res.data === false) {
+          alert("이미 등록된 닉네임 입니다!");
+          setNicknameDup(false);
+        } else {
+          alert("사용 가능한 닉네임 입니다 :)");
+          setNicknameDup(true);
+        }
+      });
+  };
 
   // 이메일 중복확인
-    const emailDupCheckAPI = (email) => {
-
-       console.log(email)
-      const API = 'http://seungwook.shop/user/signup/emailchk';
-      axios.post(API,{
-          email:email,
-      },
-      {
+  const emailDupCheckAPI = (email) => {
+    console.log(email);
+    const API = "http://seungwook.shop/user/signup/emailchk";
+    axios
+      .post(
+        API,
+        {
+          email: email,
+        },
+        {
           headers: {
-          'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-      })
+        }
+      )
       .then((res) => {
-          console.log('이메일중복확인!', res.data)
-          if(res.data === false){
-              alert('이미 등록된 이메일 입니다!');
-              setEmailDup(false);
-          }else{
-              alert('사용 가능한 이메일 입니다 :)');
-              setEmailDup(true);
-          }
-      })
-  }
+        console.log("이메일중복확인!", res.data);
+        if (res.data === false) {
+          alert("이미 등록된 이메일 입니다!");
+          setEmailDup(false);
+        } else {
+          alert("사용 가능한 이메일 입니다 :)");
+          setEmailDup(true);
+        }
+      });
+  };
 
   // 회원가입 버튼
   const onSignup = () => {

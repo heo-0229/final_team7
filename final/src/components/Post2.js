@@ -15,15 +15,12 @@ import styled, { keyframes } from "styled-components";
 import { actionCreators as modalActions } from "../redux/modules/modal";
 import "../Css/Post.css";
 
-
 //로그인 후에 이용가능 합니다
 const Post2 = (props) => {
   const dispatch = useDispatch();
-  console.log(props);
+
   // const [modalOpen, setModalOpen] = useState();
   const [is_modal, setDetailModal] = useState();
-  // console.log(is_modal);
-  // const [is_changemodal, setChangeModal] = useState();
 
   const openModal = () => {
     setDetailModal(true);
@@ -72,7 +69,8 @@ const Post2 = (props) => {
     <React.Fragment>
       <Card>
         <PostBox src={props.post_image_url} onClick={openModal}>
-          <div className={"hoverDark active"}>
+          {/* 이거자체가 지금 투명 0 */}
+          <div className={"hoverDark"}>
             <div className={"PostFont"}>
               <FavoriteBorderIcon />
               <div>0 </div>
@@ -80,6 +78,7 @@ const Post2 = (props) => {
               {props.address}
             </div>
           </div>
+          {/* 투명도 0 */}
         </PostBox>
       </Card>
       {is_modal ? (

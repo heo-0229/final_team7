@@ -9,9 +9,6 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Slider from "react-slick";
 
 const ModalDetail = (props) => {
-  console.log(props.imgUrl.length);
-  console.log("모달 id", props.id);
-
   const dispatch = useDispatch();
   // React.useEffect(() => {}, []);
 
@@ -44,7 +41,6 @@ const ModalDetail = (props) => {
   const ok_submit = comments ? true : false;
 
   const selectComment = (e) => {
-    console.log(e.target.value);
     setComments(e.target.value);
   };
 
@@ -140,8 +136,8 @@ const ModalDetail = (props) => {
               {/* 작성자 에게만 보이게 설정  */}
               <ModalEdit>수정 / 삭제</ModalEdit>
             </InfoBoxInner>
-            <PostTilte>방구석 좀 나가보자~</PostTilte>
-            <PostContents>여기가 무릉도원~</PostContents>
+            <PostTilte>{props.title}</PostTilte>
+            <PostContents>{props.content}</PostContents>
             <PostTime>방금전</PostTime>
           </InfoBox>
           <ModalCmtBox>
@@ -306,6 +302,7 @@ const PostTilte = styled.div`
   margin-bottom: 10px;
 `;
 const PostContents = styled.div`
+  font-size: 14px;
   opacity: 0.6;
   width: 550px;
   margin-top: 3px;

@@ -1,52 +1,296 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text, Button, Input } from "../elements/index";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as categoryActions } from "../redux/modules/category";
-
+import * as BiIcons from "react-icons/bi";
+// import { actionCreators as PostActions } from "../redux/modules/post";
 const Category = () => {
   const dispatch = useDispatch();
 
-  const is_cafe = useSelector((state) => state.category.is_cafe);
-  console.log(is_cafe);
+  const is_category = useSelector((state) => state.category.is_category); //이걸 가져와서 이제 눌린상탠지 안눌린 상탠지 판단
+
+  // console.log(is_category);
+  // console.log("카테고리 배열길이", is_category.length);
+
+  const [cafe, setCafe] = useState();
+  const [night, setNight] = useState();
+  const [ocean, setOcean] = useState();
+  const [mountain, setMountain] = useState();
+  const [flower, setFlower] = useState();
+  const [alone, setAlone] = useState();
+  const [couple, setCouple] = useState();
+  const [freind, setFreind] = useState();
+  const [pet, setPet] = useState();
+
+  React.useEffect(() => {}, []);
 
   return (
     // 해당 카테고리 클릭시 넘어온 포스트 중에서 카테고리가 일치한 것만 return 해줘야한다!
     // 한가지 방법은 카테고리마다 페이지를 만들어서 클릭시 다른 페이지 렌더링
     // 다른 방법은 PostList페이지에서 map을 돌리는 조건을 is_cafe? 로 돌리고 p.category가 cafe인것만 출력되게 돌림
+
+    //// 여기선 카테고리를 눌렀을 때 category 모듈에 is_category 안에 상태값이 들어 가도록 설계해야한다
     <React.Fragment>
       <CategoryBox>
-        <Btn
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
-            // history.push("/postlist");
-          }}
-        >
-          전체보기
-        </Btn>
-        <Btn
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation(); //이렇게 이벤트 버블을 막아줘서 카테고리를 클릭해도 사이드바가 사라지지 않음
-            // history.push("/cafe");
-          }}
-        >
-          카페
-        </Btn>
-        <Btn>카페</Btn>
-        <Btn>야경</Btn>
-        <Btn>바다</Btn>
-        <Btn>산</Btn>
-        <Btn>도심</Btn>
-        <Btn>전시</Btn>
-        <Btn>공원</Btn>
-        <Btn>꽃</Btn>
-        <Btn>나홀로</Btn>
-        <Btn>연인</Btn>
-        <Btn>친구</Btn>
-        <Btn>반려동물</Btn>
+        {/*  */}
+        {/* 전체보기 버튼 */}
+        <CategoryInfo>
+          <CateGoryTitle>
+            <CategoryIcon>
+              {" "}
+              <BiIcons.BiBookBookmark size="25px" />
+            </CategoryIcon>
+            카테고리
+          </CateGoryTitle>
+        </CategoryInfo>
+        {is_category.length == 0 ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dispatch(categoryActions.resetCategory());
+              //여기서 모든 스테이트 false로 바꿔주는 작업도 해줘야한다
+            }}
+          >
+            전체보기
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCafe(false);
+              setNight(false);
+              setOcean(false);
+              setMountain(false);
+              setFlower(false);
+              setAlone(false);
+              setCouple(false);
+              setFreind(false);
+              setPet(false);
+              dispatch(categoryActions.resetCategory()); //카테고리 상태 배열을 0으로 만듦
+              // window.location.reload();
+              //여기서 모든 스테이트 false로 바꿔주는 작업도 해줘야한다
+            }}
+          >
+            전체보기
+          </Btn>
+        )}
+        {/* 카페 */}
+        {cafe ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCafe(false);
+              dispatch(categoryActions.getCategory("is_cafe")); // 혹시라고 구현이 힘들땐 그냥 이값을 is_cafe말고 cafe로 보내고 포스트 리스트에서 카테고리가 cafe인 것을 필터해주자
+            }}
+          >
+            카페
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCafe("cafe");
+              dispatch(categoryActions.getCategory("is_cafe"));
+            }}
+          >
+            카페
+          </Btn>
+        )}
+        {/* 야경 */}
+        {night ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setNight(false);
+              dispatch(categoryActions.getCategory("is_night"));
+            }}
+          >
+            야경
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setNight("night");
+              dispatch(categoryActions.getCategory("is_night"));
+            }}
+          >
+            야경
+          </Btn>
+        )}{" "}
+        {/* 바다 */}
+        {ocean ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setOcean(false);
+              dispatch(categoryActions.getCategory("is_ocean"));
+            }}
+          >
+            바다
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setOcean("night");
+              dispatch(categoryActions.getCategory("is_ocean"));
+            }}
+          >
+            바다
+          </Btn>
+        )}
+        {/* 산 */}
+        {mountain ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMountain(false);
+              dispatch(categoryActions.getCategory("is_mountain"));
+            }}
+          >
+            산
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMountain("mountain");
+              dispatch(categoryActions.getCategory("is_mountain"));
+            }}
+          >
+            산
+          </Btn>
+        )}
+        {/* 꽃 */}
+        {flower ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setFlower(false);
+              dispatch(categoryActions.getCategory("is_flower"));
+            }}
+          >
+            꽃
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setFlower("flower");
+              dispatch(categoryActions.getCategory("is_flower"));
+            }}
+          >
+            꽃
+          </Btn>
+        )}
+        {/* 나홀로 */}
+        {alone ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setAlone(false);
+              dispatch(categoryActions.getCategory("is_alone"));
+            }}
+          >
+            나홀로
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setAlone("alone");
+              dispatch(categoryActions.getCategory("is_alone"));
+            }}
+          >
+            나홀로
+          </Btn>
+        )}
+        {couple ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCouple(false);
+              dispatch(categoryActions.getCategory("is_couple"));
+            }}
+          >
+            연인
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCouple("couple");
+              dispatch(categoryActions.getCategory("is_couple"));
+            }}
+          >
+            연인
+          </Btn>
+        )}
+        {freind ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setFreind(false);
+              dispatch(categoryActions.getCategory("is_freind"));
+            }}
+          >
+            친구
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setFreind("freind");
+              dispatch(categoryActions.getCategory("is_freind"));
+            }}
+          >
+            친구
+          </Btn>
+        )}
+        {pet ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setPet(false);
+              dispatch(categoryActions.getCategory("is_pet"));
+            }}
+          >
+            반려동물
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setPet("pet");
+              dispatch(categoryActions.getCategory("is_pet"));
+            }}
+          >
+            반려동물
+          </Btn>
+        )}
       </CategoryBox>
     </React.Fragment>
   );
@@ -57,11 +301,19 @@ export default Category;
 const CategoryBox = styled.div`
   /* display: flex;
 justify-content: space-between; */
-  margin-top: 10px;
   width: 210px;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
+  /* border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef; */
   padding: 8px 0px;
+  position: fixed;
+  z-index: 300;
+  right: 37px;
+  bottom: 50vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+
   /* height: 100px;
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -77,6 +329,23 @@ justify-content: space-between; */
     box-shadow: inset 0px 0px 5px white;
   } */
 `;
+const CategoryInfo = styled.div`
+  display: flex;
+  margin-bottom: 11px;
+  /* border-bottom: 1px solid lightgray; */
+`;
+
+const CateGoryTitle = styled.div`
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  font-size: 17px;
+  padding-bottom: 7px;
+`;
+
+const CategoryIcon = styled.div`
+  margin-right: 12px;
+`;
 
 const Btn = styled.button`
   margin: 2px;
@@ -87,4 +356,18 @@ const Btn = styled.button`
   border: 1px solid lightgray;
   cursor: pointer;
   font-size: 12px;
+`;
+const SelectedBtn = styled.button`
+  // 선택 됐을때 버튼
+  margin: 2px;
+  padding: 3px 5px;
+  background-color: #3897f0;
+  border-radius: 50px;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  box-shadow: inset 0px 0px 5px white;
 `;
