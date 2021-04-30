@@ -10,7 +10,7 @@ import post_list from "./MockData";
 import { FiImage } from "react-icons/fi";
 import { HiOutlineMap } from "react-icons/hi";
 
-const Story_ContentBtn = (props) => {
+const Story_Content = (props) => {
   // 버튼 탭 구현하기
   // 처음에는 0번째 인덱스 활성화git
   const [active, setActive] = useState(1);
@@ -24,9 +24,10 @@ const Story_ContentBtn = (props) => {
 
   return (
     <React.Fragment>
+      <Wrapper>
       <Icons>
         <Icon onClick={handleClick} active={active === 1} id={1}>
-          <FiImage size="40"/>
+          <FiImage size="40" />
         </Icon>
         <Icon onClick={handleClick} active={active === 2} id={2}>
           <HiOutlineMap size="40" />
@@ -34,18 +35,23 @@ const Story_ContentBtn = (props) => {
       </Icons>
 
       <Content active={active === 1}>
-        <PostList>
+        <GridList>
           {post_list.map((p, idx) => {
             return <Post2 key={p.id} {...p}></Post2>;
           })}
-        </PostList>
+        </GridList>
       </Content>
       <Content active={active === 2}>
         <Box></Box>
       </Content>
+      </Wrapper>
     </React.Fragment>
   );
 };
+
+const Wrapper = styled.div`
+  ${(prop) => prop.theme.responsiveContainer};
+`;
 
 const Icons = styled.div`
   position: absolute;
@@ -66,28 +72,39 @@ const Icon = styled.button`
   border: 3pt solid #eee;  
   box-sizing: border-box;
   
-  color: ${(props) => (props.active ? "black" : "grey")};
+  color: ${(props) => (props.active ? "grey" : "grey")};
   border: ${(props) => (props.active ? "2pt solid #eee" : "")};
-  border-bottom: ${(props) => (props.active ? "none" : "2pt solid #eee")};
   background-color: ${(props) => (props.active ? "white" : "#eee")};
   transition: background-color 0.5s ease-in-out;
   :hover {
     cursor: pointer;
-    background-color: white;
+    background-color: lightgrey;
+    color: #eee;
+    border:lightgrey;
   }
 `;
 
-const PostList = styled.div`
+const GridList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
-  grid-auto-rows: 405px;
-  grid-gap: 24px;
-  text-align: center;
-  margin: auto;
-  width: 1266px;
-  height: 100%;
-  padding: 50px 200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  margin: 50 auto;
+  width: 100%;
+  padding: 50px 0px;
   flex-wrap: wrap;
+  @media (max-width: 1440px) {
+      width: 1280px;
+      margin: auto;
+    }
+    @media (max-width: 944px) {
+      grid-template-columns: 1fr 1fr;
+      margin: auto;
+    }
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      margin: auto;
+    }
 `;
 
 const Box = styled.div`
@@ -104,4 +121,4 @@ const Content = styled.div`
 `;
 
 
-export default Story_ContentBtn;
+export default Story_Content;
