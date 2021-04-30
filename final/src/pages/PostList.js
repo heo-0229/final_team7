@@ -22,15 +22,33 @@ const PostList = () => {
 
   const is_category = useSelector((state) => state.category.is_category);
 
-  console.log(is_category);
+  console.log("포스트 리스트 카테고리 상태", is_category);
+  console.log("데이터 카테고리", post_list.category);
 
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
-    dispatch(PostActions.getPostAPI());
-  }, []);
+    // console.log("계속 실행 되는겨?");
+    dispatch(PostActions.getPostAPI(is_category));
+  }, [is_category]); //카테고리 상태값이 바뀔 때 마다 useEffect 실행
 
-  ////상태값에 따라 get요청을 보내는 것을 생각해보자!
+  //filter
+
+  const categorys = (is_category) =>
+    is_category.forEach((c) => {
+      console.log("카테고리들", c);
+      return c;
+    });
+
+  // const is_over = (is_category, post_category) => {
+  //   //
+  //   is_category.includes(post_category[0]);
+  //   is_category.includes(post_category[1]);
+  //   is_category.includes(post_category[2]); // 하나라도 포함되있는지 검사
+  //   findIndex >> idx >> post_catefgory[idx]
+  // };
+
+  console.log("함수 리턴 값", categorys(is_category));
 
   return (
     <React.Fragment>
@@ -62,21 +80,65 @@ const PostList = () => {
       <Container>
         {post_list //포스트리스트를 필터링 해준다 // 이런식으로 카테고리 별로 구현 할 수도??
           .filter((val) => {
-            if (search == "") {
-              // 검색칸이 비어있을때
-              return val; //val 포스트 리스트 그대로 출력!
-            } else if (val.title.includes(search)) {
+            if (
+              search == ""
+              // &&
+              // val.category.includes(
+              //   is_category.forEach((c) => {
+              //     console.log("들어온 카테고리???/", `${c}`);
+              //     return `${c}`;
+              //   })
+              // )
+            ) {
+              // console.log("다 출력되??", val);
+              return val;
+              //카테고리가 포함되어있는??
+            } else if (
+              val.title.includes(search)
+              // &&
+              // val.category.includes(
+              //   is_category.forEach((c) => {
+              //     console.log("들어오나???", c);
+              //     return c;
+              //   })
+              // ) // 제목이 검색 내용에 있을때랑 카테고리가 카페인 것만
+            ) {
               return val; // axios로 받아온 제목이 검색어에 포함 되었을때
-            } else if (val.content.includes(search)) {
+            } else if (
+              val.content.includes(search)
+              // &&
+              // val.category.includes(
+              //   is_category.forEach((c) => {
+              //     console.log("들어오나???", c);
+              //     return c;
+              //   })
+              // )
+            ) {
               return val; // axios로 받아온 글쓴이가 검색어에 포함 되었을때
             }
           })
           .map((p, i) => {
-            return (
-              <>
-                <Post2 key={i} {...p} />
-              </>
-            );
+            console.log(categorys(is_category)); // 0,1,2,3,4똑같은지 비교 is_category에서 0,1,2,3,4번째 뽑은것 //함수처리 x
+            if (p.category.includes("")) {
+              //태그 하나에 대해서만 검사가 된다.... 원하는대로 하려면 if문 여러개
+              //카테고리 배열을 2개 받는 함수 // 2개중에서 겹치는게 하나라도 있는지 // p.category와 is_category
+              // 그럼 여기값을 잘 가지고 놀면될 거 같다
+              //""인 상태면 모든걸 출력
+              //카테고리를 포함하고 있으면 그것들만 리턴시켜줘라
+
+              return (
+                <>
+                  <Post2 key={i} {...p} />
+                </>
+              );
+            }
+            // else {
+            //   return (
+            //     <>
+            //       <Post2 key={i} {...p} />
+            //     </>
+            //   );
+            // }
           })}
       </Container>
       <SideNav />
@@ -135,9 +197,10 @@ const TopBox = styled.div`
 
 const Search = styled.div`
   margin: auto auto;
+
   margin-top: 130px;
   display: flex;
-  width: 500px;
+  width: 450px;
   margin-bottom: 20px;
   /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); */
   border: none;

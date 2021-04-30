@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 
 import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as emailActions } from "../../redux/modules/email";
 
 import axios from "axios";
 
@@ -22,70 +23,82 @@ const FindEmailPwd = () => {
   // }, []);
 
   const onFindEmailAPI = (nickname) => {
-    const API = 'http://seungwook.shop/user/findemail';
-    axios.post(API,{
-        nickname:nickname,
-    },
-    {
-        headers: {
-        'Content-Type': 'application/json',
+    const API = "http://seungwook.shop/user/findemail";
+    axios
+      .post(
+        API,
+        {
+          nickname: nickname,
         },
-    })
-    .then((res) => {
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
         // console.log('이메일 찾기', res.data)
         const is_email = res.data.email;
-    
-        if(is_email){
-            alert("등록된 이메일은 " + is_email + " 입니다");
-        }else{
-            alert('회원정보가 옳바르지 않습니다 :(');
+
+        if (is_email) {
+          alert("등록된 이메일은 " + is_email + " 입니다");
+        } else {
+          alert("회원정보가 옳바르지 않습니다 :(");
         }
       });
   };
 
   const onVertification = (email) => {
     console.log(email);
-    const API = '';
-    axios.post(API,{
-        email: email,
-    },
-    {
-        headers: {
-        'Content-Type': 'application/json',
+    const API = "";
+    axios
+      .post(
+        API,
+        {
+          email: email,
         },
-    })
-    .then((res) => {
-        console.log('인증번호 전송', res.data)
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("인증번호 전송", res.data);
         // if(){
         //     alert("입력하신 이메일로 인증번호가 전송되었습니다.");
         // }else{
         //     alert('회원정보가 옳바르지 않습니다 :(');
         // }
-    })
+      });
   };
 
-  const onFindPwd = (vertificationCode) => {
-    //  인증번호가 일치하면 비밀번호 변경 페이지로 
+  const onFindPwd = (vertificationCode, email) => {
+    //  인증번호가 일치하면 비밀번호 변경 페이지로
     console.log(vertificationCode);
-    const API = '';
-    axios.post(API,{
-        vertificationCode: vertificationCode,
-    },
-    {
-        headers: {
-        'Content-Type': 'application/json',
+    const API = "";
+    axios
+      .post(
+        API,
+        {
+          vertificationCode: vertificationCode,
         },
-    })
-    .then((res) => {
-        console.log('비밀번호 찾기', res.data)
-      // if(){
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("비밀번호 찾기", res.data);
+        dispatch(emailActions.getEmail(email));
+        // if(){
         //     history.push('editpwd')
         // 백으로 이메일 값도 같이 넘겨주기!!!!
         // }else{
         //     alert('인증번호가 일치하지 않습니다! :(');
         // }
-    
-    })
+      });
   };
 
   if (FindEmailMode) {
@@ -151,8 +164,9 @@ const FindEmailPwd = () => {
                 setNickname(e.target.value);
               }}
             />
-            <VertificationBtn
-            onClick = {() =>onVertification(email)}>인증번호전송</VertificationBtn>
+            <VertificationBtn onClick={() => onVertification(email)}>
+              인증번호전송
+            </VertificationBtn>
           </div>
 
           <InputStyle
@@ -163,8 +177,11 @@ const FindEmailPwd = () => {
               setVertificationCode(e.target.value);
             }}
           />
-          <SolidBtn background-color="grey" style={{ display: "block" }}
-          onClick = {() => onFindPwd(vertificationCode)}>
+          <SolidBtn
+            background-color="grey"
+            style={{ display: "block" }}
+            onClick={() => onFindPwd(vertificationCode, email)}
+          >
             비밀번호 찾기
           </SolidBtn>
           <Grid padding="10px">

@@ -8,6 +8,7 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import Post from "./modules/post";
 import Category from "./modules/category";
+import Email from "./modules/email";
 // import Image from "./modules/image";
 // import Like from "./modules/like";
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   user: User,
   post: Post,
   category: Category,
+  email: Email,
   // image: Image,
   // like: Like,
   router: connectRouter(history),

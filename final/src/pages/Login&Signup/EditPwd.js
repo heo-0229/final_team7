@@ -10,72 +10,70 @@ import { useDispatch, useSelector } from "react-redux";
 import { pwdRegCheck, pwdRegContinuousCheck } from "../../shared/common";
 
 const EditPwd = () => {
+  const email = useSelector((state) => state.email.email);
+  // console.log(email);
   const dispatch = useDispatch();
 
   const [pwd, setPwd] = React.useState("");
   const [rePwd, setRePwd] = React.useState("");
 
-    // 비밀번호 정규식 검사(info 컬러 바꿔주기)
-    const changePwdReg = (e) => {
-      setPwd(e.target.value);
-      const pwdInfo_len = document.querySelector("ul.checkPwd li:nth-child(1)");
-      const pwdInfo_match = document.querySelector("ul.checkPwd li:nth-child(2)");
-      const pwdInfo_continuous = document.querySelector(
-        "ul.checkPwd li:nth-child(3)"
-      );
-  
-      // 비밀번호 길이
-      if (e.target.value.length < 10) {
-        pwdInfo_len.classList.add("error");
-        pwdInfo_len.classList.remove("ok");
-      } else {
-        pwdInfo_len.classList.remove("error");
-        pwdInfo_len.classList.add("ok");
-      }
-      // 비밀번호 정규식 검사 : /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/
-      if (!pwdRegCheck(e.target.value)) {
-        pwdInfo_match.classList.add("error");
-        pwdInfo_match.classList.remove("ok");
-      } else {
-        pwdInfo_match.classList.add("ok");
-        pwdInfo_match.classList.remove("error");
-      }
-      // 비밀번호 연속 체크
-      if (pwdRegContinuousCheck(e.target.value)) {
-        pwdInfo_continuous.classList.add("error");
-        pwdInfo_continuous.classList.remove("ok");
-      } else {
-        pwdInfo_continuous.classList.add("ok");
-        pwdInfo_continuous.classList.remove("error");
-      }
-    };
-  
-    // 비밀번호 확인 정규식 검사(info 컬러 바꿔주기)
-    const changeRePwd = (e) => {
-      setRePwd(e.target.value);
-      const rePwdInfo = document.querySelector("ul.reCheckPwd li:nth-child(1)");
-  
-      if (pwd === e.target.value) {
-        rePwdInfo.classList.add("ok");
-        rePwdInfo.classList.remove("error");
-      } else {
-        rePwdInfo.classList.add("error");
-        rePwdInfo.classList.remove("ok");
-      }
-    };
+  // 비밀번호 정규식 검사(info 컬러 바꿔주기)
+  const changePwdReg = (e) => {
+    setPwd(e.target.value);
+    const pwdInfo_len = document.querySelector("ul.checkPwd li:nth-child(1)");
+    const pwdInfo_match = document.querySelector("ul.checkPwd li:nth-child(2)");
+    const pwdInfo_continuous = document.querySelector(
+      "ul.checkPwd li:nth-child(3)"
+    );
 
-    // 비밀번호 변경하기
-    const onEditPwd = () => {
-      if (
-        !pwdRegCheck(pwd) ||
-        pwdRegContinuousCheck(pwd) ||
-        pwd !== rePwd
-      ) {
-        alert("아이디,비밀번호 확인을 해주세요.");
-        return false;
-      }
-       // dispatch(userActions.editPwdAPI(pwd, rePwd));
+    // 비밀번호 길이
+    if (e.target.value.length < 10) {
+      pwdInfo_len.classList.add("error");
+      pwdInfo_len.classList.remove("ok");
+    } else {
+      pwdInfo_len.classList.remove("error");
+      pwdInfo_len.classList.add("ok");
     }
+    // 비밀번호 정규식 검사 : /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/
+    if (!pwdRegCheck(e.target.value)) {
+      pwdInfo_match.classList.add("error");
+      pwdInfo_match.classList.remove("ok");
+    } else {
+      pwdInfo_match.classList.add("ok");
+      pwdInfo_match.classList.remove("error");
+    }
+    // 비밀번호 연속 체크
+    if (pwdRegContinuousCheck(e.target.value)) {
+      pwdInfo_continuous.classList.add("error");
+      pwdInfo_continuous.classList.remove("ok");
+    } else {
+      pwdInfo_continuous.classList.add("ok");
+      pwdInfo_continuous.classList.remove("error");
+    }
+  };
+
+  // 비밀번호 확인 정규식 검사(info 컬러 바꿔주기)
+  const changeRePwd = (e) => {
+    setRePwd(e.target.value);
+    const rePwdInfo = document.querySelector("ul.reCheckPwd li:nth-child(1)");
+
+    if (pwd === e.target.value) {
+      rePwdInfo.classList.add("ok");
+      rePwdInfo.classList.remove("error");
+    } else {
+      rePwdInfo.classList.add("error");
+      rePwdInfo.classList.remove("ok");
+    }
+  };
+
+  // 비밀번호 변경하기
+  const onEditPwd = () => {
+    if (!pwdRegCheck(pwd) || pwdRegContinuousCheck(pwd) || pwd !== rePwd) {
+      alert("아이디,비밀번호 확인을 해주세요.");
+      return false;
+    }
+    // dispatch(userActions.editPwdAPI(pwd, rePwd));
+  };
 
   return (
     <React.Fragment>
@@ -120,7 +118,6 @@ const EditPwd = () => {
         >
           비밀번호 변경
         </SolidBtn>
-
       </Container>
     </React.Fragment>
   );

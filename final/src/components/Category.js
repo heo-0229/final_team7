@@ -85,7 +85,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setCafe(false);
-              dispatch(categoryActions.getCategory("is_cafe")); // 혹시라고 구현이 힘들땐 그냥 이값을 is_cafe말고 cafe로 보내고 포스트 리스트에서 카테고리가 cafe인 것을 필터해주자
+              dispatch(categoryActions.getCategory("카페")); // 혹시라고 구현이 힘들땐 그냥 이값을 is_cafe말고 cafe로 보내고 포스트 리스트에서 카테고리가 cafe인 것을 필터해주자
             }}
           >
             카페
@@ -96,7 +96,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setCafe("cafe");
-              dispatch(categoryActions.getCategory("is_cafe"));
+              dispatch(categoryActions.getCategory("카페"));
             }}
           >
             카페
@@ -109,7 +109,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setNight(false);
-              dispatch(categoryActions.getCategory("is_night"));
+              dispatch(categoryActions.getCategory("야경"));
             }}
           >
             야경
@@ -120,7 +120,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setNight("night");
-              dispatch(categoryActions.getCategory("is_night"));
+              dispatch(categoryActions.getCategory("야경"));
             }}
           >
             야경
@@ -133,7 +133,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setOcean(false);
-              dispatch(categoryActions.getCategory("is_ocean"));
+              dispatch(categoryActions.getCategory("바다"));
             }}
           >
             바다
@@ -144,7 +144,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setOcean("night");
-              dispatch(categoryActions.getCategory("is_ocean"));
+              dispatch(categoryActions.getCategory("바다"));
             }}
           >
             바다
@@ -157,7 +157,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setMountain(false);
-              dispatch(categoryActions.getCategory("is_mountain"));
+              dispatch(categoryActions.getCategory("산"));
             }}
           >
             산
@@ -168,7 +168,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setMountain("mountain");
-              dispatch(categoryActions.getCategory("is_mountain"));
+              dispatch(categoryActions.getCategory("산"));
             }}
           >
             산
@@ -181,7 +181,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setFlower(false);
-              dispatch(categoryActions.getCategory("is_flower"));
+              dispatch(categoryActions.getCategory("꽃"));
             }}
           >
             꽃
@@ -192,7 +192,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setFlower("flower");
-              dispatch(categoryActions.getCategory("is_flower"));
+              dispatch(categoryActions.getCategory("꽃"));
             }}
           >
             꽃
@@ -205,7 +205,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setAlone(false);
-              dispatch(categoryActions.getCategory("is_alone"));
+              dispatch(categoryActions.getCategory("나홀로"));
             }}
           >
             나홀로
@@ -216,7 +216,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setAlone("alone");
-              dispatch(categoryActions.getCategory("is_alone"));
+              dispatch(categoryActions.getCategory("나홀로"));
             }}
           >
             나홀로
@@ -228,7 +228,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setCouple(false);
-              dispatch(categoryActions.getCategory("is_couple"));
+              dispatch(categoryActions.getCategory("연인"));
             }}
           >
             연인
@@ -239,7 +239,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setCouple("couple");
-              dispatch(categoryActions.getCategory("is_couple"));
+              dispatch(categoryActions.getCategory("연인"));
             }}
           >
             연인
@@ -251,7 +251,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setFreind(false);
-              dispatch(categoryActions.getCategory("is_freind"));
+              dispatch(categoryActions.getCategory("친구"));
             }}
           >
             친구
@@ -262,7 +262,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setFreind("freind");
-              dispatch(categoryActions.getCategory("is_freind"));
+              dispatch(categoryActions.getCategory("친구"));
             }}
           >
             친구
@@ -274,7 +274,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setPet(false);
-              dispatch(categoryActions.getCategory("is_pet"));
+              dispatch(categoryActions.getCategory("반려동물"));
             }}
           >
             반려동물
@@ -285,7 +285,7 @@ const Category = () => {
               e.preventDefault();
               e.stopPropagation();
               setPet("pet");
-              dispatch(categoryActions.getCategory("is_pet"));
+              dispatch(categoryActions.getCategory("반려동물"));
             }}
           >
             반려동물
