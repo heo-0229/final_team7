@@ -11,8 +11,8 @@ import _ from "lodash"; // throttle, debounce 사용
 
 // component, element 파일들 가져오기
 import LogBtn from "../components/LogBtn";
-import { Grid, Text, Button, Input } from "../elements/index";
-import ModalInMain from "../components/ModalInMain";
+import {Grid, Text, Button, Input} from '../elements/index';
+import ModalSmallPost from "../components/ModalSmallPost";
 import { markerdata } from "../components/MarkerData";
 
 // window 객체로부터 kakao mpa api를 호출하기
@@ -45,11 +45,15 @@ const Maps = (props) => {
   }, 300); //키보드 떼면 입력한게 1초 뒤에 나타난다.
 
   // 페이지가 렌더링 되면 지도 띄우기
-  useEffect(() => {
-    const container = document.getElementById("map"); // 지도를 표시할 div
+  useEffect(() => { 
+    mapscript();
+  }, [search]);
+    
+  const mapscript = () => {
+    const container = document.getElementById("map");  // 지도를 표시할 div
     const options = {
       center: new kakao.maps.LatLng(37.526667, 127.028011), //지도 중심(시작) 좌표, LatLng 클래스는 반드시 필요.
-      level: 3, //지도 확대 레벨
+      level: 5, //지도 확대 레벨
     };
 
     const map = new kakao.maps.Map(container, options); // 지도생성 및 객체 리턴
@@ -63,28 +67,35 @@ const Maps = (props) => {
 
     // 마커 이미지
     // 디자이너분들이 만들어주실 종류별 마커 이미지들이 저장된 url을 변수에 할당
-    // const myMarker = "http://........./../....png"
+    // const myMarkerSrc = "http://........./../....png"
+    // const myMarkerSize = new kakao.maps.Size(35, 35);
+    // const myMarkerImage = new kakao.maps.MarkerImage(myMarker, )
+
+    // const 
 
     // 마커가 표시될 위치.
-    let markerPosition = new kakao.maps.LatLng(
+    const markerPosition = new kakao.maps.LatLng(
       37.465264512305174,
       127.10676860117488
     );
 
     // 마커를 생성하기.
-    let marker = new kakao.maps.Marker({
+    const marker = new kakao.maps.Marker({
       position: markerPosition,
+      // position: map.getCenter, // 지도 중심좌표에 마커 생성
     });
 
     // 마커를 지도 위에 표시하기.
     marker.setMap(map);
+
     // -----------------------------------------------------------------------------------
     // 마커는 여기까지
     // -----------------------------------------------------------------------------------
 
-    // ---------------------------------------------------------------
-    // 여기서부터 검색 기능 넣기
-    // 키워드로 검색하기
+
+    // -----------------------------------------------------------------------------------
+    // 여기서부터 검색 기능 : 키워드로 검색하기
+    // 마커에 마우스를 올리면 정보가 뜨는 창 : 인포윈도우 설정
     const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
     // 장소 검색 객체를 생성합니다
@@ -113,7 +124,7 @@ const Maps = (props) => {
     // 지도에 마커를 표시하는 함수
     function displayMarker(place) {
       // 마커를 생성하고 지도에 표시합니다
-      var marker = new kakao.maps.Marker({
+      const marker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x),
       });
@@ -134,15 +145,12 @@ const Maps = (props) => {
     markerdata.forEach((el) => {
       // 마커 생성
       new kakao.maps.Marker({
-        map: map, // 마커가 표시 될 지도
-        position: new kakao.maps.LatLng(el.lat, el.lng),
-        // 마커에 hover 하면 나타날 title
-        title: el.title,
+        map: map,   // 마커가 표시 될 지도
+        position: new kakao.maps.LatLng(el.lat, el.lng), // 마커가 표시될 위치
+        title: el.title, // 마커에 hover 하면 나타날 title
       });
     });
-
-    // dispatch(markerActions.getMarkerAPI());
-  }, [search]);
+  }
 
   return (
     <React.Fragment>
@@ -154,7 +162,8 @@ const Maps = (props) => {
         />
       </SearchBox>
       <MapBox>
-        <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
+        {/* 위에서 설정된 getElementById("map")에 의해서 id="map"인 div에 맵이 표시된다 */}
+        <div id="map" style={{ width: "100vw", height: "100vh" }}></div> 
       </MapBox>
     </React.Fragment>
   );
@@ -165,8 +174,8 @@ export default Maps;
 const SearchBox = styled.div`
   position: absolute;
   top: 80px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 30%;
+  transform: translate(-60%, -50%);
   z-index: 10;
 `;
 

@@ -11,7 +11,7 @@ import * as CgIcons from "react-icons/cg";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const ModalInMain = (props) => {
+const ModalSmallPost = (props) => {
   console.log(props);
   const dispatch = useDispatch();
   
@@ -35,7 +35,7 @@ const ModalInMain = (props) => {
   ) 
 }
 
-ModalInMain.defatultProps = {
+ModalSmallPost.defatultProps = {
   image_url: "https://i.pinimg.com/originals/3b/b2/5c/3bb25c56d66d633b2e6a47250b0eacbb.jpg",
   spot_name: "제주도 유채밭",
 }
@@ -94,4 +94,4 @@ const BinIcon = styled.div`
   padding: 10px;
 `;
 
-export default ModalInMain;
+export default ModalSmallPost;
