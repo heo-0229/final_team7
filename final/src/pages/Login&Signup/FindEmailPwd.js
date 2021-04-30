@@ -73,11 +73,7 @@ const FindEmailPwd = () => {
       });
   };
 
-<<<<<<< HEAD
-  const onFindPwd = (vertificationCode) => {
-=======
   const onFindPwd = (vertificationCode, email) => {
->>>>>>> upstream/master
     //  인증번호가 일치하면 비밀번호 변경 페이지로
     console.log(vertificationCode);
     const API = "";
@@ -95,10 +91,7 @@ const FindEmailPwd = () => {
       )
       .then((res) => {
         console.log("비밀번호 찾기", res.data);
-<<<<<<< HEAD
-=======
         dispatch(emailActions.getEmail(email));
->>>>>>> upstream/master
         // if(){
         //     history.push('editpwd')
         // 백으로 이메일 값도 같이 넘겨주기!!!!
