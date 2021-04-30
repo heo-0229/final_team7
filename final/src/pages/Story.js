@@ -7,7 +7,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 // import Post2 from "../components/Post2";
 // import post_list from "../components/MockData";
-import Story_MyPost from "../components/Story_MyPost";
+import Story_Tabs from "../components/Story_Tabs";
+import Story_ContentBtn from "../components/Story_ContentBtn";
 
 const Story = (props) => {
   const dispatch = useDispatch();
@@ -19,9 +20,9 @@ const Story = (props) => {
     console.log(props);
   }, []);
 
-  // 탭 구현하기
-  // 처음에는 0번째 인덱스 활성화
-  const [active, setActive] = useState(0);
+  // // 탭 구현하기
+  // // 처음에는 0번째 인덱스 활성화
+  const [active, setActive] = useState(3);
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -30,8 +31,7 @@ const Story = (props) => {
     }
   };
 
-  console.log(props.user_info);
-
+  
   return (
     <React.Fragment>
       <ProfileContainer>
@@ -41,35 +41,35 @@ const Story = (props) => {
           <Text margin="0px" size="1.6vw">
             {props.user_info.nickname}
           </Text>
-
           <Text size="0.8vw">{props.user_info.introduction}</Text>
           <TextBtn>프로필 편집</TextBtn>
         </Grid>
       </ProfileContainer>
-      {/* Tab Bar */}
-      {/* id 값을 주고 활성화(active) 시킬 수 있다 */}
 
+      {/* <Story_Tabs/> */}
+
+      
         <Tabs>
-          <Tab onClick={handleClick} active={active === "myposttab"} id={"myposttab"}>
+          <Tab onClick={handleClick} active={active === 3} id={3}>
             {props.user_info.nickname}님의 게시물
           </Tab>
-
-          <Tab onClick={handleClick} active={active === "liketab"} id={"liketab"}>
+          <Tab onClick={handleClick} active={active === 4} id={4}>
             {props.user_info.nickname}님의 좋아요
           </Tab>
-        </Tabs>
+        </Tabs> 
 
-        {/* Contents */}
-          <Content active={active === "myposttab"}>
-            <Story_MyPost />
+
+          <Content active={active === 3}>
+            <Story_ContentBtn />
           </Content>
-          <Content active={active === "liketab"}>
-            <Box></Box>
+          <Content active={active === 4}>
+          <Story_ContentBtn />
           </Content>
 
     </React.Fragment>
   );
 };
+
 
 Story.defaultProps = {
   user_info: {
@@ -136,12 +136,13 @@ const Tab = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  box-sizing: border-box;
   width: 50%;
   padding: 30px;
   font-size: 1.5em;
   color: ${(props) => (props.active ? "black" : "grey")};
-  border: ${(props) => (props.active ? "3pt solid #eee" : "")};
-  border-bottom: ${(props) => (props.active ? "none" : "3pt solid #eee")};
+  border: ${(props) => (props.active ? "2pt solid #eee" : "")};
+  border-bottom: ${(props) => (props.active ? "none" : "2pt solid #eee")};
   background-color: ${(props) => (props.active ? "white" : "#eee")};
   transition: background-color 0.5s ease-in-out;
   :hover {
