@@ -24,37 +24,49 @@ function Navbar() {
     <>
       {/* 안에 있는 요소들 색통일 */}
       <IconContext.Provider value={{ color: "#000" }}>
-        <div className="navbarBtn">
+        {/* <div className="navbarBtn">
           {/* 햄버거 버튼 클릭시 sidebar 값을 !sidebar로 바꿔줌*/}
-          <Link className="menu-bars">
+        {/* <Link className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div>
+          </Link> */}
+        {/* </div> */}
         <SideMini>
           <SideIcon>
             <Link to="/story">
-              <CgIcons.CgProfile size="22px" />
+              <CgIcons.CgProfile size="26px" />
             </Link>
+            <IconInfo>로고</IconInfo>
+
             <Link to="/">
-              <GrIcons.GrMap size="22px" />
+              <GrIcons.GrMap size="26px" />
             </Link>
+            <IconInfo>홈</IconInfo>
+
             <Link to="/postlist">
-              <MdIcons.MdPhotoLibrary size="22px" />
+              <MdIcons.MdPhotoLibrary size="26px" />
             </Link>
+            <IconInfo>커뮤니티</IconInfo>
+            <Link to="/story">
+              <CgIcons.CgProfile size="26px" />
+            </Link>
+            <IconInfo>마이페이지</IconInfo>
             <Link>
-              <IoIcons.IoMdPeople size="22px" />
+              <IoIcons.IoMdPeople size="26px" />
             </Link>
-            <Link>
-              <FaIcons.FaEnvelopeOpenText size="22px" />
+            <IconInfo>About</IconInfo>
+            <Link to="/faq">
+              <FaIcons.FaEnvelopeOpenText size="26px" />
             </Link>
+            <IconInfo>FAQ</IconInfo>
             <Link to="/login">
-              <GrIcons.GrLogin size="22px" />
+              <GrIcons.GrLogin size="26px" />
             </Link>
+            <IconInfo>로그인</IconInfo>
           </SideIcon>
         </SideMini>
         {/* sidebar값에 따라 클래스 네임을 바꿔준다 */}
         {/* nav-menu.active는 사이드바가 들어간 상태를 의미 */}
-        <nav className={sidebar ? "nav-menu" : "nav-menu active"}>
+        <nav className={sidebar ? "nav-menu" : "nav-menu "}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
               <Link className="menu-bars">
@@ -77,7 +89,7 @@ function Navbar() {
               </CategoryIcon>
               카테고리
             </CategoryInfo>
-            {/* <Category></Category> */} <Category />
+            {/* <Category></Category> <Category /> */}
             <Bubble
               onclick={(e) => {
                 e.preventDefault();
@@ -123,11 +135,12 @@ const LOGO = styled.div`
 
 const SideMini = styled.div`
   align-items: center;
-  width: 70px;
+  width: 84px;
   height: 100vh;
   position: fixed;
   background-color: white;
   left: 0;
+  top: 0;
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -139,7 +152,7 @@ const SideIcon = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 500px;
-  margin-top: 270px;
+  margin-top: 25px;
 `;
 
 const CategoryInfo = styled.div`
@@ -153,4 +166,9 @@ const CategoryIcon = styled.div`
 
 const Bubble = styled.div`
   z-index: 400;
+`;
+
+const IconInfo = styled.div`
+  font-size: 9px;
+  margin-top: -15px;
 `;

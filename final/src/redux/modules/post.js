@@ -5,6 +5,7 @@ import { history } from "../configStore";
 import "moment";
 import moment from "moment";
 import { config } from "../../shared/config";
+import post_list from "../../components/MockData";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -26,18 +27,70 @@ const loading = createAction(LOADING, (post) => ({ post }));
 //   post_id,
 // }));
 
+const getPostAPI = (category) => {
+  return function (dispatch, getState) {
+    const category = getState().category.is_category;
+
+    console.log("액시오스 카테고리 상태", category);
+
+    if (category.length == 0) {
+      console.log("전체 출력 할끄야!");
+    } else if (category.length == 0) {
+      // 당연히 렌더링 된 순간이니... 이게 먹힐려나?
+      console.log("카테고리 출력 할끄야!");
+    }
+
+    return;
+    axios({
+      //상태값에 따라 파라미터 주소가 달라질텐데 어떻게 해야할까..? 조건문 ? PostList에서 필터?
+      //const category = getState().category.is_category
+
+      method: "GET",
+      url: `${config.api}/board/${category}`,
+    })
+      .then((res) => {
+        let post_list = [];
+        res.data.forEach((_post) => {
+          let post = {
+            id: _post.id,
+            title: _post.title,
+            content: _post.contents,
+            insert_dt: _post.insetDt,
+            writerName: _post.writerName,
+            writerImgUrl: _post.writerImgUrl,
+            category: _post.category,
+            imgUrl: _post.imgUrl,
+            like: _post.like,
+            likeCnt: _post.likeCnt,
+          };
+          post_list.unshift(post);
+        });
+
+        dispatch(setPost(post_list));
+      })
+      .catch((err) => {
+        window.alert("게시물을 가져오는데 문제가 있어요!");
+      });
+  };
+};
+
+// const editPostAPI = () => {
+//   return function (dispatch, getState) {
+//     axios({
+//       method: "PUT",
+//       url: `${config.api}/board`,
+//     });
+
+//   }
+
+// }
+
 const initialState = {
   list: [], //post_list
   paging: { start: null, next: null, size: 3 },
   is_loading: false,
   like: false,
   //카테고리 별로 상태값을 나타내서 PostList페이지에서 쓸 예정
-  is_cafe: "false",
-  is_day: false,
-  is_night: false,
-  is_landscape: false,
-  is_road: false,
-  is_mood: false,
 };
 
 const initialPost = {
@@ -50,6 +103,32 @@ const initialPost = {
   likeCount: 12,
   imgUrl: "vfsdsdf",
 };
+
+////미들웨어로 카테고리별 API통신 만들어줘야한다
+///그리고 아래 리듀서에서 배열정리 잘해줘야한다!
+
+// const getPostCafeAPI = () => {
+//   return function (dispatch, getState) {
+//         axios({
+//           method: "GET",
+//           url: `${config.api}/board/{boardId}/comment`,
+//         })
+//           .then((res) => {
+//             console.log(res);
+//             let commnet_list = [];
+//             res.data.forEach((c) => {
+//               let comment = {
+//                 comment: c.comment,
+//               };
+//               commnet_list.unshift(comment);
+//             });
+//             //     dispatch(setComment(comment_list, board_id));
+//           })
+//           .catch((error) => {
+//             window.alert("카테고리를 불러올 수 없습니다.");
+//           });
+//   }
+// } // 4월 29일 내일 리듀서도 만들자
 
 export default handleActions(
   {
@@ -86,3 +165,9 @@ export default handleActions(
   },
   initialState
 );
+
+const actionCreators = {
+  getPostAPI,
+};
+
+export { actionCreators };
