@@ -213,11 +213,11 @@ const Signup = (props) => {
       <Container>
         <Title>Signup</Title>
 
-        <div>
+        <Grid is_flex>
           <InputStyle
             placeholder="닉네임 입력"
             type="type"
-            width="76%"
+            width="100%"
             onClick={() => {
               document.querySelector(".checkNickname").style.display = "block";
             }}
@@ -238,17 +238,17 @@ const Signup = (props) => {
           >
             중복확인
           </DupCheckBtn>
-        </div>
+        </Grid>
         <InfoUl className="checkNickname">
           <li>6자 이상의 영문 혹은 영문과 숫자를 조합</li>
           <li>아이디 중복확인</li>
         </InfoUl>
 
-        <div>
+        <Grid is_flex>
           <InputStyle
             placeholder="이메일 입력"
             type="type"
-            width="76%"
+            width="100%"
             onClick={() => {
               document.querySelector(".checkEmail").style.display = "block";
             }}
@@ -267,7 +267,7 @@ const Signup = (props) => {
           >
             중복확인
           </DupCheckBtn>
-        </div>
+        </Grid>
         <InfoUl className="checkEmail">
           <li>이메일 형식을 지켜주세요.(예시: hh99@sflash.com)</li>
         </InfoUl>
@@ -340,6 +340,7 @@ const Title = styled.div`
 `;
 
 const InputStyle = styled.input`
+  left: 0;
   border: none;
   ${(props) => (props.width ? `width:${props.width};` : "")}
   height: 30px;
@@ -386,12 +387,12 @@ const SolidBtn = styled.button`
 `;
 
 const DupCheckBtn = styled.button`
-  width: 18%;
-  height: 40px;
+min-width: 24%;
   border: 1px solid grey;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 10px;
+  padding: 10px;
   font-size: 0.9vw;
   font-weight: 500;
   color: grey;

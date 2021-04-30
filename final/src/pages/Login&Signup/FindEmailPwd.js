@@ -155,7 +155,7 @@ const FindEmailPwd = () => {
             <text style={{ color: "grey" }}>|</text>
             <ClickedTab>비밀번호 찾기</ClickedTab>
           </Tab>
-          <div>
+          <Grid is_flex>
             <InputStyle
               placeholder="이메일 입력"
               type="type"
@@ -167,7 +167,7 @@ const FindEmailPwd = () => {
             <VertificationBtn onClick={() => onVertification(email)}>
               인증번호전송
             </VertificationBtn>
-          </div>
+          </Grid>
 
           <InputStyle
             placeholder="인증번호를 입력"
@@ -288,12 +288,12 @@ const SolidBtn = styled.button`
 `;
 
 const VertificationBtn = styled.button`
-  width: 25%;
-  height: 40px;
+  min-width: 24%;
   border: 1px solid grey;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 10px;
+  padding: 10px;
   font-size: 0.9vw;
   font-weight: 500;
   color: grey;
