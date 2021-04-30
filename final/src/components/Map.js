@@ -70,9 +70,77 @@ const Maps = (props) => {
     // const myMarkerSrc = "http://........./../....png"
     // const myMarkerSize = new kakao.maps.Size(35, 35);
     // const myMarkerImage = new kakao.maps.MarkerImage(myMarker, )
+    // const 
 
-    // const
+    // 커스텀오버레이 : 마커위에 인포윈도우가 아니라 모달창을 띄우기
+    // 커스텀오버레이에 표시할 내용
+    // Dom elements : 이걸 모달로 가져오는건 어떻게 할까?
+    // const content = () => {
+    //   return ModalSmallPost;
+    // }
+    // 커스텀오버레이 : 글자만
+    const content = '<div class ="label"><span class="left"></span><span class="center">카카오!</span><span class="right"></span></div>';
 
+    // 커스텀오버레이가 표시 될 위치
+    const position = new kakao.maps.LatLng(37.526667, 127.028011);
+
+    // 커스텀오버레이를 생성
+    const customOverlay = new kakao.maps.CustomOverlay({
+      position: position,
+      content: content,
+    })
+    // 커스텀오버레이를 지도 위에 표시
+    customOverlay.setMap(map);
+
+    // 커스텀오버레이 : 박스형태
+    const contentBoxType = '<div class="overlaybox">' +
+    '    <div class="boxtitle">금주 영화순위</div>' +
+    '    <div class="first">' +
+    '        <div class="triangle text">1</div>' +
+    '        <div class="movietitle text">드래곤 길들이기2</div>' +
+    '    </div>' +
+    '    <ul>' +
+    '        <li class="up">' +
+    '            <span class="number">2</span>' +
+    '            <span class="title">명량</span>' +
+    '            <span class="arrow up"></span>' +
+    '            <span class="count">2</span>' +
+    '        </li>' +
+    '        <li>' +
+    '            <span class="number">3</span>' +
+    '            <span class="title">해적(바다로 간 산적)</span>' +
+    '            <span class="arrow up"></span>' +
+    '            <span class="count">6</span>' +
+    '        </li>' +
+    '        <li>' +
+    '            <span class="number">4</span>' +
+    '            <span class="title">해무</span>' +
+    '            <span class="arrow up"></span>' +
+    '            <span class="count">3</span>' +
+    '        </li>' +
+    '        <li>' +
+    '            <span class="number">5</span>' +
+    '            <span class="title">안녕, 헤이즐</span>' +
+    '            <span class="arrow down"></span>' +
+    '            <span class="count">1</span>' +
+    '        </li>' +
+    '    </ul>' +
+    '</div>';
+
+    // 박스형태 커스텀오버레이가 표시 될 위치
+    const positionOfBox = new kakao.maps.LatLng(37.5268, 127.021000);
+
+    // 커스텀오버레이를 생성
+    const customOverlayOfBox = new kakao.maps.CustomOverlay({
+      position: positionOfBox,
+      content: contentBoxType,
+      xAnchor: 0.3,
+      yAnchor: 0.91,
+    })
+    // 커스텀오버레이를 지도 위에 표시
+    customOverlayOfBox.setMap(map);
+
+    // 마커
     // 마커가 표시될 위치.
     const markerPosition = new kakao.maps.LatLng(
       37.465264512305174,
@@ -87,6 +155,8 @@ const Maps = (props) => {
 
     // 마커를 지도 위에 표시하기.
     marker.setMap(map);
+
+
 
     // -----------------------------------------------------------------------------------
     // 마커는 여기까지
