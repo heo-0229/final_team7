@@ -51,8 +51,8 @@ const Post2 = (props) => {
 `;
 
   const PostBox = styled.div`
-    width: 400px;
-    height: 400px;
+    width: 100%;
+    aspect-ratio: 1/1;
     background-size: cover;
     background-image: url("${props.imgUrl}");
     background-repeat: no-repeat;

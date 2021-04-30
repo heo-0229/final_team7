@@ -6,14 +6,11 @@ const size = {
 
   const theme = {
     responsiveContainer: `
-    @media (max-width: 1919px) {
-      width: 1376px;
-    }
     @media (max-width: 1440px) {
       width: 1280px;
     }
     @media (max-width: 1312px) {
-      width: 912px;
+      width: 912px;s
     }
     @media (max-width: 944px) {
       width: calc(100% - 2rem);
@@ -26,9 +23,8 @@ const size = {
     margin-right: auto;
     `,
 
-    main_color: 'rgb(255, 82, 82)',
+    main_color: 'rgb(46, 60, 126)',
     main_white: '#ffffff',
-    main_navy: '#24292e ',
     main_bg_color: '#f7f8f9',
     gray: '#adb5bd',
     post_bg: '#f1f3f5',

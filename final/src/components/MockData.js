@@ -41,7 +41,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "여수 문수 주택단지",
-    category: "주경",
+    category: "산",
     content: "항해99",
   },
   {
@@ -61,7 +61,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "주경",
+    category: "연인",
     content: "최곱니당!",
   },
   {
@@ -81,7 +81,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "주경",
+    category: "친구",
     content: "뿌링클 사줄분??",
   },
   {
@@ -101,7 +101,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "야경",
+    category: "꽃",
     content: "고추바사삭 사줄분??",
   },
   {
@@ -111,7 +111,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "야경",
+    category: "나홀로",
     content: "뿌링클 사줄분??",
   },
 ];

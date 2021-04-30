@@ -34,9 +34,11 @@ const getPostAPI = (category) => {
     console.log("액시오스 카테고리 상태", category);
 
     if (category.length == 0) {
+      // category = category;
       console.log("전체 출력 할끄야!");
-    } else if (category.length == 0) {
+    } else if (category.length > 0) {
       // 당연히 렌더링 된 순간이니... 이게 먹힐려나?
+      // map을 돌린다음에? ${category[0]}, ${category[1]} 이런식으로 가능하려나?
       console.log("카테고리 출력 할끄야!");
     }
 
@@ -46,6 +48,7 @@ const getPostAPI = (category) => {
       //const category = getState().category.is_category
 
       method: "GET",
+
       url: `${config.api}/board/${category}`,
     })
       .then((res) => {
