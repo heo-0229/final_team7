@@ -10,6 +10,7 @@ const post_list = [
     title: "바람좋구먼~",
     address: "충청남도 논산시 연무읍",
     category: "카페",
+    content: "고독하구먼",
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const post_list = [
     title: "황홀~",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "카페",
+    content: "잠와 ㅜ",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const post_list = [
     title: "사서 고생하는 구먼~",
     address: "여수시 미평동 ",
     category: "카페",
+    content: "배고파",
   },
   {
     id: 4,
@@ -39,6 +42,7 @@ const post_list = [
     title: "둥둥..",
     address: "여수 문수 주택단지",
     category: "주경",
+    content: "항해99",
   },
   {
     id: 5,
@@ -48,6 +52,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "야경",
+    content: "화이팅 하십쇼!!",
   },
   {
     id: 6,
@@ -57,6 +62,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "주경",
+    content: "최곱니당!",
   },
   {
     id: 7,
@@ -66,6 +72,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "카페",
+    content: "고만하소잉",
   },
   {
     id: 8,
@@ -75,6 +82,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "주경",
+    content: "뿌링클 사줄분??",
   },
   {
     id: 9,
@@ -84,6 +92,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "야경",
+    content: "뿌링클 사줄분??",
   },
   {
     id: 10,
@@ -93,6 +102,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "야경",
+    content: "고추바사삭 사줄분??",
   },
   {
     id: 11,
@@ -102,6 +112,7 @@ const post_list = [
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
     category: "야경",
+    content: "뿌링클 사줄분??",
   },
 ];
 

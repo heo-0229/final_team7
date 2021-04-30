@@ -14,17 +14,23 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "../Css/Modal.css";
 import modal from "../redux/modules/modal";
 import post_list from "../components/MockData";
-
+import { actionCreators as PostActions } from "../redux/modules/post";
+import Category from "../components/Category";
+import Input2 from "../elements/Input2";
 const PostList = () => {
   const dispatch = useDispatch();
-  const is_cafe = useSelector((state) => state.category.is_cafe);
 
-  console.log(is_cafe);
-  // const selectCafe = () => {
+  const is_category = useSelector((state) => state.category.is_category);
 
-  //   dispatch()
+  console.log(is_category);
 
-  // }
+  const [search, setSearch] = React.useState("");
+
+  React.useEffect(() => {
+    dispatch(PostActions.getPostAPI());
+  }, []);
+
+  ////상태값에 따라 get요청을 보내는 것을 생각해보자!
 
   return (
     <React.Fragment>
@@ -40,16 +46,49 @@ const PostList = () => {
           })}
         </Container>
       </InfiniteScroll> */}
-
+      <TopBox>
+        <Search>
+          {/* 검색기능  */}
+          <Input2
+            value={search}
+            placeholder="카테고리를 검색해주세요 (●'◡'●)"
+            _onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          ></Input2>
+        </Search>
+      </TopBox>
+      {/* 검색기능 구현 */}
+      <Container>
+        {post_list //포스트리스트를 필터링 해준다 // 이런식으로 카테고리 별로 구현 할 수도??
+          .filter((val) => {
+            if (search == "") {
+              // 검색칸이 비어있을때
+              return val; //val 포스트 리스트 그대로 출력!
+            } else if (val.title.includes(search)) {
+              return val; // axios로 받아온 제목이 검색어에 포함 되었을때
+            } else if (val.content.includes(search)) {
+              return val; // axios로 받아온 글쓴이가 검색어에 포함 되었을때
+            }
+          })
+          .map((p, i) => {
+            return (
+              <>
+                <Post2 key={i} {...p} />
+              </>
+            );
+          })}
+      </Container>
       <SideNav />
       {/* <LogBtn /> */}
-      <SearchBar />
+      {/* <SearchBar
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      /> */}
+
+      <Category />
       <Box></Box>
-      <Container>
-        {post_list.map((p, idx) => {
-          return <Post2 key={p.id} {...p}></Post2>;
-        })}
-      </Container>
     </React.Fragment>
   );
 };
@@ -78,4 +117,28 @@ const OutBox = styled.div`
 
 const Box = styled.div`
   height: 200px;
+`;
+
+const TextBox = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  top: 15%;
+  z-index: 200;
+`;
+
+const TopBox = styled.div`
+  width: 100vw;
+  height: 110px;
+`;
+
+const Search = styled.div`
+  margin: auto auto;
+  margin-top: 130px;
+  display: flex;
+  width: 500px;
+  margin-bottom: 20px;
+  /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); */
+  border: none;
 `;

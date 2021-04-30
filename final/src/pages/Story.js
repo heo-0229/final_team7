@@ -17,7 +17,7 @@ const Story = (props) => {
   // const is_me = user_info.nickname === me ;
   // dispatch(userActions.getUserInfoAPI(nickname));
   React.useEffect(() => {
-    console.log(props);
+  
   }, []);
 
   // // 탭 구현하기

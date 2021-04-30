@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const classes = useStyles();
-
+  console.log(props);
   return (
     <TextBox>
       <Paper component="form" className={classes.root}>

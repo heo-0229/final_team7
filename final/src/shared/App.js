@@ -20,6 +20,7 @@ import NotFound from "../pages/NotFound";
 import SideNav from "../components/SideNav";
 import ScrollToTop from "./ScrollToTop"; //페이지 넘길때 스크롤 맨위로 초기화(무한 스크롤 때문에 필요함)
 import Cafe from "../pages/Category/Cafe";
+import Faq from "../pages/Faq";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,23 +40,27 @@ function App() {
       {/* <Responsive> */}
 
       <ConnectedRouter history={history}>
-        
         <SideNav></SideNav>
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/findemailpwd" exact component={FindEmailPwd} />
-          <Route path="/editpwd" exact component={EditPwd} />
-          <Route path="/postlist" exact component={PostList} />
-          {/* story와 editprofile은 후에 /:id 붙여야함 */}
-          {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
-          <Route path="/story" exact component={Story} />
-          <Route path="/editprofile" exact component={EditProfile} />
-          <Route component={NotFound} />
-          {/* 밑에서 부턴 카테고리별 페이지 */}
-          <Route path="/cafe" exact component={Cafe} />
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/findemailpwd" exact component={FindEmailPwd} />
+            <Route path="/editpwd" exact component={EditPwd} />
+            <Route path="/postlist" exact component={PostList} />
+            {/* story와 editprofile은 후에 /:id 붙여야함 */}
+            {/* 해당 페이지에서 id값은 props.match.params.id로 할당한다 */}
+            <Route path="/story" exact component={Story} />
+            <Route path="/editprofile" exact component={EditProfile} />
+            <Route path="/faq" exact component={Faq} />
+
+            <Route component={NotFound} />
+
+            {/* 밑에서 부턴 카테고리별 페이지 */}
+            <Route path="/cafe" exact component={Cafe} />
+          </Switch>
+        </ScrollToTop>
       </ConnectedRouter>
       {/* </Responsive> */}
     </React.Fragment>
