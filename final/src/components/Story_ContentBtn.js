@@ -10,10 +10,10 @@ import post_list from "./MockData";
 import { FiImage } from "react-icons/fi";
 import { HiOutlineMap } from "react-icons/hi";
 
-const Story_MyPost = (props) => {
+const Story_ContentBtn = (props) => {
   // 버튼 탭 구현하기
   // 처음에는 0번째 인덱스 활성화git
-  const [active, setActive] = useState("grid");
+  const [active, setActive] = useState(1);
   // 클릭한 인덱스 활성화
   const handleClick = (e) => {
     const index = parseInt(e.target.id);
@@ -25,90 +25,55 @@ const Story_MyPost = (props) => {
   return (
     <React.Fragment>
       <Icons>
-        <Icon onClick={handleClick} active={active === "grid"} id={"grid"}>
-          <FiImage size="40" />
+        <Icon onClick={handleClick} active={active === 1} id={1}>
+          <FiImage size="40"/>
         </Icon>
-        <Icon onClick={handleClick} active={active === "map"} id={"map"}>
-          <HiOutlineMap size="43" />
+        <Icon onClick={handleClick} active={active === 2} id={2}>
+          <HiOutlineMap size="40" />
         </Icon>
       </Icons>
 
-      <Content active={active === "grid"}>
+      <Content active={active === 1}>
         <PostList>
           {post_list.map((p, idx) => {
             return <Post2 key={p.id} {...p}></Post2>;
           })}
         </PostList>
       </Content>
-      <Content active={active === "map"}>
+      <Content active={active === 2}>
         <Box></Box>
       </Content>
     </React.Fragment>
   );
 };
 
-// const Story_MyPost = (props) => {
-//   // 버튼 탭 구현하기
-//   // 처음에는 0번째 인덱스 활성화
-//   const [PostListMode, setPostListMode] = useState(true);
-//   // 클릭한 인덱스 활성화
-
-//   return (
-//     <React.Fragment>
-//       <Icons>
-//         <Icon
-//           onClick={() => {
-//             setPostListMode(true);
-//           }}
-//         >
-//           <FiImage size="40" />
-//         </Icon>
-//         <Icon
-//           onClick={() => {
-//             setPostListMode(false);
-//           }}
-//         >
-//           <HiOutlineMap size="43" />
-//         </Icon>
-//       </Icons>
-//       {PostListMode ? (
-//         <PostList>
-//           {post_list.map((p, idx) => {
-//             return <Post2 key={p.id} {...p}></Post2>;
-//           })}
-//         </PostList>
-//       ) : (
-//         <Box></Box>
-//       )}
-//     </React.Fragment>
-//   );
-// };
-
 const Icons = styled.div`
-  position: fixed;
-  right: 13%;
-  top: 29%;
+  position: absolute;
+  left:50%;
+  transform: translate(650px, 50px);
+  /* right: 1%;
+  top: 29%; */
   display: flex;
   flex-direction: column;
   z-index: 1000;
 `;
 
-const Icon = styled.div`
-  width: 40px;
+const Icon = styled.button`
   aspect-ratio: 1/1;
   border-radius: 100px;
   margin: 5px;
-  padding: 30px;
-  border: 3pt solid #eee;
-
-  background-color: #ffffff;
+  padding:20px;
+  border: 3pt solid #eee;  
+  box-sizing: border-box;
+  
   color: ${(props) => (props.active ? "black" : "grey")};
+  border: ${(props) => (props.active ? "2pt solid #eee" : "")};
+  border-bottom: ${(props) => (props.active ? "none" : "2pt solid #eee")};
   background-color: ${(props) => (props.active ? "white" : "#eee")};
-
   transition: background-color 0.5s ease-in-out;
   :hover {
-    background-color: white;
     cursor: pointer;
+    background-color: white;
   }
 `;
 
@@ -138,4 +103,5 @@ const Content = styled.div`
   ${(props) => (props.active ? "" : "display:none")}
 `;
 
-export default Story_MyPost;
+
+export default Story_ContentBtn;
