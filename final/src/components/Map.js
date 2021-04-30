@@ -11,7 +11,7 @@ import _ from "lodash"; // throttle, debounce 사용
 
 // component, element 파일들 가져오기
 import LogBtn from "../components/LogBtn";
-import {Grid, Text, Button, Input} from '../elements/index';
+import { Grid, Text, Button, Input } from "../elements/index";
 import ModalSmallPost from "../components/ModalSmallPost";
 import { markerdata } from "../components/MarkerData";
 
@@ -45,12 +45,12 @@ const Maps = (props) => {
   }, 300); //키보드 떼면 입력한게 1초 뒤에 나타난다.
 
   // 페이지가 렌더링 되면 지도 띄우기
-  useEffect(() => { 
+  useEffect(() => {
     mapscript();
   }, [search]);
-    
+
   const mapscript = () => {
-    const container = document.getElementById("map");  // 지도를 표시할 div
+    const container = document.getElementById("map"); // 지도를 표시할 div
     const options = {
       center: new kakao.maps.LatLng(37.526667, 127.028011), //지도 중심(시작) 좌표, LatLng 클래스는 반드시 필요.
       level: 5, //지도 확대 레벨
@@ -71,7 +71,7 @@ const Maps = (props) => {
     // const myMarkerSize = new kakao.maps.Size(35, 35);
     // const myMarkerImage = new kakao.maps.MarkerImage(myMarker, )
 
-    // const 
+    // const
 
     // 마커가 표시될 위치.
     const markerPosition = new kakao.maps.LatLng(
@@ -91,7 +91,6 @@ const Maps = (props) => {
     // -----------------------------------------------------------------------------------
     // 마커는 여기까지
     // -----------------------------------------------------------------------------------
-
 
     // -----------------------------------------------------------------------------------
     // 여기서부터 검색 기능 : 키워드로 검색하기
@@ -145,12 +144,12 @@ const Maps = (props) => {
     markerdata.forEach((el) => {
       // 마커 생성
       new kakao.maps.Marker({
-        map: map,   // 마커가 표시 될 지도
+        map: map, // 마커가 표시 될 지도
         position: new kakao.maps.LatLng(el.lat, el.lng), // 마커가 표시될 위치
         title: el.title, // 마커에 hover 하면 나타날 title
       });
     });
-  }
+  };
 
   return (
     <React.Fragment>
@@ -163,7 +162,7 @@ const Maps = (props) => {
       </SearchBox>
       <MapBox>
         {/* 위에서 설정된 getElementById("map")에 의해서 id="map"인 div에 맵이 표시된다 */}
-        <div id="map" style={{ width: "100vw", height: "100vh" }}></div> 
+        <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
       </MapBox>
     </React.Fragment>
   );
@@ -192,6 +191,9 @@ const SearchInput = styled.input`
 `;
 
 const MapBox = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  position: absolute;
 `;

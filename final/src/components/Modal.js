@@ -134,7 +134,7 @@ const ModalDetail = (props) => {
                 <FavoriteBorderIcon /> 0
               </div>
               {/* 작성자 에게만 보이게 설정  */}
-              <ModalEdit>수정 / 삭제</ModalEdit>
+              <ModalEdit>수정 / 삭제{props.category}</ModalEdit>
             </InfoBoxInner>
             <PostTilte>{props.title}</PostTilte>
             <PostContents>{props.content}</PostContents>
