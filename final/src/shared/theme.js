@@ -10,7 +10,7 @@ const size = {
       width: 1280px;
     }
     @media (max-width: 1312px) {
-      width: 912px;s
+      width: 912px;
     }
     @media (max-width: 944px) {
       width: calc(100% - 2rem);
