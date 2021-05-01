@@ -16,7 +16,7 @@ const FindEmailPwd = () => {
   const [FindEmailMode, setFindEmailMode] = useState(true);
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
-  const [vertificationCode, setVertificationCode] = useState("");
+  const [authCode, setAuthCode] = useState("");
 
   // useEffect(() => {
   //   return () => {};
@@ -48,9 +48,10 @@ const FindEmailPwd = () => {
       });
   };
 
-  const onVertification = (email) => {
+  // 이메일 입력하고 인증번호 전송하기
+  const onEmailSubmit = (email) => {
     console.log(email);
-    const API = "";
+    const API = "http://seungwook.shop/user/findpwd";
     axios
       .post(
         API,
@@ -65,23 +66,24 @@ const FindEmailPwd = () => {
       )
       .then((res) => {
         console.log("인증번호 전송", res.data);
-        // if(){
-        //     alert("입력하신 이메일로 인증번호가 전송되었습니다.");
-        // }else{
-        //     alert('회원정보가 옳바르지 않습니다 :(');
-        // }
+        if(res.data === true){
+            alert("입력하신 이메일로 인증번호가 전송되었습니다.");
+        }else{
+            alert("회원정보가 옳바르지 않습니다. :(");
+        }
       });
   };
 
-  const onFindPwd = (vertificationCode, email) => {
+  const onFindPwd = (email, authCode) => {
     //  인증번호가 일치하면 비밀번호 변경 페이지로
-    console.log(vertificationCode);
-    const API = "";
+    console.log(email, authCode);
+    const API = "http://seungwook.shop/user/findpwd/authcode";
     axios
       .post(
         API,
         {
-          vertificationCode: vertificationCode,
+          email: email,
+          authCode: authCode,
         },
         {
           headers: {
@@ -92,12 +94,11 @@ const FindEmailPwd = () => {
       .then((res) => {
         console.log("비밀번호 찾기", res.data);
         dispatch(emailActions.getEmail(email));
-        // if(){
-        //     history.push('editpwd')
-        // 백으로 이메일 값도 같이 넘겨주기!!!!
-        // }else{
-        //     alert('인증번호가 일치하지 않습니다! :(');
-        // }
+        if(res.data === true){
+            history.push('editpwd')
+        }else{
+            alert('인증번호가 일치하지 않습니다! :(');
+        }
       });
   };
 
@@ -161,26 +162,26 @@ const FindEmailPwd = () => {
               type="type"
               width="70%"
               onChange={(e) => {
-                setNickname(e.target.value);
+                setEmail(e.target.value);
               }}
             />
-            <VertificationBtn onClick={() => onVertification(email)}>
+            <VertificationBtn onClick={() => onEmailSubmit(email)}>
               인증번호전송
             </VertificationBtn>
           </Grid>
 
           <InputStyle
-            placeholder="인증번호를 입력"
+            placeholder="인증번호 입력"
             type="type"
             width="97%"
             onChange={(e) => {
-              setVertificationCode(e.target.value);
+              setAuthCode(e.target.value);
             }}
           />
           <SolidBtn
             background-color="grey"
             style={{ display: "block" }}
-            onClick={() => onFindPwd(vertificationCode, email)}
+            onClick={() => onFindPwd(email, authCode)}
           >
             비밀번호 찾기
           </SolidBtn>

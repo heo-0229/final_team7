@@ -93,15 +93,25 @@ const GridList = styled.div`
   width: 100%;
   padding: 50px 0px;
   flex-wrap: wrap;
+
   @media (max-width: 1440px) {
       width: 1280px;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: auto;
+    }
+    
+    @media (max-width: 1312px) {
+      width: 912px;
+      grid-template-columns: 1fr 1fr 1fr;
       margin: auto;
     }
     @media (max-width: 944px) {
+      width: calc(100% - 2rem);
       grid-template-columns: 1fr 1fr;
       margin: auto;
     }
     @media (max-width: 767px) {
+      width: calc(100% - 2rem);
       grid-template-columns: 1fr;
       margin: auto;
     }

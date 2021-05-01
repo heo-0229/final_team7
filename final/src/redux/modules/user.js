@@ -64,7 +64,7 @@ const loginAPI = (email, pwd) => {
         password: pwd,
       })
       .then((res) => {
-        console.log("loginAPI(res)", res);
+        // console.log("loginAPI(res)", res);
         localStorage.setItem('nickname', res.data.nickname);
         setCookie("token", res.data.token);
         dispatch(setUser(res.config.data));

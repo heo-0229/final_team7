@@ -8,11 +8,12 @@ import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { pwdRegCheck, pwdRegContinuousCheck } from "../../shared/common";
+import axios from "axios";
 
 const EditPwd = () => {
-  const email = useSelector((state) => state.email.email);
   // console.log(email);
   const dispatch = useDispatch();
+  const email = useSelector((state) => state.email.email);
 
   const [pwd, setPwd] = React.useState("");
   const [rePwd, setRePwd] = React.useState("");
@@ -67,12 +68,43 @@ const EditPwd = () => {
   };
 
   // 비밀번호 변경하기
-  const onEditPwd = () => {
-    if (!pwdRegCheck(pwd) || pwdRegContinuousCheck(pwd) || pwd !== rePwd) {
-      alert("아이디,비밀번호 확인을 해주세요.");
-      return false;
-    }
-    // dispatch(userActions.editPwdAPI(pwd, rePwd));
+  // const onEditPwd = () => {
+  //   if (!pwdRegCheck(pwd) || pwdRegContinuousCheck(pwd) || pwd !== rePwd) {
+  //     alert("아이디,비밀번호 확인을 해주세요.");
+  //     return false;
+  //   }
+  //   // dispatch(userActions.editPwdAPI(pwd, rePwd));
+  // };
+
+  const onEditPwd = (pwd, rePwd) => {
+    //  인증번호가 일치하면 비밀번호 변경 페이지로
+    console.log(email, pwd, rePwd);
+    const API = "http://seungwook.shop/user/findpwd/editpwd";
+    axios
+      .post(
+        API,
+        {
+          email: email,
+          password: pwd,
+          pwdchk: rePwd,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("비밀번호 변경하기", res.data);
+        if (res.status === 200) {
+          alert("비밀번호가 변경되었습니다. :)");
+          history.push("/login");
+        }
+      })
+      .catch((err) => {
+        window.alert("비밀번호 형식을 다시 확인해주세요. :(");
+        console.log("비밀번호 변경 실패", err);
+      });
   };
 
   return (
@@ -114,7 +146,9 @@ const EditPwd = () => {
         <SolidBtn
           background-color="grey"
           style={{ display: "block" }}
-          onClick={onEditPwd}
+          onClick={() => {
+            onEditPwd(pwd, rePwd);
+          }}
         >
           비밀번호 변경
         </SolidBtn>
