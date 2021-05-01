@@ -70,7 +70,6 @@ const Story = (props) => {
         <Story_Content />
       </Content>
       </Wrapper>
-      
     </React.Fragment>
   );
 };
@@ -87,8 +86,6 @@ Story.defaultProps = {
 const Wrapper = styled.div`
  ${(props) => props.theme.responsiveContainer};
 `;
-
-
 
 const ProfileContainer = styled.div`
   display: flex;
