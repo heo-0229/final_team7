@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 // 컴포넌트 파일들 임포트해오기
 import { Grid, Text, Button, Input } from "../elements/index";
@@ -23,6 +24,18 @@ import category from "../redux/modules/category";
 
 const PostList = () => {
   const dispatch = useDispatch();
+
+  //반응형 웹 만들기
+  const isPc = useMediaQuery({
+    query: "(min-width:1024px)",
+  });
+  const isTablet = useMediaQuery({
+    query: "(min-width:768px) and (max-width:1023px)",
+  });
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+  ///////
 
   const is_category = useSelector((state) => state.category.is_category);
 

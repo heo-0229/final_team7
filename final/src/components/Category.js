@@ -379,13 +379,13 @@ export default Category;
 const CategoryBox = styled.div`
   /* display: flex;
 justify-content: space-between; */
-  width: 210px;
+  width: 170px;
   /* border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef; */
   padding: 8px 0px;
   position: fixed;
   z-index: 300;
-  right: 37px;
+  right: 50px;
   bottom: 50vh;
   background-color: white;
   padding: 20px;
@@ -426,26 +426,28 @@ const CategoryIcon = styled.div`
 `;
 
 const Btn = styled.button`
-  margin: 2px;
-  padding: 3px 5px;
+  margin: 3px;
+  padding: 3px 7px;
   background-color: white;
   border-radius: 50px;
   box-sizing: border-box;
   border: 1px solid lightgray;
   cursor: pointer;
   font-size: 12px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 `;
 const SelectedBtn = styled.button`
   // 선택 됐을때 버튼
   margin: 2px;
-  padding: 3px 5px;
-  background-color: #3897f0;
+  padding: 3px 7px;
+  /* background-color: #3897f0; */
+  background-color: white;
   border-radius: 50px;
   box-sizing: border-box;
-  border: 1px solid lightgray;
+  border: 1px solid #3897f0;
   cursor: pointer;
   font-size: 12px;
   font-weight: bold;
-  color: white;
-  box-shadow: inset 0px 0px 5px white;
+  color: #3897f0;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 `;

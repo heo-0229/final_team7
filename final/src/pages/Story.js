@@ -29,39 +29,38 @@ const Story = (props) => {
   return (
     <React.Fragment>
       <Wrapper>
-      <ProfileContainer>
-        <Grid padding="20px 0px 0px 0px">
-          <ProfileImg src={props.user_info.profile} />
-          <Text margin="0px" size="1.6vw">
-            {props.user_info.nickname}
-          </Text>
-        </Grid>
+        <ProfileContainer>
+          <Grid padding="20px 0px 0px 0px">
+            <ProfileImg src={props.user_info.profile} />
+            <Text margin="0px" size="1.6vw">
+              {props.user_info.nickname}
+            </Text>
+          </Grid>
 
-        <Grid>
-          <Text size="0.8vw">{props.user_info.introduction}</Text>
-        </Grid>
-        <Grid>
-          <TextBtn>프로필 편집</TextBtn>
-        </Grid>
-      </ProfileContainer>
+          <Grid>
+            <Text size="0.8vw">{props.user_info.introduction}</Text>
+          </Grid>
+          <Grid>
+            <TextBtn>프로필 편집</TextBtn>
+          </Grid>
+        </ProfileContainer>
 
-      <Tabs>
-        <Tab onClick={handleClick} active={active === 3} id={3}>
-          {props.user_info.nickname}님의 게시물
-        </Tab>
-        <Tab onClick={handleClick} active={active === 4} id={4}>
-          {props.user_info.nickname}님의 좋아요
-        </Tab>
-      </Tabs>
+        <Tabs>
+          <Tab onClick={handleClick} active={active === 3} id={3}>
+            {props.user_info.nickname}님의 게시물
+          </Tab>
+          <Tab onClick={handleClick} active={active === 4} id={4}>
+            {props.user_info.nickname}님의 좋아요
+          </Tab>
+        </Tabs>
 
-      <Content active={active === 3}>
-        <Story_Content />
-      </Content>
-      <Content active={active === 4}>
-        <Story_Content />
-      </Content>
+        <Content active={active === 3}>
+          <Story_Content />
+        </Content>
+        <Content active={active === 4}>
+          <Story_Content />
+        </Content>
       </Wrapper>
-      
     </React.Fragment>
   );
 };
@@ -76,7 +75,7 @@ Story.defaultProps = {
 };
 
 const Wrapper = styled.div`
-  ${(prop) => prop.theme.responsiveContainer};
+  ${(props) => props.theme.responsiveContainer};
 `;
 
 const ProfileContainer = styled.div`
