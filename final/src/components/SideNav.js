@@ -91,7 +91,7 @@ function Navbar() {
             </CategoryInfo>
             {/* <Category></Category> <Category /> */}
             <Bubble
-              onclick={(e) => {
+              onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
@@ -102,7 +102,7 @@ function Navbar() {
                   <li
                     key={index}
                     className={item.cName}
-                    onclick={(e) => {
+                    onClick={(e) => {
                       history.push("item.path");
                       e.preventDefault();
                       e.stopPropagation();
