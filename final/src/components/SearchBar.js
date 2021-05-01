@@ -54,7 +54,7 @@ export default function SearchBar(props) {
 
 const TextBox = styled.div`
   position: absolute;
-  left: 50%;
+  left: 45%;
   transform: translate(-50%, -50%);
   text-align: center;
   top: 15%;

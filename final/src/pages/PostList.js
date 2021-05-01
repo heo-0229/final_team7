@@ -73,7 +73,6 @@ const PostList = () => {
       return val;
     }
   });
-
   return (
     <React.Fragment>
       {/* <InfiniteScroll  // 서버와 연결되면 인피니티 스크롤 게시!
@@ -206,7 +205,6 @@ const PostList = () => {
         })}
       </Container>
       <SideNav />
-
       <Category />
       <Box></Box>
     </React.Fragment>
@@ -217,16 +215,43 @@ export default PostList;
 
 //그리드 속성을 이렇게 줘야 모달창이 잘만들어진다!
 const Container = styled.div`
+  ${(prop) => prop.theme.responsiveContainer};
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(28%, 1fr));
-  grid-auto-rows: 405px;
-  grid-gap: 24px;
-  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
   margin: auto;
-  width: 1266px;
-  height: 100%;
-  padding: 50px 200px;
+  width: 100%;
+  padding: 50px 0px;
   flex-wrap: wrap;
+
+  @media (min-width: 1440px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+
+    margin-top: -5vh;
+  }
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin: auto auto;
+    padding: 0;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2px;
+  }
+`;
+
+const Wrapper = styled.div`
+  ${(props) => props.theme.responsiveContainer};
 `;
 
 const OutBox = styled.div`
@@ -249,17 +274,23 @@ const TextBox = styled.div`
 `;
 
 const TopBox = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 110px;
 `;
 
 const Search = styled.div`
+  display: block;
   margin: auto auto;
-
   margin-top: 130px;
   display: flex;
-  width: 450px;
+  width: 24vw;
   margin-bottom: 20px;
   /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); */
   border: none;
+  box-sizing: border-box;
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+
+    width: 80vw;
+  }
 `;
