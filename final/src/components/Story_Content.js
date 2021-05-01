@@ -49,19 +49,20 @@ const Story_Content = (props) => {
 
 const Icons = styled.div`
   position: fixed;
+
   @media (min-width: 1440px) {
     left: 50%;
     transform: translate(650px, 80px);
     }
-    @media (max-width: 1440px) {
+    @media (max-width: 1280px) {
       bottom:20px;
       right:70px;
     }
-    @media (max-width: 944px) {
+    @media (max-width: 960px) {
       bottom:20px;
       right:70px;
     }
-    @media (max-width: 767px) {
+    @media (max-width: 400px) {
       bottom:20px;
       right:70px;
     }
@@ -91,7 +92,6 @@ const Icon = styled.button`
 `;
 
 const GridList = styled.div`
-  ${(prop) => prop.theme.responsiveContainer};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
