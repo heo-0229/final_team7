@@ -46,12 +46,21 @@ const Story = (props) => {
       </ProfileContainer>
 
       <Tabs>
+
         <Tab onClick={handleClick} active={active === 3} id={3}>
           {props.user_info.nickname}님의 게시물
+          <TabUnderBar active={active === 3}/>
         </Tab>
-        <Tab onClick={handleClick} active={active === 4} id={4}>
+        
+   
+       
+      <Tab onClick={handleClick} active={active === 4} id={4}>
           {props.user_info.nickname}님의 좋아요
+          <TabUnderBar active={active === 4}/>
         </Tab>
+      
+    
+        
       </Tabs>
 
       <Content active={active === 3}>
@@ -76,8 +85,10 @@ Story.defaultProps = {
 };
 
 const Wrapper = styled.div`
-  ${(prop) => prop.theme.responsiveContainer};
+ ${(props) => props.theme.responsiveContainer};
 `;
+
+
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -136,18 +147,25 @@ const Tab = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   width: 50%;
-  padding: 30px;
-  font-size: 1.8vw;
+  padding: 20px;
+  font-size: 1.2vw;
   color: ${(props) => (props.active ? props.theme.main_color : "grey")};
   font-weight: ${(props) => (props.active ? 600 : 200)};
-  border: ${(props) => (props.active ? "2pt solid #eee" : "")};
-  border-bottom: ${(props) => (props.active ? "none" : "2pt solid #eee")};
-  background-color: ${(props) => (props.active ? "white" : "#eee")};
+  /* border-bottom: ${(props) => (props.active ? "5pt solid black" : "")}; */
+  background-color: ${(props) => (props.active ? "white" : "white")};
   transition: background-color 0.5s ease-in-out;
   :hover {
-    background-color: white;
+    background-color: ${(props) => (props.active ? "white" : "#eee")};
   }
 `;
+const TabUnderBar = styled.div`
+  width: 55%;
+  height:3pt;
+  margin:20px auto -20px auto;
+  background-color: ${(props) => (props.active ? props.theme.main_color : "")};
+  
+`;
+
 const Content = styled.div`
   ${(props) => (props.active ? "" : "display:none")}
 `;

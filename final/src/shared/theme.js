@@ -6,19 +6,18 @@ const size = {
 
   const theme = {
     responsiveContainer: `
-    @media (max-width: 1440px) {
-      width: 1280px;
+    @media (min-width: 1440px) {
+      width: 1266px;
     }
-    @media (max-width: 1312px) {
-      width: 912px;
+    @media (max-width: 1280px) {
+      width: 960px;
     }
-    @media (max-width: 944px) {
+    @media (max-width: 960px) {
       width: calc(100% - 2rem);
     }
-    @media (max-width: 767px) {
+    @media (max-width: 400px) {
       width: calc(100% - 2rem);
     }
-    width: 1728px;
     margin-left: auto;
     margin-right: auto;
     `,
