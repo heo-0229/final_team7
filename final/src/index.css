@@ -1,12 +1,7 @@
-@import url(https://fonts.googlepis.com/earlyaccess/notosanskr.css);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-div {
-  font-family: "Noto sans KR" !important;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', sans-serif, 'Roboto';
 }
-
-/* !important 전체적용 */
-/* 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */

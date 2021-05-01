@@ -17,7 +17,7 @@ const size = {
     }
     @media (max-width: 400px) {
       width: calc(100% - 2rem);
-    }
+    } 
     margin-left: auto;
     margin-right: auto;
     `,
