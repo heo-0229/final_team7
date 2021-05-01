@@ -1,6 +1,7 @@
 import "../App.css";
 import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
@@ -37,8 +38,6 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* <Responsive> */}
-
       <ConnectedRouter history={history}>
         <SideNav></SideNav>
         <ScrollToTop>
@@ -54,21 +53,14 @@ function App() {
             <Route path="/story" exact component={Story} />
             <Route path="/editprofile" exact component={EditProfile} />
             <Route path="/faq" exact component={Faq} />
-
             <Route component={NotFound} />
-
             {/* 밑에서 부턴 카테고리별 페이지 */}
             <Route path="/cafe" exact component={Cafe} />
           </Switch>
         </ScrollToTop>
       </ConnectedRouter>
-      {/* </Responsive> */}
     </React.Fragment>
   );
 }
-
-// const Responsive = styled.div`
-//   ${(prop) => prop.theme.responsiveContainer};
-// `;
 
 export default App;

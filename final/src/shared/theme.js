@@ -4,22 +4,20 @@ const size = {
   desktop: "1025px",
 };
 
-const theme = {
-  responsiveContainer: `
-    @media (max-width: 1440px) {
-      width: 1280px;
+  const theme = {
+    responsiveContainer: `
+    @media (min-width: 1440px) {
+      width: 1260px;
     }
-    @media (max-width: 1312px) {
-      width: 912px;
+    @media (max-width: 1280px) {
+      width: 960px;
     }
-    @media (max-width: 944px) {
-      
-      width: calc(100% - 2rem); 
-    }
-    @media (max-width: 767px) {
+    @media (max-width: 960px) {
       width: calc(100% - 2rem);
     }
-    width: 1728px;
+    @media (max-width: 400px) {
+      width: calc(100% - 2rem);
+    }
     margin-left: auto;
     margin-right: auto;
     `,

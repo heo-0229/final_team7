@@ -24,7 +24,6 @@ const Story_Content = (props) => {
 
   return (
     <React.Fragment>
-      <Wrapper>
         <Icons>
           <Icon onClick={handleClick} active={active === 1} id={1}>
             <FiImage size="40" onClick={handleClick} />
@@ -44,21 +43,28 @@ const Story_Content = (props) => {
         <Content active={active === 2}>
           <Box></Box>
         </Content>
-      </Wrapper>
     </React.Fragment>
   );
 };
 
-const Wrapper = styled.div`
-  ${(prop) => prop.theme.responsiveContainer};
-`;
-
 const Icons = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translate(650px, 50px);
-  /* right: 1%;
-  top: 29%; */
+  position: fixed;
+  @media (min-width: 1440px) {
+    left: 50%;
+    transform: translate(650px, 80px);
+    }
+    @media (max-width: 1440px) {
+      bottom:20px;
+      right:70px;
+    }
+    @media (max-width: 944px) {
+      bottom:20px;
+      right:70px;
+    }
+    @media (max-width: 767px) {
+      bottom:20px;
+      right:70px;
+    }
   display: flex;
   flex-direction: column;
   z-index: 1000;
@@ -85,42 +91,38 @@ const Icon = styled.button`
 `;
 
 const GridList = styled.div`
+  ${(prop) => prop.theme.responsiveContainer};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: 20px;
-  margin: 50 auto;
+  margin: auto;
   width: 100%;
   padding: 50px 0px;
   flex-wrap: wrap;
 
-  @media (max-width: 1440px) {
-      width: 1280px;
+  @media (min-width: 1440px) {
       grid-template-columns: 1fr 1fr 1fr;
-      margin: auto;
+      grid-gap: 20px;
     }
-    
-    @media (max-width: 1312px) {
-      width: 912px;
+    @media (max-width: 1280px) {
       grid-template-columns: 1fr 1fr 1fr;
-      margin: auto;
+      grid-gap: 10px;
     }
-    @media (max-width: 944px) {
-      width: calc(100% - 2rem);
-      grid-template-columns: 1fr 1fr;
-      margin: auto;
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 5px;
     }
-    @media (max-width: 767px) {
-      width: calc(100% - 2rem);
-      grid-template-columns: 1fr;
-      margin: auto;
+    @media (max-width: 400px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 2px;
     }
 `;
 
 const Box = styled.div`
   text-align: center;
-  margin: 2% auto;
-  width: 1260px;
+  margin: 4% auto;
+  width: 100%;
   height: 50vh;
   flex-wrap: wrap;
   background-color: #eee;
