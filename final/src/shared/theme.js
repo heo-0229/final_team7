@@ -4,8 +4,8 @@ const size = {
   desktop: "1025px",
 };
 
-  const theme = {
-    responsiveContainer: `
+const theme = {
+  responsiveContainer: `
     @media (min-width: 1440px) {
       width: 1260px;
     }
@@ -16,7 +16,7 @@ const size = {
       width: calc(100% - 2rem);
     }
     @media (max-width: 400px) {
-      width: calc(100% - 2rem);
+      width: calc(100% - 1px);
     }
     margin-left: auto;
     margin-right: auto;

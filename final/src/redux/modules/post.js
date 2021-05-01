@@ -48,7 +48,6 @@ const getPostAPI = (category) => {
       //const category = getState().category.is_category
 
       method: "GET",
-
       url: `${config.api}/board/${category}`,
     })
       .then((res) => {
@@ -76,6 +75,22 @@ const getPostAPI = (category) => {
       });
   };
 };
+
+// const deletePostAPI = () => {
+//   return function (dispatch, getState) {
+//     axios({
+//       method: "DELETE",
+//       url: `${config.api}/board/${category}`,
+//     })
+//       .then((res) => {
+//         dispatch(deletePost(id));
+//         history.push("/");
+//       })
+//       .catch((err) => {
+//         window.alert("게시글 삭제에 문제가 있습니다!");
+//       });
+//   };
+// };
 
 // const editPostAPI = () => {
 //   return function (dispatch, getState) {

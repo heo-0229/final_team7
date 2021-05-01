@@ -1,7 +1,7 @@
 @import url(https://fonts.googlepis.com/earlyaccess/notosanskr.css);
 
-div {
-  font-family: "Noto sans KR" !important;
+body {
+  font-family: "Noto sans KR", "Roboto";
 }
 
 /* !important 전체적용 */
