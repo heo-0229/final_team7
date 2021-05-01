@@ -109,19 +109,6 @@ const Card = styled.div`
   height: 100%;
 `;
 
-const LikeBox = styled.div`
-  width: 80px;
-  height: 27px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  align-items: center;
-  margin-top: 10px;
-  margin-left: -13px;
-  z-index: 3000;
-  background-color: #ffa96d;
-  border-radius: 2px;
-`;
 const CntBox = styled.span`
   margin: 8px 0px 8px 2px;
 `;
