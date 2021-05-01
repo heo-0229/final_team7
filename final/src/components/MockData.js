@@ -21,7 +21,7 @@ const post_list = [
     ],
     title: "황홀~",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "카페",
+    category: "야경",
     content: "잠와 ㅜ",
   },
   {
@@ -31,7 +31,7 @@ const post_list = [
     ],
     title: "사서 고생하는 구먼~",
     address: "여수시 미평동 ",
-    category: "카페",
+    category: "바다",
     content: "배고파",
   },
   {
@@ -51,7 +51,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "야경",
+    category: "꽃",
     content: "화이팅 하십쇼!!",
   },
   {
@@ -61,7 +61,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "연인",
+    category: "나홀로",
     content: "최곱니당!",
   },
   {
@@ -71,7 +71,7 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "카페",
+    category: "연인",
     content: "고만하소잉",
   },
   {
@@ -91,28 +91,38 @@ const post_list = [
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "야경",
+    category: "반려동물",
     content: "뿌링클 사줄분??",
   },
   {
     id: 10,
     imgUrl: [
-      "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      "https://image.edaily.co.kr/images/Photo/files/NP/S/2016/06/PS16060300126.jpg",
     ],
-    title: "둥둥..",
-    address: "제주시 한림읍 옹포 8길 1-3",
-    category: "꽃",
-    content: "고추바사삭 사줄분??",
+    title: "사서 고생하는 구먼~",
+    address: "여수시 미평동 ",
+    category: "도심",
+    content: "배고파",
   },
   {
     id: 11,
     imgUrl: [
-      "https://images.unsplash.com/photo-1496416412749-10a3022bade0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      "https://images.unsplash.com/photo-1583713124903-6e6c31f46934?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+    ],
+    title: "둥둥..",
+    address: "여수 문수 주택단지",
+    category: "공원",
+    content: "항해99",
+  },
+  {
+    id: 12,
+    imgUrl: [
+      "https://images.unsplash.com/photo-1590598016454-45b7e0ac125c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=562&q=80",
     ],
     title: "둥둥..",
     address: "제주시 한림읍 옹포 8길 1-3",
-    category: "나홀로",
-    content: "뿌링클 사줄분??",
+    category: "전시",
+    content: "화이팅 하십쇼!!",
   },
 ];
 

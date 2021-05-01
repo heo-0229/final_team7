@@ -23,6 +23,9 @@ const Category = () => {
   const [couple, setCouple] = useState();
   const [freind, setFreind] = useState();
   const [pet, setPet] = useState();
+  const [exhibition, setExhibition] = useState();
+  const [city, setCity] = useState();
+  const [park, setPark] = useState();
 
   React.useEffect(() => {}, []);
 
@@ -54,7 +57,7 @@ const Category = () => {
               //여기서 모든 스테이트 false로 바꿔주는 작업도 해줘야한다
             }}
           >
-            전체보기
+            #전체
           </SelectedBtn>
         ) : (
           <Btn
@@ -70,12 +73,15 @@ const Category = () => {
               setCouple(false);
               setFreind(false);
               setPet(false);
+              setExhibition(false);
+              setCity(false);
+              setPark(false);
               dispatch(categoryActions.resetCategory()); //카테고리 상태 배열을 0으로 만듦
               // window.location.reload();
               //여기서 모든 스테이트 false로 바꿔주는 작업도 해줘야한다
             }}
           >
-            전체보기
+            #전체
           </Btn>
         )}
         {/* 카페 */}
@@ -88,7 +94,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("카페")); // 혹시라고 구현이 힘들땐 그냥 이값을 is_cafe말고 cafe로 보내고 포스트 리스트에서 카테고리가 cafe인 것을 필터해주자
             }}
           >
-            카페
+            #카페
           </SelectedBtn>
         ) : (
           <Btn
@@ -99,7 +105,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("카페"));
             }}
           >
-            카페
+            #카페
           </Btn>
         )}
         {/* 야경 */}
@@ -112,7 +118,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("야경"));
             }}
           >
-            야경
+            #야경
           </SelectedBtn>
         ) : (
           <Btn
@@ -123,7 +129,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("야경"));
             }}
           >
-            야경
+            #야경
           </Btn>
         )}{" "}
         {/* 바다 */}
@@ -136,7 +142,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("바다"));
             }}
           >
-            바다
+            #바다
           </SelectedBtn>
         ) : (
           <Btn
@@ -147,7 +153,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("바다"));
             }}
           >
-            바다
+            #바다
           </Btn>
         )}
         {/* 산 */}
@@ -160,7 +166,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("산"));
             }}
           >
-            산
+            #산
           </SelectedBtn>
         ) : (
           <Btn
@@ -171,7 +177,79 @@ const Category = () => {
               dispatch(categoryActions.getCategory("산"));
             }}
           >
-            산
+            #산
+          </Btn>
+        )}
+        {/* 도심 */}
+        {city ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCity(false);
+              dispatch(categoryActions.getCategory("도심"));
+            }}
+          >
+            #도심
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCity("city");
+              dispatch(categoryActions.getCategory("도심"));
+            }}
+          >
+            #도심
+          </Btn>
+        )}
+        {/* 전시 */}
+        {exhibition ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setExhibition(false);
+              dispatch(categoryActions.getCategory("전시"));
+            }}
+          >
+            #전시
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setExhibition("exhibitiom");
+              dispatch(categoryActions.getCategory("전시"));
+            }}
+          >
+            #전시
+          </Btn>
+        )}
+        {/* 공원 */}
+        {park ? (
+          <SelectedBtn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setPark(false);
+              dispatch(categoryActions.getCategory("공원"));
+            }}
+          >
+            #공원
+          </SelectedBtn>
+        ) : (
+          <Btn
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setPark("park");
+              dispatch(categoryActions.getCategory("공원"));
+            }}
+          >
+            #공원
           </Btn>
         )}
         {/* 꽃 */}
@@ -184,7 +262,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("꽃"));
             }}
           >
-            꽃
+            #꽃
           </SelectedBtn>
         ) : (
           <Btn
@@ -195,7 +273,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("꽃"));
             }}
           >
-            꽃
+            #꽃
           </Btn>
         )}
         {/* 나홀로 */}
@@ -208,7 +286,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("나홀로"));
             }}
           >
-            나홀로
+            #나홀로
           </SelectedBtn>
         ) : (
           <Btn
@@ -219,7 +297,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("나홀로"));
             }}
           >
-            나홀로
+            #나홀로
           </Btn>
         )}
         {couple ? (
@@ -231,7 +309,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("연인"));
             }}
           >
-            연인
+            #연인
           </SelectedBtn>
         ) : (
           <Btn
@@ -242,7 +320,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("연인"));
             }}
           >
-            연인
+            #연인
           </Btn>
         )}
         {freind ? (
@@ -254,7 +332,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("친구"));
             }}
           >
-            친구
+            #친구
           </SelectedBtn>
         ) : (
           <Btn
@@ -265,7 +343,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("친구"));
             }}
           >
-            친구
+            #친구
           </Btn>
         )}
         {pet ? (
@@ -277,7 +355,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("반려동물"));
             }}
           >
-            반려동물
+            #반려동물
           </SelectedBtn>
         ) : (
           <Btn
@@ -288,7 +366,7 @@ const Category = () => {
               dispatch(categoryActions.getCategory("반려동물"));
             }}
           >
-            반려동물
+            #반려동물
           </Btn>
         )}
       </CategoryBox>

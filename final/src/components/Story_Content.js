@@ -25,25 +25,25 @@ const Story_Content = (props) => {
   return (
     <React.Fragment>
       <Wrapper>
-      <Icons>
-        <Icon onClick={handleClick} active={active === 1} id={1}>
-          <FiImage size="40" />
-        </Icon>
-        <Icon onClick={handleClick} active={active === 2} id={2}>
-          <HiOutlineMap size="40" />
-        </Icon>
-      </Icons>
+        <Icons>
+          <Icon onClick={handleClick} active={active === 1} id={1}>
+            <FiImage size="40" onClick={handleClick} />
+          </Icon>
+          <Icon onClick={handleClick} active={active === 2} id={2}>
+            <HiOutlineMap size="40" onClick={handleClick} />
+          </Icon>
+        </Icons>
 
-      <Content active={active === 1}>
-        <GridList>
-          {post_list.map((p, idx) => {
-            return <Post2 key={p.id} {...p}></Post2>;
-          })}
-        </GridList>
-      </Content>
-      <Content active={active === 2}>
-        <Box></Box>
-      </Content>
+        <Content active={active === 1}>
+          <GridList>
+            {post_list.map((p, idx) => {
+              return <Post2 key={p.id} {...p}></Post2>;
+            })}
+          </GridList>
+        </Content>
+        <Content active={active === 2}>
+          <Box></Box>
+        </Content>
       </Wrapper>
     </React.Fragment>
   );
@@ -55,7 +55,7 @@ const Wrapper = styled.div`
 
 const Icons = styled.div`
   position: absolute;
-  left:50%;
+  left: 50%;
   transform: translate(650px, 50px);
   /* right: 1%;
   top: 29%; */
@@ -68,10 +68,10 @@ const Icon = styled.button`
   aspect-ratio: 1/1;
   border-radius: 100px;
   margin: 5px;
-  padding:20px;
-  border: 3pt solid #eee;  
+  padding: 20px;
+  border: 3pt solid #eee;
   box-sizing: border-box;
-  
+
   color: ${(props) => (props.active ? "grey" : "grey")};
   border: ${(props) => (props.active ? "2pt solid #eee" : "")};
   background-color: ${(props) => (props.active ? "white" : "#eee")};
@@ -80,7 +80,7 @@ const Icon = styled.button`
     cursor: pointer;
     background-color: lightgrey;
     color: #eee;
-    border:lightgrey;
+    border: lightgrey;
   }
 `;
 
@@ -94,17 +94,17 @@ const GridList = styled.div`
   padding: 50px 0px;
   flex-wrap: wrap;
   @media (max-width: 1440px) {
-      width: 1280px;
-      margin: auto;
-    }
-    @media (max-width: 944px) {
-      grid-template-columns: 1fr 1fr;
-      margin: auto;
-    }
-    @media (max-width: 767px) {
-      grid-template-columns: 1fr;
-      margin: auto;
-    }
+    width: 1280px;
+    margin: auto;
+  }
+  @media (max-width: 944px) {
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+  }
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
 `;
 
 const Box = styled.div`
@@ -119,6 +119,5 @@ const Box = styled.div`
 const Content = styled.div`
   ${(props) => (props.active ? "" : "display:none")}
 `;
-
 
 export default Story_Content;

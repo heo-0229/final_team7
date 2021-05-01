@@ -19,39 +19,47 @@ import "../Css/Modal.css";
 import modal from "../redux/modules/modal";
 import post_list from "../components/MockData";
 import { actionCreators as PostActions } from "../redux/modules/post";
+import category from "../redux/modules/category";
 
 const PostList = () => {
   const dispatch = useDispatch();
 
   const is_category = useSelector((state) => state.category.is_category);
 
-  console.log("포스트 리스트 카테고리 상태", is_category);
-  console.log("데이터 카테고리", post_list.category);
+  // category 모듈의 상태값에 따른 판단여부
+  const resultCafe = is_category.find((item) => item === "카페"); //요게 카페가 나온다는건? 배열안에 카페가 있다는 것!
+  const resultNight = is_category.find((item) => item === "야경");
+  const resultOcean = is_category.find((item) => item === "바다");
+  const resultMountain = is_category.find((item) => item === "산");
+  const resultFlower = is_category.find((item) => item === "꽃");
+  const resultAlone = is_category.find((item) => item === "나홀로");
+  const resultCouple = is_category.find((item) => item === "연인");
+  const resultFreind = is_category.find((item) => item === "친구");
+  const resultPet = is_category.find((item) => item === "반려동물");
+  const resultCity = is_category.find((item) => item === "도심");
+  const resultPark = is_category.find((item) => item === "공원");
+  const resultExhibition = is_category.find((item) => item === "전시");
+
+  console.log("카페가 들어있다!", resultCafe);
 
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
-    // console.log("계속 실행 되는겨?");
     dispatch(PostActions.getPostAPI(is_category));
   }, [is_category]); //카테고리 상태값이 바뀔 때 마다 useEffect 실행
 
-  //filter
+  console.log("카테고리 뭐 가지고 올까?", is_category);
 
-  const categorys = (is_category) =>
-    is_category.forEach((c) => {
-      console.log("카테고리들", c);
-      return c;
-    });
-
-  // const is_over = (is_category, post_category) => {
-  //   //
-  //   is_category.includes(post_category[0]);
-  //   is_category.includes(post_category[1]);
-  //   is_category.includes(post_category[2]); // 하나라도 포함되있는지 검사
-  //   findIndex >> idx >> post_catefgory[idx]
-  // };
-
-  console.log("함수 리턴 값", categorys(is_category));
+  const searchPost = post_list.filter((val) => {
+    // 검색기능(필터링)을 변수로 지정해 놓고 .map앞에 붙혀둔다
+    if (search == "") {
+      return val;
+    } else if (val.title.includes(search)) {
+      return val;
+    } else if (val.content.includes(search)) {
+      return val;
+    }
+  });
 
   return (
     <React.Fragment>
@@ -81,76 +89,110 @@ const PostList = () => {
       </TopBox>
       {/* 검색기능 구현 */}
       <Container>
-        {post_list //포스트리스트를 필터링 해준다 // 이런식으로 카테고리 별로 구현 할 수도??
-          .filter((val) => {
-            if (
-              search == ""
-              // &&
-              // val.category.includes(
-              //   is_category.forEach((c) => {
-              //     console.log("들어온 카테고리???/", `${c}`);
-              //     return `${c}`;
-              //   })
-              // )
-            ) {
-              // console.log("다 출력되??", val);
-              return val;
-              //카테고리가 포함되어있는??
-            } else if (
-              val.title.includes(search)
-              // &&
-              // val.category.includes(
-              //   is_category.forEach((c) => {
-              //     console.log("들어오나???", c);
-              //     return c;
-              //   })
-              // ) // 제목이 검색 내용에 있을때랑 카테고리가 카페인 것만
-            ) {
-              return val; // axios로 받아온 제목이 검색어에 포함 되었을때
-            } else if (
-              val.content.includes(search)
-              // &&
-              // val.category.includes(
-              //   is_category.forEach((c) => {
-              //     console.log("들어오나???", c);
-              //     return c;
-              //   })
-              // )
-            ) {
-              return val; // axios로 받아온 글쓴이가 검색어에 포함 되었을때
+        {/* 전체보기 선택 */}
+        {searchPost.map((p) => {
+          if (is_category.length == 0) {
+            return <Post2 key={p.id} {...p}></Post2>;
+          }
+        })}
+        {/* {"카페 선택"} */}
+        {searchPost.map((p) => {
+          if (resultCafe) {
+            if (p.category == "카페") {
+              return <Post2 key={p.id} {...p}></Post2>;
             }
-          })
-          .map((p, i) => {
-            console.log(categorys(is_category)); // 0,1,2,3,4똑같은지 비교 is_category에서 0,1,2,3,4번째 뽑은것 //함수처리 x
-            if (p.category.includes("")) {
-              //태그 하나에 대해서만 검사가 된다.... 원하는대로 하려면 if문 여러개
-              //카테고리 배열을 2개 받는 함수 // 2개중에서 겹치는게 하나라도 있는지 // p.category와 is_category
-              // 그럼 여기값을 잘 가지고 놀면될 거 같다
-              //""인 상태면 모든걸 출력
-              //카테고리를 포함하고 있으면 그것들만 리턴시켜줘라
-
-              return (
-                <>
-                  <Post2 key={i} {...p} />
-                </>
-              );
+          }
+        })}
+        {/* {"야경 선택"} */}
+        {searchPost.map((p) => {
+          if (resultNight) {
+            if (p.category == "야경") {
+              return <Post2 key={p.id} {...p}></Post2>;
             }
-            // else {
-            //   return (
-            //     <>
-            //       <Post2 key={i} {...p} />
-            //     </>
-            //   );
-            // }
-          })}
+          }
+        })}
+        {/* {"바다 선택"} */}
+        {searchPost.map((p) => {
+          if (resultOcean) {
+            if (p.category == "바다") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"산 선택"} */}
+        {searchPost.map((p) => {
+          if (resultMountain) {
+            if (p.category == "산") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"꽃 선택"} */}
+        {searchPost.map((p) => {
+          if (resultFlower) {
+            if (p.category == "꽃") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"나홀로 선택"} */}
+        {searchPost.map((p) => {
+          if (resultAlone) {
+            if (p.category == "나홀로") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"연인 선택"} */}
+        {searchPost.map((p) => {
+          if (resultCouple) {
+            if (p.category == "연인") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"친구 선택"} */}
+        {searchPost.map((p) => {
+          if (resultFreind) {
+            if (p.category == "친구") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"반려동물 선택"} */}
+        {searchPost.map((p) => {
+          if (resultPet) {
+            if (p.category == "반려동물") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"도심 선택"} */}
+        {searchPost.map((p) => {
+          if (resultCity) {
+            if (p.category == "도심") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}{" "}
+        {/* {"공원 선택"} */}
+        {searchPost.map((p) => {
+          if (resultPark) {
+            if (p.category == "공원") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
+        {/* {"전시 선택"} */}
+        {searchPost.map((p) => {
+          if (resultExhibition) {
+            if (p.category == "전시") {
+              return <Post2 key={p.id} {...p}></Post2>;
+            }
+          }
+        })}
       </Container>
       <SideNav />
-      {/* <LogBtn /> */}
-      {/* <SearchBar
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      /> */}
 
       <Category />
       <Box></Box>
