@@ -33,7 +33,7 @@ export default handleActions(
           if (acc.findIndex((a) => a === cur) === -1) {
             return [...acc, cur];
           } else {
-            //현재 카테고리상태 배열을 모두 for문으로 돌린다
+            // 현재 카테고리상태 배열을 모두 for문으로 돌린다
             // 배열안의 값중에 새로들어온 상태값과 같은게 있다면
             // splice를 이용해 같은 번째(i)의 값을 선택해서 삭제한다
             for (let i = 0; i < acc.length; i++) {

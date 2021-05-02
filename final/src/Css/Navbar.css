@@ -8,7 +8,6 @@
   z-index: 100;
   top: 0;
   width: 94px;
-  background-color: red;
 }
 
 .menu-bars {
@@ -17,7 +16,6 @@
   margin-right: 0px;
   font-size: 2rem;
   background: none;
-  background-color: red;
 }
 
 /* 여기가 줄어드는 부분 */
@@ -70,13 +68,12 @@
 .nav-menu-items {
   width: 300px;
   margin: 0px;
-  background-color: red;
 }
 
 .navbar-toggle {
   /* background-color: #060b26; */
   margin-left: -30px;
-  background-color: red;
+
   height: 80px;
   display: flex;
   justify-content: start;

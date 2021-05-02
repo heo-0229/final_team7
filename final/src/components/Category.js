@@ -392,6 +392,21 @@ justify-content: space-between; */
   border-radius: 7px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    z-index: 5000;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0px 4px;
+    padding-top: -50px;
+    padding-bottom: 10px;
+  }
   /* height: 100px;
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -418,7 +433,11 @@ const CateGoryTitle = styled.div`
   border-bottom: 1px solid lightgray;
   width: 100%;
   font-size: 17px;
+
   padding-bottom: 7px;
+  @media (max-width: 1450px) {
+    display: none;
+  }
 `;
 
 const CategoryIcon = styled.div`

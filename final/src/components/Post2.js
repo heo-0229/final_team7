@@ -29,14 +29,6 @@ const Post2 = (props) => {
     setDetailModal(false);
   };
 
-  // const openDetailModal = () => {
-  //   setDetailModal(true);
-  // };
-
-  // const closeDetailModal = () => {
-  //   setDetailModal(false);
-  // };
-
   //스타일 컴포넌트//
   const hoverBox = keyframes`
   0% {

@@ -32,34 +32,34 @@ function Navbar() {
         {/* </div> */}
         <SideMini>
           <SideIcon>
-            <Link to="/story">
-              <CgIcons.CgProfile size="26px" />
-            </Link>
-            <IconInfo>로고</IconInfo>
-
+            <LOGO>
+              <Link to="/story">
+                <CgIcons.CgProfile size="1.6rem" />
+              </Link>
+            </LOGO>
             <Link to="/">
-              <GrIcons.GrMap size="26px" />
+              <GrIcons.GrMap size="1.5rem" />
             </Link>
             <IconInfo>홈</IconInfo>
 
             <Link to="/postlist">
-              <MdIcons.MdPhotoLibrary size="26px" />
+              <MdIcons.MdPhotoLibrary size="1.6rem" />
             </Link>
             <IconInfo>커뮤니티</IconInfo>
             <Link to="/story">
-              <CgIcons.CgProfile size="26px" />
+              <CgIcons.CgProfile size="1.6rem" />
             </Link>
             <IconInfo>마이페이지</IconInfo>
             <Link>
-              <IoIcons.IoMdPeople size="26px" />
+              <IoIcons.IoMdPeople size="1.7rem" />
             </Link>
             <IconInfo>About</IconInfo>
             <Link to="/faq">
-              <FaIcons.FaEnvelopeOpenText size="26px" />
+              <FaIcons.FaEnvelopeOpenText size="1.4rem" />
             </Link>
             <IconInfo>FAQ</IconInfo>
             <Link to="/login">
-              <GrIcons.GrLogin size="26px" />
+              <GrIcons.GrLogin size="1.5rem" />
             </Link>
             <IconInfo>로그인</IconInfo>
           </SideIcon>
@@ -73,7 +73,7 @@ function Navbar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            <LOGO
+            {/* <LOGO
               onClick={(e) => {
                 history.push("/");
                 e.preventDefault();
@@ -81,7 +81,7 @@ function Navbar() {
               }}
             >
               LOGO
-            </LOGO>
+            </LOGO> */}
             <CategoryInfo>
               <CategoryIcon>
                 {" "}
@@ -126,11 +126,10 @@ function Navbar() {
 export default Navbar;
 
 const LOGO = styled.div`
-  width: 70px;
-  width: 110px;
-  margin-bottom: 35px;
-  font-size: 30px;
-  cursor: pointer;
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    display: none;
+  }
 `;
 
 const SideMini = styled.div`
@@ -144,6 +143,14 @@ const SideMini = styled.div`
   z-index: 20;
   display: flex;
   flex-direction: column;
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    z-index: 5000;
+    width: 100%;
+    height: 8vh;
+    justify-content: space-around;
+    flex-direction: row;
+  }
 `;
 
 const SideIcon = styled.div`
@@ -153,11 +160,24 @@ const SideIcon = styled.div`
   justify-content: space-between;
   height: 500px;
   margin-top: 25px;
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    width: 100%;
+    height: 7vh;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0px 9vw;
+  }
 `;
 
 const CategoryInfo = styled.div`
   display: flex;
   margin-bottom: 25px;
+
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    display: none;
+  }
 `;
 
 const CategoryIcon = styled.div`
@@ -171,4 +191,8 @@ const Bubble = styled.div`
 const IconInfo = styled.div`
   font-size: 9px;
   margin-top: -15px;
+  @media (max-width: 1450px) {
+    // 1450밑으로 넓이가 내려가면
+    display: none;
+  }
 `;
