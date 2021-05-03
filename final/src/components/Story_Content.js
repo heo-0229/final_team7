@@ -26,10 +26,10 @@ const Story_Content = (props) => {
     <React.Fragment>
         <Icons>
           <Icon onClick={handleClick} active={active === 1} id={1}>
-            <FiImage size="40" onClick={handleClick} />
+            <FiImage size="40" onClick={handleClick} active={active === 1} id={1}/>
           </Icon>
           <Icon onClick={handleClick} active={active === 2} id={2}>
-            <HiOutlineMap size="40" onClick={handleClick} />
+            <HiOutlineMap size="40" onClick={handleClick} active={active === 2} id={2}/>
           </Icon>
         </Icons>
 

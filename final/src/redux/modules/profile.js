@@ -5,13 +5,11 @@ import produce from "immer";
 // Action
 const UPLOAD_IMAGE = "UPLOAD_IMAGE";  
 const UPLOADING = "UPLOADING";    //업로드 여부
-const SET_PREVIEW = "SET_PREVIEW";   // 일반 이미지(사용자 프로필 이미지 제외) 보여주는 액션
 const PROFILE_PREVIEW = "PROFILE_PREVIEW";  // 사용자 프로필 이미지를 보여주는 액션
 
 // Action creators 
 const uploadImage = createAction(UPLOAD_IMAGE, (image_url) => ({ image_url }));
 const uploading = createAction(UPLOADING, (uploading) => ({ uploading }));
-const setPreview = createAction(SET_PREVIEW, (preview) => ({preview}));
 const profilePreview = createAction(PROFILE_PREVIEW, (profile_preview) => ({profile_preview}));
 
 // initialState
@@ -26,11 +24,6 @@ const initialState = {
 // reducer
 export default handleActions({
   // SET_PREVIEW : 업로드한 사진을 보여주도록 처리한다.
-  [SET_PREVIEW]: (state, action) => produce(state, (draft) => {
-    console.log(action.payload);
-    console.log(action.payload.preview);
-    draft.preview = action.payload.preview;
-  }),
 
   [PROFILE_PREVIEW]: (state, action) => produce(state, (draft) => {
     draft.profile_preview = action.payload.profile_preview;
@@ -42,7 +35,6 @@ export default handleActions({
 const actionCreators = {
   uploadImage,
   uploading,
-  setPreview,
   profilePreview,
 };
 

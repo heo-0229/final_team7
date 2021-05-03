@@ -173,11 +173,11 @@ const SideMini = styled.div`
   z-index: 20;
   display: flex;
   flex-direction: column;
-  @media (max-width: 1450px) {
-    /* 1450밑으로 넓이가 내려가면 */
+  @media (max-width: 960px) {
+    // 1450밑으로 넓이가 내려가면
     z-index: 5000;
     width: 100%;
-    height: 8vh;
+    height: 60px;
     justify-content: space-around;
     flex-direction: row;
   }
@@ -190,8 +190,8 @@ const SideIcon = styled.div`
   justify-content: space-between;
   height: 500px;
   margin-top: 25px;
-  @media (max-width: 1450px) {
-    /* 1450밑으로 넓이가 내려가면 */
+  @media (max-width: 960px) {
+    // 1450밑으로 넓이가 내려가면
     width: 100%;
     height: 7vh;
     justify-content: space-between;
@@ -204,8 +204,8 @@ const CategoryInfo = styled.div`
   display: flex;
   margin-bottom: 25px;
 
-  @media (max-width: 1450px) {
-    /* 1450밑으로 넓이가 내려가면 */
+  @media (max-width: 960px) {
+    // 1450밑으로 넓이가 내려가면
     display: none;
   }
 `;

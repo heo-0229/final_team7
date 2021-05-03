@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { Grid, Text, Button, Input } from "../../elements/index";
-import { actionCreators as userActions } from "../../redux/modules/user";
-
+import { 
+  Container,
+  Title, 
+  InputStyle, 
+  SolidBtn, 
+  BorderBtn,
+  CheckBtn, 
+  TextBtn,
+  InfoUl } from "../../Css/loginSignupCss"
+  import RegCheck from "../../Css/RegCheck.css";
 import { history } from "../../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -157,68 +164,6 @@ const EditPwd = () => {
   );
 };
 
-const Container = styled.div`
-  width: 25%;
-  height: 70%;
-  margin: 10% auto;
-  padding: 80px 50px;
-  border: none;
-  text-align: center;
-  flex-direction: column;
-`;
 
-const Title = styled.div`
-  margin-bottom: 30px;
-  font-size: 1.5vw;
-  font-weight: 600;
-  text-align: center;
-  color: #343a40;
-`;
-
-const InputStyle = styled.input`
-  border: none;
-  ${(props) => (props.width ? `width:${props.width};` : "")}
-  height: 40px;
-  border-bottom: 1px grey solid;
-  margin: 15px auto;
-  padding: 4px;
-  font-size: 1vw;
-  font-weight: 500;
-  color: grey;
-  :focus {
-    outline: none;
-  }
-  cursor: pointer;
-`;
-
-const InfoUl = styled.ul`
-  font-size: 12px;
-  color: #666666;
-  font-weight: 400;
-  text-align: left;
-  margin-left: -15px;
-`;
-
-const SolidBtn = styled.button`
-  border: none;
-  width: 100%;
-  min-height: 50px;
-  max-height: 70px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin: 25px auto 10px auto;
-  font-size: 1vw;
-  font-weight: 500;
-  ${(props) => (props.color ? `color:${props.color};` : "")}
-  ${(props) => (props.bg ? `background-color:${props.bg};` : "")}
-  :focus {
-    outline: none;
-  }
-  &:hover {
-    color: grey;
-    background-color: lightgrey;
-    cursor: pointer;
-  }
-`;
 
 export default EditPwd;
