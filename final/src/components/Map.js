@@ -311,6 +311,7 @@ export default Maps;
 
 const SearchBox = styled.div`
   position: fixed;
+  margin: auto;
   top: 65px;
   left: 110px;
   /* transform: translate(-60%, -60%); */
