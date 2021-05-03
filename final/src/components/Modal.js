@@ -252,7 +252,7 @@ const ModalComponent = styled.div`
   box-sizing: border-box;
   min-width: 380px;
   @media (max-width: 1440px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     /* all: unset; */
     position: fixed;
     width: 35vw;
@@ -267,7 +267,7 @@ const ModalComponent = styled.div`
     box-sizing: border-box;
   }
   @media (max-width: 600px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     /* all: unset; */
     position: absolute;
     width: 100%;

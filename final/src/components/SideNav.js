@@ -157,7 +157,7 @@ const LOGO = styled.div`
   margin-bottom: 7vh;
 
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     display: none;
   }
 `;
@@ -174,7 +174,7 @@ const SideMini = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     z-index: 5000;
     width: 100%;
     height: 8vh;
@@ -191,7 +191,7 @@ const SideIcon = styled.div`
   height: 500px;
   margin-top: 25px;
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     width: 100%;
     height: 7vh;
     justify-content: space-between;
@@ -205,7 +205,7 @@ const CategoryInfo = styled.div`
   margin-bottom: 25px;
 
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     display: none;
   }
 `;
@@ -222,7 +222,7 @@ const IconInfo = styled.div`
   font-size: 9px;
   margin-top: -15px;
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
     display: none;
   }
 `;
