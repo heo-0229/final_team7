@@ -114,6 +114,8 @@ const Maps = (props) => {
     // 좌표로 주소 얻어내기.
     var geocoder = new kakao.maps.services.Geocoder();
 
+    // 
+
     // // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
     // searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 
@@ -149,7 +151,8 @@ const Maps = (props) => {
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(); 
     // 키워드로 장소를 검색합니다
-    ps.keywordSearch(`${search}`, (data, status, pagination) => {
+    if (search) {
+      ps.keywordSearch(search, (data, status, pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -165,32 +168,14 @@ const Maps = (props) => {
           map.setBounds(bounds);
         };
       } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-        window.alert('검색결과가 존재하지 않습니다.');
-        return;
+          window.alert('검색결과가 존재하지 않습니다.');
+          return;
       } else if (status === kakao.maps.services.Status.ERROR) {
-        window.alert('검색 결과 중 오류가 발생했습니다.');
-        return;
-      }
-    });
-    // console.log(ps.keywordSearch(`${search}`, placeSearchCB))
-
-    // // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-    // function placeSearchCB (data, status, pagination) {
-    //   if (status === kakao.maps.services.Status.OK) {
-    //     // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-    //     // LatLngBounds 객체에 좌표를 추가합니다
-    //     var bounds = new kakao.maps.LatLngBounds();
-
-    //     for (var i = 0; i < data.length; i++) {
-    //       // displayMarker(data[i], bounds);
-    //       bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-
-    //       // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다.
-    //       map.setBounds(bounds);
-    //     }
-    //   }
-    // }
-
+          window.alert('검색 결과 중 오류가 발생했습니다.');
+          return;
+        }
+      });
+    }  
 
     // 마커 관련 설정
     // 마커를 생성하고 지도에 표시합니다
@@ -325,13 +310,15 @@ const SearchBox = styled.div`
   }
   @media (max-width: 970px) {
     top: 140px;
+    left: 30vw;
     margin: auto;
     width: 450px;
   }
   @media (max-width: 400px) {
+    top: 140px;
     width: 50%;
     margin: auto;
-    left: 20px;
+    left: 20vw;
   } 
 `;
 
