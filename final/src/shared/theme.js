@@ -6,7 +6,7 @@ const size = {
 
 const theme = {
   responsiveContainer: `
-    @media (min-width: 1440px) {
+    @media (min-width: 1280px) {
       width: 1260px;
     }
     @media (max-width: 1280px) {
@@ -18,8 +18,7 @@ const theme = {
     @media (max-width: 400px) {
       width: calc(100% - 1px);
     }
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     `,
 
   main_color: "rgb(46, 60, 126)",

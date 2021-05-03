@@ -91,10 +91,10 @@ const Story = (props) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => setModalIsOpen(true)}>
+              <MenuItem onClick={openModal}>
                 프로필 편집
               </MenuItem>
-              <MenuItem onClick={() => setModalIsOpen(true)}>
+              <MenuItem onClick={openModal}>
                 비밀번호 변경
               </MenuItem>
             </Menu>
@@ -152,7 +152,7 @@ const ProfileContainer = styled.div`
 `;
 
 const ProfileImg = styled.img`
-  width: 150px;
+  width: 160px;
   aspect-ratio: 1/1;
   border-radius: 150px;
   padding: 30px;
@@ -163,7 +163,7 @@ const ProfileImg = styled.img`
 `;
 
 const Nickname = styled.text`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
 `;
 const Introduction = styled.text`
@@ -205,10 +205,11 @@ const modalStyle = {
     zIndex: 500,
   },
   content: {
-    width: "50%",
-    // height: "50%",
-    minHeight: "500px",
+    minWidth: "300px",
+    width: "40%",
+    // height: "450px",
     margin: "auto",
+    padding: "20px",
     border: "none",
     boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
     zIndex: 600,
@@ -239,7 +240,7 @@ const Tab = styled.button`
   box-sizing: border-box;
   width: 50%;
   padding: 20px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: ${(props) => (props.active ? props.theme.main_color : "grey")};
   font-weight: ${(props) => (props.active ? 600 : 200)};
   background-color: ${(props) => (props.active ? "white" : "white")};
