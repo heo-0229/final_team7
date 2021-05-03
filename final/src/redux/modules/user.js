@@ -65,7 +65,7 @@ const loginAPI = (email, pwd) => {
       })
       .then((res) => {
         // console.log("loginAPI(res)", res);
-        localStorage.setItem('nickname', res.data.nickname);
+        localStorage.setItem("nickname", res.data.nickname);
         setCookie("token", res.data.token);
         dispatch(setUser(res.config.data));
         // axios.defaults.headers.common["token"] = `Bearer ${token}`;
@@ -132,20 +132,20 @@ const getUserInfoAPI = (nickname) => {
         console.log(doc);
 
         // let user_info = [];
-          let user = {
-            nickname : doc.nickname,
-            bio : doc.bio,
-            profileImgUrl: doc.profileImgUrl,
-            githubUrl: doc.githubUrl, 
-        }
-          console.log(user);
-          dispatch(setUser(user));
+        let user = {
+          nickname: doc.nickname,
+          bio: doc.bio,
+          profileImgUrl: doc.profileImgUrl,
+          githubUrl: doc.githubUrl,
+        };
+        console.log(user);
+        dispatch(setUser(user));
       })
       .catch((err) => {
         console.error("게시물을 가져오는데 문제가 있습니다", err);
       });
-    };
   };
+};
 
 // reducer: handleActions(immer를 통한 불변성 유지)
 export default handleActions(

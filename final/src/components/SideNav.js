@@ -13,12 +13,16 @@ import { IconContext } from "react-icons";
 import Category from "./Category";
 import { history } from "../redux/configStore";
 import styled from "styled-components";
+import user from "../redux/modules/user";
+import { useDispatch, useSelector } from "react-redux";
 
 function Navbar() {
   //GrMap
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const is_login = useSelector((state) => state.user.is_login);
 
   return (
     <>
@@ -37,6 +41,7 @@ function Navbar() {
                 <CgIcons.CgProfile size="1.6rem" />
               </Link>
             </LOGO>
+
             <Link to="/">
               <GrIcons.GrMap size="1.5rem" />
             </Link>
@@ -58,11 +63,34 @@ function Navbar() {
               <FaIcons.FaEnvelopeOpenText size="1.4rem" />
             </Link>
             <IconInfo>FAQ</IconInfo>
-            <Link to="/login">
+            {/* {is_login? :    <Link to="/login">
               <GrIcons.GrLogin size="1.5rem" />
             </Link>
-            <IconInfo>로그인</IconInfo>
+            <IconInfo>로그인</IconInfo>} */}
+
+            {is_login ? (
+              <React.Fragment>
+                <GrIcons.GrLogout
+                  size="1.5rem"
+                  onClick={() => {
+                    history.push("/login");
+                  }}
+                />
+                <IconInfo>로그아웃</IconInfo>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <GrIcons.GrLogin
+                  size="1.5rem"
+                  onClick={() => {
+                    history.push("/login");
+                  }}
+                />
+                <IconInfo>로그인</IconInfo>
+              </React.Fragment>
+            )}
           </SideIcon>
+          {/* <GrLogout size="1.5rem" /> */}
         </SideMini>
         {/* sidebar값에 따라 클래스 네임을 바꿔준다 */}
         {/* nav-menu.active는 사이드바가 들어간 상태를 의미 */}
@@ -126,6 +154,8 @@ function Navbar() {
 export default Navbar;
 
 const LOGO = styled.div`
+  margin-bottom: 7vh;
+
   @media (max-width: 1450px) {
     // 1450밑으로 넓이가 내려가면
     display: none;
