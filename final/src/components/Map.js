@@ -93,65 +93,81 @@ const Maps = (props) => {
     // useEffect 밖으로 map정보를 가져오기 위해서 useState로 함수를 만든다.
     setMap(map);
 
+    // services.Geocoder() 는 주소-좌표간 변환 서비스를 제공한다.
+    var geocoder = new kakao.maps.services.Geocoder();
+
     // 콘솔창에 클릭한 위치의 위도 경도가 표시되는 코드
     // 지도에 클릭 이벤트를 등록합니다
     // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
     kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
       // 클릭한 위도, 경도 정보를 가져옵니다 
-      var latlng = mouseEvent.latLng;
+      var latlng = mouseEvent.latLng;  
+      var hereLat = latlng.getLat();  // number
+      var hereLng = latlng.getLng();  // number
 
       var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
           message += '경도는 ' + latlng.getLng() + ' 입니다';
 
       console.log(message);
-      // var resultDiv = document.getElementById('result'); 
-      // resultDiv.innerHTML = message;
-      // console.log(resultDiv.innerHTML);
 
+      // 위도 경도 좌표로 주소 알아내기
+      var coord = new kakao.maps.LatLng(hereLat, hereLng);
+      console.log(coord); // 여기까진 정상 작동, 이 아래부터 코드 수정이 필요
+
+      // var callback = function(result, status) {
+      //   if (status === kakao.maps.services.status.OK) {
+      //     // 서버로 보낼 장소 이름(spotName) 데이터를 구한다.
+      //     if (!result[0].address.place_name) {
+      //       var spotName = result[0].address.address_name;
+      //     } else {
+      //       var spotName = result[0].address.place_name;
+      //     }
+      //   };
+
+      searchAddrFromCoords(mouseEvent.latLng, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          //서버로 보낼 장소 이름(spotName) 데이터를 구한다.
+          var spotName = result[0].address_name;
+          console.log(result[0]);
+          console.log(spotName);
+        };
+      });
+
+      function searchAddrFromCoords(coords, callback) {
+        // 좌표로 행정동 주소 정보를 요청합니다
+        geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+      }
+
+      // searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+      //   if (status === kakao.maps.services.Status.OK) {
+          //서버로 보낼 장소 이름(spotName) 데이터를 구한다.
+          // if (!result[0].aplace_name) {
+          //   var spotName = result[0].address_name;
+          // } else {
+          //   var spotName = result[0].place_name;
+          // }
+          // console.log(result[0]);
+          // console.log(spotName);
+      //   };
+      // });
+
+      // function searchDetailAddrFromCoords(coords, callback) {
+      //   // 좌표로 법정동 상세 주소 정보를 요청합니다
+      //   geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+      // }
+
+      // var address = geocoder.coord2Address(hereLng, hereLat, callback);
+      // console.log(address)
+      // console.log(spotName)
     });
-    
-    // 좌표로 주소 얻어내기.
-    var geocoder = new kakao.maps.services.Geocoder();
-
-    // 
-
-    // // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
-    // searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-
-    // // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
-    // kakao.maps.event.addListener(map, 'idle', function() {
-    //   searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-    // });
-
-    // function searchAddrFromCoords(coords, callback) {
-    // // 좌표로 행정동 주소 정보를 요청합니다
-    //   geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);   
-    // }
-
-    // // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다.
-    // function displayCenterInfo (result, status) {
-    //   if (status === kakao.maps.services.Status.OK) {
-    //     // var infoDiv = document.getElementById('centerAddr');
-    //     console.log(result);
-    //     for (var i = 0; i < result.length; i++) {
-    //       // 행정동의 region_type 값은 'H'이므로
-    //       if (result[i].region_type === 'H') {
-    //         const address_of_here = result[i].address_name;
-    //         // console.log(infoDiv.innerHTML);
-    //         dispatch(mapActions.getAddress(address_of_here));
-    //         break;
-    //       }
-    //     }
-    //   }
-    // }
 
     // -----------------------------------------------------------------------------
     // 키워드로 검색하기
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places(); 
     // 키워드로 장소를 검색합니다
-    if (search) {
+    if (search) { // search가 빈 string일때 검색이 되어서 오류가 뜨는 경우를 없애기 위해 if문으로 분기한다.
       ps.keywordSearch(search, (data, status, pagination) => {
       if (status === kakao.maps.services.Status.OK) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
