@@ -323,7 +323,7 @@ const SearchBox = styled.div`
     top: 140px;
     width: 400px;
   }
-  @media (max-width: 960px) {
+  @media (max-width: 970px) {
     top: 140px;
     margin: auto;
     width: 450px;
@@ -331,7 +331,7 @@ const SearchBox = styled.div`
   @media (max-width: 400px) {
     width: 50%;
     margin: auto;
-    left: 30px;
+    left: 20px;
   } 
 `;
 
