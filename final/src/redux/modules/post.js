@@ -6,6 +6,7 @@ import "moment";
 import moment from "moment";
 import { config } from "../../shared/config";
 import post_list from "../../components/MockData";
+import { func } from "prop-types";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -31,16 +32,16 @@ const getPostAPI = (category) => {
   return function (dispatch, getState) {
     const category = getState().category.is_category;
 
-    console.log("액시오스 카테고리 상태", category);
+    // console.log("액시오스 카테고리 상태", category);
 
-    if (category.length == 0) {
-      // category = category;
-      console.log("전체 출력 할끄야!");
-    } else if (category.length > 0) {
-      // 당연히 렌더링 된 순간이니... 이게 먹힐려나?
-      // map을 돌린다음에? ${category[0]}, ${category[1]} 이런식으로 가능하려나?
-      console.log("카테고리 출력 할끄야!");
-    }
+    // if (category.length == 0) {
+    //   // category = category;
+    //   console.log("전체 출력 할끄야!");
+    // } else if (category.length > 0) {
+    //   // 당연히 렌더링 된 순간이니... 이게 먹힐려나?
+    //   // map을 돌린다음에? ${category[0]}, ${category[1]} 이런식으로 가능하려나?
+    //   console.log("카테고리 출력 할끄야!");
+    // }
 
     return;
     axios({
@@ -75,6 +76,29 @@ const getPostAPI = (category) => {
       });
   };
 };
+
+// const edisPostAPI = (id, post) => {
+//   return function (dispatch, getState) {
+//     if (!id) {
+//       console.log("게시물이 없습니다!");
+//       return;
+//     }
+//     const _image = getState().image.preview;
+//     const _post_idx = getState().post.list.findIndex((p) => p.id == id);
+//     const _post = getState().post.list[_post_idx];
+//     let _edit = {
+//       contens: post.contents,
+//     };
+//     if (_image == _post.imgUrl) {
+//       axios({
+//         method: "PUT",
+//         url: `${config.api}/board/${category}`,
+//       }).then((res) => {
+//         console.log(res);
+//       });
+//     }
+//   };
+// };
 
 // const deletePostAPI = () => {
 //   return function (dispatch, getState) {

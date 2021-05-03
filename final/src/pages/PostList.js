@@ -289,7 +289,7 @@ const Search = styled.div`
   border: none;
   box-sizing: border-box;
   @media (max-width: 1450px) {
-    // 1450밑으로 넓이가 내려가면
+    /* 1450밑으로 넓이가 내려가면 */
 
     width: 80vw;
   }
