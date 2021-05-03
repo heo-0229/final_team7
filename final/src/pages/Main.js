@@ -1,9 +1,11 @@
+// Main.js : 첫 화면
 import React, { useState, useEffect, useRef } from "react";
 
 // 리덕스를 이용하게 해주는 함수들, 모듈 파일 가져오기
 import { history } from '../redux/configStore';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from "styled-components";
+// import { actionCreators as postActions } from "../redux/modules/post";
 
 // component, element 파일들 가져오기
 import Map from "../components/Map";

@@ -10,7 +10,9 @@ import styled from "styled-components";
 import _ from "lodash"; // throttle, debounce 사용
 
 // component, element 파일들 가져오기
-import { markerdata } from "./MarkerData";
+import { markerdata } from "./MarkerMockData";
+// import ModalSmallPost from "./ModalSmallPost";
+import "./Map.css";
 
 // window 객체로부터 kakao mpa api를 호출하기
 // 이것이 되게 하기 위해서는 index.html(index.js 아님!!!)의 script 태그안의 src에다가
@@ -20,6 +22,7 @@ const { kakao } = window;
 const Maps = (props) => {
   const dispatch = useDispatch();
   // const is_login = useSelector((state) => state.user.is_login);
+  // const is_session = sessionStorage.getItem('jwt') ? true : false;
 
   // 사진이 나오는 모달창 제어
   const [is_modal, setModal] = useState(false); // 마커 클릭하면 나오는 작은 모달
@@ -30,11 +33,15 @@ const Maps = (props) => {
   const [longitude, setLongitude] = useState();
   const [address, setAddress] = useState();
   const [markerId, setMarkerId] = useState();
+  const [imgUrl, setImgUrl] = useState("");
+  const [spotName, setSpotName] = useState("");
   const [_map, setMap] = useState();
 
   // search가 변경 될때마다 화면 렌더링되도록 useEffect에 [search]를 넣어준다.
   const [search, setSearch] = useState("");
   //조건 걸어주기 // 나를 기준으로 몇 km 이내
+
+  // const totalPicPostData = useSelector((state) => state.map.narmal_data);
 
   // 이래야 화면 렌더링이 계속안된다
   const debounce = _.debounce((e) => {
@@ -85,6 +92,24 @@ const Maps = (props) => {
 
     // useEffect 밖으로 map정보를 가져오기 위해서 useState로 함수를 만든다.
     setMap(map);
+
+    // 콘솔창에 클릭한 위치의 위도 경도가 표시되는 코드
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+
+      // 클릭한 위도, 경도 정보를 가져옵니다 
+      var latlng = mouseEvent.latLng;
+
+      var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+          message += '경도는 ' + latlng.getLng() + ' 입니다';
+
+      console.log(message);
+      // var resultDiv = document.getElementById('result'); 
+      // resultDiv.innerHTML = message;
+      // console.log(resultDiv.innerHTML);
+
+    });
     
     // 좌표로 주소 얻어내기.
     var geocoder = new kakao.maps.services.Geocoder();
@@ -122,9 +147,31 @@ const Maps = (props) => {
     // -----------------------------------------------------------------------------
     // 키워드로 검색하기
     // 장소 검색 객체를 생성합니다
-    // var ps = new kakao.maps.services.Places(); 
-    // // 키워드로 장소를 검색합니다
-    // ps.keywordSearch(`${search}`, placeSearchCB);
+    var ps = new kakao.maps.services.Places(); 
+    // 키워드로 장소를 검색합니다
+    ps.keywordSearch(`${search}`, (data, status, pagination) => {
+      if (status === kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new kakao.maps.LatLngBounds();
+        console.log(data);
+        console.log(bounds);
+
+        for (var i = 0; i < data.length; i++) {
+          // displayMarker(data[i], bounds);
+          bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+
+          // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다.
+          map.setBounds(bounds);
+        };
+      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        window.alert('검색결과가 존재하지 않습니다.');
+        return;
+      } else if (status === kakao.maps.services.Status.ERROR) {
+        window.alert('검색 결과 중 오류가 발생했습니다.');
+        return;
+      }
+    });
     // console.log(ps.keywordSearch(`${search}`, placeSearchCB))
 
     // // 키워드 검색 완료 시 호출되는 콜백함수 입니다
@@ -144,14 +191,86 @@ const Maps = (props) => {
     //   }
     // }
 
-    // 지도에 마커를 표시하는 함수입니다
-    // function displayMarker(place) {
-    
-    //   // 마커를 생성하고 지도에 표시합니다
-    //   var marker = new kakao.maps.Marker({
-    //       map: map,
-    //       position: new kakao.maps.LatLng(place.y, place.x) 
-    //   });
+
+    // 마커 관련 설정
+    // 마커를 생성하고 지도에 표시합니다
+    // 기본(전체) 마커, 좋아요 마커, 각 카테고리별 마커들의 url
+    var normalMarkerImgUrl = "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-128.png"
+    // var myMarker = "",
+    // var myLikeMarker = "",
+    // var caftMarker = "",
+    // var nightMarker = "",
+    // var oceanMarker = "",
+    // var mountainMarker = "",
+    // var flowerMarker = "",
+    // var aloneMarker = "",
+    // var coupleMarker = "",
+    // var friendMarker = "",
+    // var petfMarker = "",
+    // var cityMarker = "",
+    // var parkMarker = "",
+    // var exhibitionMarker = "",
+
+    // 지도 렌더링시, 모든 게시물 자료들을 가져와서 마커와 함께 렌더링한다.
+    // 서버와 연결되어 데이터 통신이 이뤄지면 이 코드를 사용한다
+    // totalPicPostData.map((p, idx) => {
+
+    // mockdate를 이용한 테스트. 나중엔 서버에서 가져온다.
+    markerdata.forEach((p) => {
+
+      var imageSize = new kakao.maps.Size(40, 40);
+      var markerImage = new kakao.maps.MarkerImage(normalMarkerImgUrl, imageSize);
+      var position = new kakao.maps.LatLng(p.latitude, p.longitude)
+      const markers = new kakao.maps.Marker({
+        // 마커들을 생성하고, 그것들을 대응되는 좌표에다가 뿌려줍니다.
+        // 렌더링 되면서 마커만 나오므로, 데이터는 좌표와 마커이미지만 필요.
+        map: map,
+        position: position, 
+        image: markerImage,
+      })
+
+      // 모달창(커스텀오버레이)에 들어갈 내용
+      var content = '<div class="modalcontainer">' +
+                        '<div class="picbox">' +
+                            `<img src=${p.imgUrl}>` +  
+                            '<div class="head">' +
+                                `<div class="spotname">${p.spotName}</div>` +
+                                '<div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                            '</div>' +
+                            '<div class="center"></div>' +
+                            '<div class="bottomiconbox">' +
+                                '<div class="likeicon"></div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+
+      // 모달창(커스텀오버레이) 객체를 생성
+      var customOverlay = new kakao.maps.CustomOverlay({
+        position: position,
+        content: content,
+        xAnchor: 0.3,
+        yAnchor: 0.91,
+      });
+
+      // 마커에 마우스를 올려 놓으면 커스텀오버레이가 보이게 한다.
+      kakao.maps.event.addListener(markers, 'mouseover', function() {
+        customOverlay.setMap(map); 
+      })
+
+      // 마커에서 마우스를 떼면 커스텀오버레이가 사라지게한다.
+      kakao.maps.event.addListener(markers, 'mouseout', function() {
+        customOverlay.setMap(null); 
+      })
+      // function closeOverlay() {
+      //   customOverlay.setMap(null);     
+      // } 
+    });
+
+
+    // var marker = new kakao.maps.Marker({
+    //     map: map,
+    //     position: new kakao.maps.LatLng(place.y, place.x) 
+    // });
 
     //   // 마커에 클릭이벤트를 등록합니다
     //   kakao.maps.event.addListener(marker, 'click', function() {
@@ -177,11 +296,12 @@ const Maps = (props) => {
       <MapBox>
         {/* 위에서 설정된 getElementById("map")에 의해서 id="map"인 div에 맵이 표시된다 */}
         <div id="map" style={{ width: "100vw", height: "100vh" }}></div>
-        {/* <div className="hAddr">
+        {/* <div>
           <h1>현재위치는</h1>
-          <span id="centerAddr"></span>
+          <span id="result"></span>
           <h2>가 맞나요?</h2>
         </div> */}
+        {/* {is_modal? <ModalSmallPost imgUrl={imgUrl} spotName={spotName}/> : null} */}
       </MapBox>
     </React.Fragment>
   );
@@ -190,22 +310,41 @@ const Maps = (props) => {
 export default Maps;
 
 const SearchBox = styled.div`
-  position: absolute;
-  top: 80px;
-  left: 30%;
-  transform: translate(-60%, -50%);
+  position: fixed;
+  top: 65px;
+  left: 110px;
+  /* transform: translate(-60%, -60%); */
   z-index: 10;
+  @media (min-width: 1280px) {
+    width: 600px;
+  }
+  @media (max-width: 1280px) {
+    top: 140px;
+    width: 400px;
+  }
+  @media (max-width: 960px) {
+    top: 140px;
+    margin: auto;
+    width: 450px;
+  }
+  @media (max-width: 400px) {
+    width: 50%;
+    margin: auto;
+    left: 30px;
+  } 
 `;
 
 const SearchInput = styled.input`
   height: 50px;
-  width: 500px;
+  width: 100%;
   border-radius: 10px;
   padding-left: 15px;
   font-size: 15px;
   border: none;
   &:focus {
-    outline: none;
+    /* outline: blue; */
+    border-radius: 10px;
+    border-color: blue;
   }
 `;
 
@@ -216,12 +355,4 @@ const MapBox = styled.div`
   bottom: 0;
   position: absolute;
 
-  .hAddr {
-    width: 100%;
-  }
-
-  #centerAddr {
-    font-size: 20px;
-    font-weight: 600;
-  }
 `;
